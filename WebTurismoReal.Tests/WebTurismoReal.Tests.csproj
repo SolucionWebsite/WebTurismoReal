@@ -60,12 +60,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WebTurismoReal\WebTurismoReal.csproj">
+    <ProjectReference Include="..\WebTurismoReal\WebTurismoReal.GUI.csproj">
       <Project>{6178CFB9-1652-4A74-812C-910D8958E98A}</Project>
-      <Name>WebTurismoReal</Name>
+      <Name>WebTurismoReal.GUI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
