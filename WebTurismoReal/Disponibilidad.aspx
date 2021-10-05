@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Disponibilidad</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimun-scale=1.0" />
     <link href="css/Estilo.css" rel="stylesheet" type="text/css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -136,7 +137,7 @@
                         </table>
                         <br />
                         <div class="row">
-                        <asp:Button ID="Btn_Calcular" CssClass="btn" Text="Calcular" runat="server" ValidationGroup="Validador1" OnClick="Btn_Calcular_Click" />
+                        <asp:Button ID="Btn_Calcular" CssClass="btn" Text="Calcular total" runat="server" ValidationGroup="Validador1" OnClick="Btn_Calcular_Click" />
                         </div>
                         <br />
                         <div class="row" style="border: 3px solid white; height:150px;">
@@ -165,7 +166,6 @@
                         <asp:Button ID="Btn_Reservar" CssClass="btn" Text="Reservar" runat="server" OnClick="Btn_Reservar_Click" />
                             <p style="text-align:center;">Podrás contratar un servicio posterior a la reserva, para más información visita la pestaña "Servicios".</p>
                         </div>
-                        <br />
                         </div>
                     </div>
                 </div>
