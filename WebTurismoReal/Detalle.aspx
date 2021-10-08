@@ -1,6 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Reservar.aspx.cs" Inherits="WebTurismoReal.Reservar" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Detalle.aspx.cs" Inherits="WebTurismoReal.Detalle" %>
 
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Detalle reserva</title>
@@ -15,8 +16,20 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="@sweetalert2/themes/minimal/minimal.css">
     <script src="sweetalert2/dist/sweetalert2.min.js"></script>
-    <script>    
-        
+    <style>
+        .progreso {
+    background-color: #117A65;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 2px;
+    width: 50%;
+    z-index: -1;
+    transition: 0.4s ease;
+    }
+</style>
+    <script> 
     function Pagar() {
         swal.fire({
             title: "¿Tienes una cuenta?",
@@ -52,32 +65,42 @@
             <asp:Label Text="Turismo Real" CssClass="logo" runat="server" />
             <ul>
                 <li>
-                    <a href="/Index1">Home</a>
+                    <a href="/Index">Home</a>
                 </li>
                 <li>
-                    <a href="/">Servicios</a>
+                    <a href="/Servicios">Servicios</a>
                 </li>
                 <li>
-                    <a href="/Index1">Reservar</a>
+                    <a href="/Index">Reservar</a>
                 </li><li>
                     <a href="/Login">Log in</a>
                 </li>
             </ul>
         </nav>
             </div>
+        <form id="form2" runat="server">
         <div class="row">
-                <div class="container-1">
+                <div class="card" style="margin-top:5px;">
                     <h5 style="font-size:30px; margin-bottom:10px;">Detalle de la reserva</h5>
+                </div>
+                <div class="contenedor">   
+                <div class="progreso-contenedor">   
+                    <div class="progreso" id="progreso"></div>
+                    <asp:Button ID="Btn_1" Text="1" CssClass="redondo" runat="server" />
+                    <asp:Button ID="Btn_2" Text="2" CssClass="redondo" runat="server" />
+                    <asp:Button ID="Btn_3" Text="3" CssClass="redondo" runat="server" />
+                    <asp:Button ID="Btn_4" Text="4" CssClass="redondo" runat="server" />
+                    <asp:Button ID="Btn_5" Text="5" CssClass="redondo" runat="server" />
+                </div>
                 </div>
             </div>
 
             <div class="row" >
-                <form id="form1" runat="server">
-            <div class="container-main" style="margin-top:5px; height:100%;">
+            <div class="card" style="margin-top:5px; height:100%;">
                 <div style="margin:20px;">
                     <div class="row">
                         <br />
-                        <div class="row" style="border: 3px solid white; height:100%;">
+                        <div class="row" style="border: 1px solid white; height:100%; width:50%; margin:auto;">
                             <table style="padding:20px; text-align: right; width:100%">
                                 <tr>
                                     <td style="width:50%">Departamento:</td>
@@ -138,7 +161,7 @@
                                 </tr>
                             </table>
                         <div class="row">
-                        <asp:Button ID="BtnPagar" CssClass="btn" Text="Pagar" runat="server" OnClick="BtnPagar_Click" />
+                        <asp:Button ID="BtnPagar" CssClass="btn" Text="Continuar" runat="server" OnClick="BtnPagar_Click" />
                             <asp:Label ID="Lbl_Id_Depto" Visible="false" Text="" runat="server" />
                             </div>
                         <br />
@@ -147,10 +170,9 @@
                     </div>
                 </div>
             </div>
-            </form>
-            </div>
             
+            </div>
+            </form>
         </div>
 </body>
 </html>
-

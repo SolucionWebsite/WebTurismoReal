@@ -15,80 +15,95 @@ namespace WebTurismoReal
     {
         public void Page_Load(object sender, EventArgs e)
         {
-            string url = HttpContext.Current.Request.Url.AbsoluteUri;
-            string[] separado = url.Split('/');
-            string fechaSalida = separado[separado.Length - 2];
-            string fechaEntrada = separado[separado.Length - 3];
-            string region = separado[separado.Length - 4];
-            string provincia = separado[separado.Length - 5];
-            string comuna = separado[separado.Length - 6];
-            string id_comuna = separado[separado.Length - 7];
-            string id_provincia = separado[separado.Length - 8];
-            string id_region = separado[separado.Length - 9];
+            MaintainScrollPositionOnPostBack = true;
 
-
-            string fechaSalidaDecode = Base64Decode(fechaSalida);
-            string fechaEntradaDecode = Base64Decode(fechaEntrada);
-            string regionDecode = Base64Decode(region);
-            string provinciaDecode = Base64Decode(provincia);
-            string comunaDecode = Base64Decode(comuna);
-            string idComunaDecode = Base64Decode(id_comuna);
-            string idProvinciaDecode = Base64Decode(id_provincia);
-            string idRegionDecode = Base64Decode(id_region);
-
-            Lbl_Región.Text = regionDecode;
-            Lbl_Provincia.Text = provinciaDecode + ",";
-            Lbl_Comuna.Text = comunaDecode + ",";
-            Lbl_Fechas.Text = fechaEntradaDecode + " " + "-" + " " + fechaSalidaDecode;
-            Lbl_Id_Comuna.Text = idComunaDecode;
-            Lbl_Id_Provincia.Text = idProvinciaDecode;
-            Lbl_Id_Region.Text = idRegionDecode;
-
-            DepartamentoBLL departamentos = new DepartamentoBLL();
-
-            DataTable registros = departamentos.Departamentos(Convert.ToInt32(Lbl_Id_Region.Text), Convert.ToInt32(Lbl_Id_Provincia.Text), Convert.ToInt32(Lbl_Id_Comuna.Text));
-
-            List<DepartamentoBLL> listadepto = new List<DepartamentoBLL>();
-
-            for (int i = 0; i < registros.Rows.Count; i++)
+            Btn_1.Style.Add(HtmlTextWriterStyle.BackgroundColor, "#117A65");
+            Btn_1.Style.Add(HtmlTextWriterStyle.Color, "White");
+            Btn_2.Style.Add(HtmlTextWriterStyle.BackgroundColor, "#117A65");
+            Btn_2.Style.Add(HtmlTextWriterStyle.Color, "White");
+            
+            try
             {
-                DepartamentoBLL depto = new DepartamentoBLL();
+                string url = HttpContext.Current.Request.Url.AbsoluteUri;
+                string[] separado = url.Split('/');
+                string fechaSalida = separado[separado.Length - 2];
+                string fechaEntrada = separado[separado.Length - 3];
+                string region = separado[separado.Length - 4];
+                string provincia = separado[separado.Length - 5];
+                string comuna = separado[separado.Length - 6];
+                string id_comuna = separado[separado.Length - 7];
+                string id_provincia = separado[separado.Length - 8];
+                string id_region = separado[separado.Length - 9];
 
-                depto.Id = registros.Rows[i]["ID"].ToString();
-                depto.Direccion = registros.Rows[i]["DIRECCION"].ToString();
-                depto.Region = registros.Rows[i]["REGION"].ToString();
-                depto.Provincia = registros.Rows[i]["PROVINCIA"].ToString();
-                depto.Comuna = registros.Rows[i]["COMUNA"].ToString();
-                depto.Habitaciones = registros.Rows[i]["HABITACIONES"].ToString();
-                depto.Baños = registros.Rows[i]["BAÑOS"].ToString();
-                int deptoTable = Convert.ToInt32(registros.Rows[i]["VALOR_DÍA"]);
-                string deptoTableCulture = deptoTable.ToString("C", CultureInfo.CurrentCulture);
-                depto.Valor_Dia = deptoTableCulture;
-                listadepto.Add(depto);
+
+                string fechaSalidaDecode = Base64Decode(fechaSalida);
+                string fechaEntradaDecode = Base64Decode(fechaEntrada);
+                string regionDecode = Base64Decode(region);
+                string provinciaDecode = Base64Decode(provincia);
+                string comunaDecode = Base64Decode(comuna);
+                string idComunaDecode = Base64Decode(id_comuna);
+                string idProvinciaDecode = Base64Decode(id_provincia);
+                string idRegionDecode = Base64Decode(id_region);
+
+                Lbl_Región.Text = regionDecode;
+                Lbl_Provincia.Text = provinciaDecode + ",";
+                Lbl_Comuna.Text = comunaDecode + ",";
+                Lbl_Fechas.Text = fechaEntradaDecode + " " + "-" + " " + fechaSalidaDecode;
+                Lbl_Id_Comuna.Text = idComunaDecode;
+                Lbl_Id_Provincia.Text = idProvinciaDecode;
+                Lbl_Id_Region.Text = idRegionDecode;
+
+                DepartamentoBLL departamentos = new DepartamentoBLL();
+
+                DataTable registros = departamentos.Departamentos(Convert.ToInt32(Lbl_Id_Region.Text), Convert.ToInt32(Lbl_Id_Provincia.Text), Convert.ToInt32(Lbl_Id_Comuna.Text));
+
+                List<DepartamentoBLL> listadepto = new List<DepartamentoBLL>();
+
+                for (int i = 0; i < registros.Rows.Count; i++)
+                {
+                    DepartamentoBLL depto = new DepartamentoBLL();
+
+                    depto.Id = registros.Rows[i]["ID"].ToString();
+                    depto.Direccion = registros.Rows[i]["DIRECCION"].ToString();
+                    depto.Region = registros.Rows[i]["REGION"].ToString();
+                    depto.Provincia = registros.Rows[i]["PROVINCIA"].ToString();
+                    depto.Comuna = registros.Rows[i]["COMUNA"].ToString();
+                    depto.Habitaciones = registros.Rows[i]["HABITACIONES"].ToString();
+                    depto.Baños = registros.Rows[i]["BAÑOS"].ToString();
+                    int deptoTable = Convert.ToInt32(registros.Rows[i]["VALOR_DÍA"]);
+                    string deptoTableCulture = deptoTable.ToString("C", CultureInfo.CurrentCulture);
+                    depto.Valor_Dia = deptoTableCulture;
+                    listadepto.Add(depto);
+                }
+
+                GridDepartamentos.DataSource = listadepto;
+                GridDepartamentos.DataBind();
+
+                if (GridDepartamentos.Rows.Count == 0)
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "SinDepartamentos()", true);
+                }
+                else
+                {
+                    GridDepartamentos.HeaderStyle.Font.Bold = false;
+                    GridDepartamentos.HeaderRow.Cells[1].Width = 50;
+                    GridDepartamentos.HeaderStyle.Height = 30;
+                    
+                    GridDepartamentos.HeaderRow.Cells[1].Text = "ID";
+                    GridDepartamentos.HeaderRow.Cells[2].Text = "DIRECCIÓN";
+                    GridDepartamentos.HeaderRow.Cells[3].Text = "COMUNA";
+                    GridDepartamentos.HeaderRow.Cells[4].Text = "PROVINCIA";
+                    GridDepartamentos.HeaderRow.Cells[5].Text = "REGIÓN";
+                    GridDepartamentos.HeaderRow.Cells[6].Text = "HABITACIONES";
+                    GridDepartamentos.HeaderRow.Cells[7].Text = "BAÑOS";
+                    GridDepartamentos.HeaderRow.Cells[8].Text = "VALOR DÍA";
+                }
             }
-
-            GridDepartamentos.DataSource = listadepto;
-            GridDepartamentos.DataBind();
-
-            if (GridDepartamentos.Rows.Count == 0)
+            catch (Exception ex)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "SinDepartamentos()", true);
+                Console.WriteLine(ex.Message);
             }
-            else
-            {
-                GridDepartamentos.HeaderRow.Cells[1].Width = 50;
-                GridDepartamentos.HeaderStyle.Height = 30;
-
-                GridDepartamentos.HeaderRow.Cells[0].Text = "SELECCIONAR";
-                GridDepartamentos.HeaderRow.Cells[1].Text = "ID";
-                GridDepartamentos.HeaderRow.Cells[2].Text = "DIRECCIÓN";
-                GridDepartamentos.HeaderRow.Cells[3].Text = "COMUNA";
-                GridDepartamentos.HeaderRow.Cells[4].Text = "PROVINCIA";
-                GridDepartamentos.HeaderRow.Cells[5].Text = "REGIÓN";
-                GridDepartamentos.HeaderRow.Cells[6].Text = "HABITACIONES";
-                GridDepartamentos.HeaderRow.Cells[7].Text = "BAÑOS";
-                GridDepartamentos.HeaderRow.Cells[8].Text = "VALOR DÍA";
-            }
+            
 
         }
 
@@ -212,7 +227,7 @@ namespace WebTurismoReal
                     string restanteEncode = Base64Encode(restante);
 
 
-                    Response.Redirect($"http://localhost:55243/Reservar/{id_deptoEncode}/{direccionEncode}/{regionEncode}/{provinciaEncode}/{comunaEncode}/" +
+                    Response.Redirect($"http://localhost:57174/Detalle/{id_deptoEncode}/{direccionEncode}/{regionEncode}/{provinciaEncode}/{comunaEncode}/" +
                         $"{diasEncode}/{fecha_i_Encode}/{fecha_v_Encode}/{acompañantesEncode}/{totalEncode}/{abonoEncode}/{restanteEncode}");
 
                 }

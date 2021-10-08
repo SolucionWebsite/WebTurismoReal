@@ -61,6 +61,27 @@
            );
         }
     </script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+
+          var height = $(window).height();
+
+          $('.col-2').height(height);
+    });
+</script>
+<style>
+        .progreso {
+    background-color: #117A65;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 2px;
+    width: 25%;
+    z-index: -1;
+    transition: 0.4s ease;
+}
+</style>
 </head>
 <body>
     <div class="container" >
@@ -87,49 +108,62 @@
             </ul>
         </nav>
             </div>
+        <form id="form1" runat="server">
+        
         <div class="row">
-                <div class="container-1">
-                    <h5 style="font-size:30px; margin-bottom:10px;">Departamentos disponibles en</h5>
+                <div class="card" style="margin-top:5px; color:black;">
+                    <h5 style="font-size:25px; margin-bottom:4px;">Departamentos disponibles en</h5>
                     <asp:Label ID="Lbl_Comuna" Text="" runat="server" />
                     <asp:Label ID="Lbl_Id_Comuna" Text="" Visible="false" runat="server" />
                     <asp:Label ID="Lbl_Provincia" Text="" runat="server" />
                     <asp:Label ID="Lbl_Id_Provincia" Text="" Visible="false" runat="server" />
                     <asp:Label ID="Lbl_Región" Text="" runat="server" />
                     <asp:Label ID="Lbl_Id_Region" Text="" Visible="false" runat="server" />
+
                 </div>
             </div>
+            <div class="contenedor">   
+                <div class="progreso-contenedor">   
+                    <div class="progreso" id="progreso"></div>
+                    <asp:Button ID="Btn_1" Text="1" CssClass="redondo" runat="server" />
+                    <asp:Button ID="Btn_2" Text="2" CssClass="redondo" runat="server" />
+                    <asp:Button ID="Btn_3" Text="3" CssClass="redondo" runat="server" />
+                    <asp:Button ID="Btn_4" Text="4" CssClass="redondo" runat="server" />
+                    <asp:Button ID="Btn_5" Text="5" CssClass="redondo" runat="server" />
+                </div>
+                </div>
+            
 
             <div class="row" >
-                <form id="form1" runat="server">
-                    <div class="col-1">
-                <div style="margin:20px; border:3px solid white; overflow:scroll; height:460px;">
-                <asp:GridView ID="GridDepartamentos" runat="server" DataKeyNames="ID" CssClass="gridview" Font-Bold="false" BackColor="#0B5345" BorderStyle="none" BorderColor="#117A65" OnSelectedIndexChanged="GridDepartamentos_SelectedIndexChanged" >
+                    <div class="card">
+                <div class="div-blanco">
+                <asp:GridView ID="GridDepartamentos" runat="server" DataKeyNames="ID" CssClass="gridview" BackColor="#0B5345" BorderStyle="none" BorderColor="#117A65" OnSelectedIndexChanged="GridDepartamentos_SelectedIndexChanged" >
                     <AlternatingRowStyle Wrap="False" />
-                    <HeaderStyle BackColor="#117A65" CssClass="Gridheader" Wrap="false" HorizontalAlign="Center" Font-Size="Smaller" ForeColor="White" Font-Bold="False" />
+                    <HeaderStyle BackColor="#117A65" CssClass="Gridheader" Wrap="false" HorizontalAlign="Center" ForeColor="White" />
                     <PagerStyle ForeColor="#117A65" HorizontalAlign="Center"/>
                     <RowStyle BackColor="white" ForeColor="black" Wrap="false" />
-                    <SelectedRowStyle BackColor="#0B5345" Font-Bold="False" ForeColor="White" />
+                    <SelectedRowStyle BackColor="#0B5345" ForeColor="White" />
                     <Columns>
-                        <asp:ButtonField ControlStyle-CssClass="btn" ControlStyle-Height="30px" ButtonType="Button" ControlStyle-Font-Size="Smaller" CommandName="Select" HeaderText="SELECCIONA" ShowHeader="True" Text="Seleccionar" >
-                        <ControlStyle CssClass="btn" Font-Size="Smaller" Height="30px"></ControlStyle>
+                        <asp:ButtonField ControlStyle-CssClass="btn" ControlStyle-Height="30px" ButtonType="Button" CommandName="Select" ShowHeader="True" Text="Seleccionar" >
+                        <ControlStyle  CssClass="btn" Height="30px"></ControlStyle>
                         </asp:ButtonField>
                     </Columns>
                 </asp:GridView>
                 </div>
             </div>
-            <div class="col-2">
-                <div style="margin:20px;">
-                    <div class="row">
-                        <table style="text-align: center; width:100%">
+            <div class="card" style="margin-top:5px;">
+                <div style="margin:20px; height:100%;">
+                    <div class="row" style="height:100%;">
+                        <table class="tabla1">
                             <tr>
-                                <td>Fechas de estadía</td>
-                                <td>
+                                <td style="text-align:right;">Fechas de estadía</td>
+                                <td style="text-align:left; padding-left:10px;">
                                     <asp:Label ID="Lbl_Fechas" text="" runat="server" />
                                 </td>
                             </tr>
                             <tr>
-                                <td>Número de acompañantes</td>
-                                <td><asp:TextBox TextMode="Number" runat="server" placeholder="Ingresa n° de acompañantes" class="form-control" type="texbox" ID="txt_acompañantes" />
+                                <td style="text-align:right;">Número de acompañantes</td>
+                                <td style="text-align:left; padding-left:10px;"><asp:TextBox TextMode="Number" runat="server" placeholder="Ingresa tus acompañantes" class="form-control1" type="texbox" ID="txt_acompañantes" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txt_acompañantes" Display="Dynamic" ErrorMessage="Olvidaste ingresar n° de acompañantes" ForeColor="#A2D9CE" ValidationGroup="Validador1"></asp:RequiredFieldValidator>
                                         
                                 </td>
@@ -140,7 +174,7 @@
                         <asp:Button ID="Btn_Calcular" CssClass="btn" Text="Calcular total" runat="server" ValidationGroup="Validador1" OnClick="Btn_Calcular_Click" />
                         </div>
                         <br />
-                        <div class="row" style="border: 3px solid white; height:150px;">
+                        <div class="row" style="border: 1px solid black; height:150px;">
                             <table style="padding:30px; text-align: right; width:100%">
                                 <tr>
                                     <td style="width:50%">Días de reserva: </td>
@@ -162,17 +196,20 @@
                                 </tr>
                             </table>
                              <br />
+                            </div>
+                        <br />
                         <div class="row">
-                        <asp:Button ID="Btn_Reservar" CssClass="btn" Text="Reservar" runat="server" OnClick="Btn_Reservar_Click" />
+                        <asp:Button ID="Btn_Reservar" CssClass="btn" Text="Continuar" runat="server" OnClick="Btn_Reservar_Click" />
                             <p style="text-align:center;">Podrás contratar un servicio posterior a la reserva, para más información visita la pestaña "Servicios".</p>
                         </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
-            </form>
-            </div>
             
+            </div>
+            </form>
         </div>
+            
 </body>
 </html>

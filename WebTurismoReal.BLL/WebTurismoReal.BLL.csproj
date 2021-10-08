@@ -41,9 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BodyCorreo.cs" />
     <Compile Include="ClienteBLL.cs" />
     <Compile Include="DepartamentoBLL.cs" />
     <Compile Include="LocalidadBLL.cs" />
+    <Compile Include="PDFComprobante.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

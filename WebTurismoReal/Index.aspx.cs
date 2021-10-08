@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Web;
 using System.Web.UI;
@@ -15,6 +17,9 @@ namespace WebTurismoReal
 
         public void Page_Load(object sender, EventArgs e)
         {
+            Btn_1.Style.Add(HtmlTextWriterStyle.BackgroundColor, "#117A65");
+            Btn_1.Style.Add(HtmlTextWriterStyle.Color, "White");
+
             if (!IsPostBack)
             {
                 CargarLocalidad();
@@ -83,12 +88,13 @@ namespace WebTurismoReal
                 {
                     diasEncode = "1";
                     Response.Redirect($"Disponibilidad/{idRegionEncode}/{idProvinciaEncode}/{idComunaEncode}/{comunaEncode}/{provinciaEncode}/" +
-                   $"{regionEncode}/{fechaEntradaEncode}/{fechaSalidaEncode}/{diasEncode}");
+                   $"{regionEncode}/{fechaEntradaEncode}/{fechaSalidaEncode}/{diasEncode}", true);
                 }
                 else
-                {
+                { 
                     Response.Redirect($"Disponibilidad/{idRegionEncode}/{idProvinciaEncode}/{idComunaEncode}/{comunaEncode}/{provinciaEncode}/" +
-                   $"{regionEncode}/{fechaEntradaEncode}/{fechaSalidaEncode}/{diasEncode}");
+                   $"{regionEncode}/{fechaEntradaEncode}/{fechaSalidaEncode}/{diasEncode}", true);
+                    
                 }
             }
 

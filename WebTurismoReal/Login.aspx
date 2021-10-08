@@ -16,6 +16,19 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="@sweetalert2/themes/minimal/minimal.css">
     <script src="sweetalert2/dist/sweetalert2.min.js"></script>
+    <style>
+        .progreso {
+    background-color: #117A65;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 2px;
+    width: 50%;
+    z-index: -1;
+    transition: 0.4s ease;
+    }
+</style>
 </head>
 <body>
     <div class="container" >
@@ -29,38 +42,54 @@
             <asp:Label Text="Turismo Real" CssClass="logo" runat="server" />
             <ul>
                 <li>
-                    <a href="/Index1" >Home</a>
+                    <a href="/Index" >Home</a>
                 </li>
                 <li>
-                    <a href="#">Servicios</a>
+                    <a href="/Servicios">Servicios</a>
                 </li>
                 <li>
-                    <a href="/Index1">Reservar</a>
+                    <a href="/Index">Reservar</a>
                 </li><li>
                     <a href="/Login" class="active">Log in</a>
                 </li>
             </ul>
         </nav>
             </div>
-            <div class="row" >
+            <div class="row">
                 <form id="form1" runat="server">
-                    <div class="container-main">
-                        <div class="card" style="margin: 20px;">
+                    <div class="contenedor-50">   
+                <div class="progreso-contenedor">   
+                    <div class="progreso" id="progreso"></div>
+                    <asp:Button ID="Btn_1" Text="1" CssClass="redondo" runat="server" />
+                    <asp:Button ID="Btn_2" Text="2" CssClass="redondo" runat="server" />
+                    <asp:Button ID="Btn_3" Text="3" CssClass="redondo" runat="server" />
+                    <asp:Button ID="Btn_4" Text="4" CssClass="redondo" runat="server" />
+                    <asp:Button ID="Btn_5" Text="5" CssClass="redondo" runat="server" />
+                </div>
+                </div>
+                    <div class="card-login">
+                        <div  style="margin: 20px;">
                             <h5>Inicia Sesión</h5>
                             <table class="tabla" >
                                 <tr>
-                                    <td class="td1">Correo</td>
                                     <td>
-                                        <asp:TextBox runat="server" placeholder="Ingresa tu correo" class="form-control" type="email" ID="txt_usuario" />
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txt_usuario" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu correo" ForeColor="#A2D9CE" ValidationGroup="Validador"></asp:RequiredFieldValidator>
+                                        <fieldset>
+                                        <legend>Correo</legend>
+                                        <div><asp:TextBox runat="server" placeholder="Ingresa tu correo" legend="Correo" class="form-control" type="email" ID="txt_usuario" />
+                                        </div>
+                                        </fieldset>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txt_usuario" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu correo" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
                                         <br />
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="td1">Contraseña</td>
                                     <td>
-                                        <asp:TextBox runat="server" TextMode="Password" placeholder="Ingresa tu contraseña" type="password" class="form-control" ID="txt_clave" />
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txt_clave" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu contraseña" ForeColor="#A2D9CE" ValidationGroup="Validador"></asp:RequiredFieldValidator>
+                                        <fieldset>
+                                        <legend>Contraseña</legend>
+                                        <div><asp:TextBox runat="server" TextMode="Password" placeholder="Ingresa tu contraseña" type="password" class="form-control" ID="txt_clave" />
+                                        </div>
+                                        </fieldset>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txt_clave" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu contraseña" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
                                         <br />
                                     </td>
                                 </tr>
@@ -71,7 +100,7 @@
                             <div class="footer">
                                 <div class="row" style="border-top: 2px white solid; margin-top: 20px;">
                                     <p class="line">¿Aún no tienes una cuenta?</p>
-                                    <a class="line" href="/Registro" style="color:#A2D9CE">Regístrate</a>
+                                    <a class="line" href="/Registro" style="color:black">Regístrate</a>
                                 </div>
                       </div>
                         </div>

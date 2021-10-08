@@ -5,6 +5,7 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WebTurismoReal.BLL;
 
 namespace WebTurismoReal
 {
@@ -14,6 +15,12 @@ namespace WebTurismoReal
 
         public void Page_Load(object sender, EventArgs e)
         {
+            Btn_1.Style.Add(HtmlTextWriterStyle.BackgroundColor, "#117A65");
+            Btn_1.Style.Add(HtmlTextWriterStyle.Color, "White");
+            Btn_2.Style.Add(HtmlTextWriterStyle.BackgroundColor, "#117A65");
+            Btn_3.Style.Add(HtmlTextWriterStyle.BackgroundColor, "#117A65");
+            Btn_2.Style.Add(HtmlTextWriterStyle.Color, "White");
+            Btn_3.Style.Add(HtmlTextWriterStyle.Color, "White");
         }
 
         public void Btn_Login_Click(object sender, EventArgs e)
@@ -47,7 +54,7 @@ namespace WebTurismoReal
                     Session["Correo"] = correo;
                     Session["Rut"] = rut;
                     Session["Usuario"] = usuario;
-                    Response.Redirect($"http://localhost:55243/Reservar2");
+                    Response.Redirect($"http://localhost:57174/Detalle2");
                 }
                 else
                 {

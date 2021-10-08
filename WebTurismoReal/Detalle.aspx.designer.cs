@@ -10,70 +10,16 @@
 namespace WebTurismoReal {
     
     
-    public partial class Disponibilidad {
+    public partial class Detalle {
         
         /// <summary>
-        /// form1 control.
+        /// form2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
-        /// Lbl_Comuna control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_Comuna;
-        
-        /// <summary>
-        /// Lbl_Id_Comuna control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_Id_Comuna;
-        
-        /// <summary>
-        /// Lbl_Provincia control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_Provincia;
-        
-        /// <summary>
-        /// Lbl_Id_Provincia control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_Id_Provincia;
-        
-        /// <summary>
-        /// Lbl_Región control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_Región;
-        
-        /// <summary>
-        /// Lbl_Id_Region control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_Id_Region;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form2;
         
         /// <summary>
         /// Btn_1 control.
@@ -121,49 +67,40 @@ namespace WebTurismoReal {
         protected global::System.Web.UI.WebControls.Button Btn_5;
         
         /// <summary>
-        /// GridDepartamentos control.
+        /// Lbl_Depto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridDepartamentos;
+        protected global::System.Web.UI.WebControls.Label Lbl_Depto;
         
         /// <summary>
-        /// Lbl_Fechas control.
+        /// Lbl_Region control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_Fechas;
+        protected global::System.Web.UI.WebControls.Label Lbl_Region;
         
         /// <summary>
-        /// txt_acompañantes control.
+        /// Lbl_Provincia control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_acompañantes;
+        protected global::System.Web.UI.WebControls.Label Lbl_Provincia;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// Lbl_Comuna control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-        
-        /// <summary>
-        /// Btn_Calcular control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_Calcular;
+        protected global::System.Web.UI.WebControls.Label Lbl_Comuna;
         
         /// <summary>
         /// Lbl_Dias control.
@@ -175,13 +112,31 @@ namespace WebTurismoReal {
         protected global::System.Web.UI.WebControls.Label Lbl_Dias;
         
         /// <summary>
-        /// Lbl_acompañantes control.
+        /// Lbl_Ida control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_acompañantes;
+        protected global::System.Web.UI.WebControls.Label Lbl_Ida;
+        
+        /// <summary>
+        /// Lbl_Vuelta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Lbl_Vuelta;
+        
+        /// <summary>
+        /// Lbl_Acompañantes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Lbl_Acompañantes;
         
         /// <summary>
         /// Lbl_Total control.
@@ -193,12 +148,39 @@ namespace WebTurismoReal {
         protected global::System.Web.UI.WebControls.Label Lbl_Total;
         
         /// <summary>
-        /// Btn_Reservar control.
+        /// Lbl_Abono control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_Reservar;
+        protected global::System.Web.UI.WebControls.Label Lbl_Abono;
+        
+        /// <summary>
+        /// Lbl_Restante control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Lbl_Restante;
+        
+        /// <summary>
+        /// BtnPagar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnPagar;
+        
+        /// <summary>
+        /// Lbl_Id_Depto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Lbl_Id_Depto;
     }
 }
