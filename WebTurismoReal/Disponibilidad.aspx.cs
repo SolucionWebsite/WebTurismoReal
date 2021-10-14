@@ -226,10 +226,18 @@ namespace WebTurismoReal
                     string abonoEncode = Base64Encode(abono1);
                     string restanteEncode = Base64Encode(restante);
 
-
-                    Response.Redirect($"http://localhost:57174/Detalle/{id_deptoEncode}/{direccionEncode}/{regionEncode}/{provinciaEncode}/{comunaEncode}/" +
+                    if (Session["IdUsuario"] == null)
+                    {
+                        Response.Redirect($"http://localhost:57174/Detalle/{id_deptoEncode}/{direccionEncode}/{regionEncode}/{provinciaEncode}/{comunaEncode}/" +
                         $"{diasEncode}/{fecha_i_Encode}/{fecha_v_Encode}/{acompañantesEncode}/{totalEncode}/{abonoEncode}/{restanteEncode}");
 
+                    }
+                    else
+                    {
+                        Response.Redirect($"http://localhost:57174/Detalle2/{id_deptoEncode}/{direccionEncode}/{regionEncode}/{provinciaEncode}/{comunaEncode}/" +
+                                $"{diasEncode}/{fecha_i_Encode}/{fecha_v_Encode}/{acompañantesEncode}/{totalEncode}/{abonoEncode}/{restanteEncode}");
+                    }
+                    
                 }
             }
         }

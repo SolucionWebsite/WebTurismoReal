@@ -17,6 +17,8 @@ namespace WebTurismoReal
 
         public void Page_Load(object sender, EventArgs e)
         {
+            MaintainScrollPositionOnPostBack = true;
+            
             Btn_1.Style.Add(HtmlTextWriterStyle.BackgroundColor, "#117A65");
             Btn_1.Style.Add(HtmlTextWriterStyle.Color, "White");
 

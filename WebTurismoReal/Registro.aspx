@@ -16,12 +16,34 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="@sweetalert2/themes/minimal/minimal.css">
     <script src="sweetalert2/dist/sweetalert2.min.js"></script>
+    <style>
+        .progreso {
+    background-color: #117A65;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 2px;
+    width: 50%;
+    z-index: -1;
+    transition: 0.4s ease;
+    }
+</style>
     <script>
         function TelefonoNoValido() {
             Swal.fire({
                   icon: 'warning',
                   title: 'Oops...',
                   text: 'Faltan dígitos en tu número de teléfono, deben ser 8 números!',
+                  iconColor: '#117A65',
+                  confirmButtonColor: '#117A65'
+                })
+        }
+        function Imposible() {
+            Swal.fire({
+                  icon: 'warning',
+                  title: 'Oops, revisa la fecha de nacimiento...',
+                  text: 'La fecha no puede ser mayor a la fecha de hoy!',
                   iconColor: '#117A65',
                   confirmButtonColor: '#117A65'
                 })
@@ -81,25 +103,45 @@
                 </li>
                 <li>
                     <a href="/Index">Reservar</a>
-                </li><li>
-                    <a href="/Login">Log in</a>
                 </li>
+                <%if (Session["IdUsuario"] == null)
+                    {%>
+                    <li>
+                    <a href="/Login1">Log in</a>
+                    </li>
+                    <%}%>
+                   <%else
+                    {%>
+                    <li>
+                    <a href="/CuentaDatos">Mi Cuenta</a>
+                    </li>
+                    <%} %>
             </ul>
         </nav>
             </div>
             <div class="row" >
                 <form id="form1" runat="server">
-                    <div class="container-main" style="margin-top:0px;">
-                        <div class="card" style="margin: 10px;">
+                    <div class="contenedor-50">   
+                            <div class="progreso-contenedor">   
+                                <div class="progreso" id="progreso"></div>
+                                <asp:Button ID="Btn_1" Text="1" CssClass="redondo" runat="server" />
+                                <asp:Button ID="Btn_2" Text="2" CssClass="redondo" runat="server" />
+                                <asp:Button ID="Btn_3" Text="3" CssClass="redondo" runat="server" />
+                                <asp:Button ID="Btn_4" Text="4" CssClass="redondo" runat="server" />
+                                <asp:Button ID="Btn_5" Text="5" CssClass="redondo" runat="server" />
+                            </div>
+                            </div>
+                    <div class="card-login" style="margin-top:0px;">
+                        <div class="card-" style="margin: 10px;">
                             <h5>Regístrate</h5>
                             <table class="tabla" >
                                 <tr>
                                     <td class="auto-style1">Primer nombre</td>
                                     <td>
-                                        <asp:TextBox runat="server" placeholder="Ingresa tu nombre" class="form-control" type="texbox" ID="TxtNombre" />
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TxtNombre" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu nombre" ForeColor="#A2D9CE" ValidationGroup="Validador"></asp:RequiredFieldValidator>
+                                        <asp:TextBox runat="server" placeholder="Ingresa tu nombre" class="form-control1" type="texbox" ID="TxtNombre" />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TxtNombre" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu nombre" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
                                         <asp:RegularExpressionValidator  runat="server" ErrorMessage="No se permiten carácteres especiales" 
-                                        ValidationExpression="^[a-z A-Z ñÑ]*$" ControlToValidate="TxtNombre" Display="Dynamic" ForeColor="#A2D9CE" 
+                                        ValidationExpression="^[a-z A-Z ñÑ]*$" ControlToValidate="TxtNombre" Display="Dynamic" ForeColor="white" 
                                         ValidationGroup="Validador1"></asp:RegularExpressionValidator>
                                         
                                     </td>
@@ -107,57 +149,57 @@
                                 <tr>
                                     <td class="auto-style1">Apellido paterno</td>
                                     <td>
-                                        <asp:TextBox runat="server" placeholder="Ingresa tu apellido paterno" class="form-control" type="texbox" ID="TxtApellidoP" />
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TxtApellidoP" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu apellido paterno" ForeColor="#A2D9CE" ValidationGroup="Validador"></asp:RequiredFieldValidator>
+                                        <asp:TextBox runat="server" placeholder="Ingresa tu apellido paterno" class="form-control1" type="texbox" ID="TxtApellidoP" />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TxtApellidoP" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu apellido paterno" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
                                         <asp:RegularExpressionValidator  runat="server" ErrorMessage="No se permiten carácteres especiales" 
-                                        ValidationExpression="^[a-z A-Z ñÑ]*$" ControlToValidate="TxtApellidoP" Display="Dynamic" ForeColor="#A2D9CE" 
+                                        ValidationExpression="^[a-z A-Z ñÑ]*$" ControlToValidate="TxtApellidoP" Display="Dynamic" ForeColor="white" 
                                         ValidationGroup="Validador1"></asp:RegularExpressionValidator>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="auto-style1">Apellido materno</td>
                                     <td>
-                                        <asp:TextBox runat="server" placeholder="Ingresa tu apellido materno" class="form-control" type="texbox" ID="TxtApellidoM" />
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="TxtApellidoM" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu apellido materno" ForeColor="#A2D9CE" ValidationGroup="Validador"></asp:RequiredFieldValidator>
+                                        <asp:TextBox runat="server" placeholder="Ingresa tu apellido materno" class="form-control1" type="texbox" ID="TxtApellidoM" />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="TxtApellidoM" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu apellido materno" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
                                         <asp:RegularExpressionValidator  runat="server" ErrorMessage="No se permiten carácteres especiales" 
-                                        ValidationExpression="^[a-z A-Z ñÑ]*$" ControlToValidate="TxtApellidoM" Display="Dynamic" ForeColor="#A2D9CE" 
+                                        ValidationExpression="^[a-z A-Z ñÑ]*$" ControlToValidate="TxtApellidoM" Display="Dynamic" ForeColor="white" 
                                         ValidationGroup="Validador1"></asp:RegularExpressionValidator>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="auto-style1">Nacionalidad</td>
                                     <td>
-                                        <asp:DropDownList ID="CmbNacionalidad" CssClass="form-control" runat="server">
+                                        <asp:DropDownList ID="CmbNacionalidad" CssClass="form-control1" runat="server">
                                         </asp:DropDownList>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" InitialValue="0" runat="server" ControlToValidate="CmbNacionalidad" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu nacionalidad" ForeColor="#A2D9CE" ValidationGroup="Validador"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" InitialValue="0" runat="server" ControlToValidate="CmbNacionalidad" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu nacionalidad" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
                                         
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="auto-style1">Rut</td>
                                     <td>
-                                        <asp:TextBox runat="server" placeholder="Ej: 12.345.678-9" class="form-control" type="texbox" ID="TxtRut" />
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="TxtRut" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu rut" ForeColor="#A2D9CE" ValidationGroup="Validador"></asp:RequiredFieldValidator>
-                                       <asp:RegularExpressionValidator  runat="server" ErrorMessage="Olidaste puntos y guión" ValidationExpression="^(\d{1,3}(\.?\d{3}){2})\-?([\dkK])$" ControlToValidate="TxtRut" Display="Dynamic" ForeColor="#A2D9CE" ValidationGroup="Validador1"></asp:RegularExpressionValidator>
+                                        <asp:TextBox runat="server" placeholder="Rut Ej: 12.345.678-9" class="form-control1" type="texbox" ID="TxtRut" />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="TxtRut" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu rut" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
+                                       <asp:RegularExpressionValidator  runat="server" ErrorMessage="Olidaste puntos y guión" ValidationExpression="^(\d{1,3}(\.?\d{3}){2})\-?([\dkK])$" ControlToValidate="TxtRut" Display="Dynamic" ForeColor="white" ValidationGroup="Validador1"></asp:RegularExpressionValidator>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="auto-style1">Género</td>
                                     <td>
-                                        <asp:DropDownList ID="CmbGenero" CssClass="form-control" runat="server">
+                                        <asp:DropDownList ID="CmbGenero" CssClass="form-control1" runat="server">
                                         </asp:DropDownList>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" InitialValue="0" runat="server" ControlToValidate="CmbGenero" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu género" ForeColor="#A2D9CE" ValidationGroup="Validador"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" InitialValue="0" runat="server" ControlToValidate="CmbGenero" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu género" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
                                         
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="auto-style1">Teléfono</td>
                                     <td>
-                                        <asp:TextBox runat="server" placeholder="Ej: 12334566" class="form-control" TextMode="Phone" ID="TxtTelefono" MaxLength="8" />
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="TxtTelefono" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu telefono" ForeColor="#A2D9CE" ValidationGroup="Validador"></asp:RequiredFieldValidator>
+                                        <asp:TextBox runat="server" placeholder="Teléfono Ej: 12334566" class="form-control1" TextMode="Phone" ID="TxtTelefono" MaxLength="8" />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="TxtTelefono" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu telefono" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
                                         <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
                                                                     ControlToValidate="TxtTelefono" ErrorMessage="Ingrese sólo números"
-                                                                    ForeColor="#A2D9CE"
+                                                                    ForeColor="white"
                                                                     ValidationExpression="^[0-9]*" Display="Dynamic">
                                         </asp:RegularExpressionValidator>
                                         </td>
@@ -166,15 +208,15 @@
                                 <tr>
                                     <td class="auto-style1">Fecha nacimiento</td>
                                     <td>
-                                        <asp:TextBox runat="server"  class="form-control" textmode="Date" ID="TxtFechaNac" />
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="TxtFechaNac" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu fecha de nacimiento" ForeColor="#A2D9CE" ValidationGroup="Validador"></asp:RequiredFieldValidator>
+                                        <asp:TextBox runat="server"  class="form-control1" textmode="Date" ID="TxtFechaNac" />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="TxtFechaNac" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu fecha de nacimiento" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
                                        </td>
                                 </tr>
                                 <tr>
                                     <td class="auto-style1">Correo</td>
                                     <td>
-                                        <asp:TextBox runat="server" placeholder="Ingresa tu correo" class="form-control" TextMode="Email" ID="TxtCorreo" />
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TxtCorreo" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu correo" ForeColor="#A2D9CE" ValidationGroup="Validador"></asp:RequiredFieldValidator>
+                                        <asp:TextBox runat="server" placeholder="Ingresa tu correo" class="form-control1" TextMode="Email" ID="TxtCorreo" />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TxtCorreo" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu correo" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
                                        
                                         <br />
                                     </td>
@@ -182,8 +224,8 @@
                                 <tr>
                                     <td class="auto-style1">Contraseña</td>
                                     <td>
-                                        <asp:TextBox runat="server" placeholder="Ingresa tu contraseña" type="password" class="form-control" ID="TxtClave" />
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TxtClave" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu contraseña" ForeColor="#A2D9CE" ValidationGroup="Validador"></asp:RequiredFieldValidator>
+                                        <asp:TextBox runat="server" placeholder="Ingresa tu contraseña" type="password" class="form-control1" ID="TxtClave" />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TxtClave" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu contraseña" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
                                         
                                         
                                         <br />
@@ -192,9 +234,9 @@
                                 <tr>
                                     <td class="auto-style1">Contraseña</td>
                                     <td>
-                                        <asp:TextBox runat="server" placeholder="Ingresa tu contraseña de nuevo" type="password" class="form-control" ID="TxtClave2" />
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="TxtClave2" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu contraseña" ForeColor="#A2D9CE" ValidationGroup="Validador"></asp:RequiredFieldValidator>
-                                        <asp:CompareValidator ID="CompareValidator2" runat="server" ErrorMessage="Las contraseñas no coinciden" Display="Dynamic" ControlToValidate="TxtClave"></asp:CompareValidator>
+                                        <asp:TextBox runat="server" placeholder="Ingresa tu contraseña de nuevo" type="password" class="form-control1" ID="TxtClave2" />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="TxtClave2" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu contraseña" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
+                                        <asp:CompareValidator ID="CompareValidator2" runat="server" ErrorMessage="Las contraseñas no coinciden" Display="Dynamic" ControlToValidate="TxtClave" ForeColor="white"></asp:CompareValidator>
                                         
                                         <br />
                                         
@@ -202,12 +244,12 @@
                                 </tr>
                                 
                             </table>
-                            <asp:Button type="button" class="btn" BorderColor="cornflowerblue" ID="Btn_Registro" runat="server" Text="Registrarme"  ValidationGroup="Validador" OnClick="Btn_Registro_Click"/>
+                            <asp:Button type="button" class="btn" ID="Btn_Registro" runat="server" Text="Registrarme"  ValidationGroup="Validador" OnClick="Btn_Registro_Click"/>
                             <br />
                             <div class="footer">
                                 <div class="row" style="border-top: 2px white solid; margin-top: 20px;">
                                     <p class="line">¿Ya tienes cuenta?</p>
-                                    <a class="line" href="/Login" style="color:#A2D9CE">Inicia Sesión</a>
+                                    <a class="line" href="/Login" style="color:white">Inicia Sesión</a>
                                 </div>
                               
                               

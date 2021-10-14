@@ -72,9 +72,19 @@
                 </li>
                 <li>
                     <a href="/Index">Reservar</a>
-                </li><li>
-                    <a href="/Login">Log in</a>
                 </li>
+                <%if (Session["IdUsuario"] == null)
+                    {%>
+                    <li>
+                    <a href="/Login1">Log in</a>
+                    </li>
+                    <%}%>
+                   <%else
+                    {%>
+                    <li>
+                    <a href="/CuentaDatos">Mi Cuenta</a>
+                    </li>
+                    <%} %>
             </ul>
         </nav>
             </div>
@@ -100,7 +110,7 @@
                 <div style="margin:20px;">
                     <div class="row">
                         <br />
-                        <div class="row" style="border: 1px solid white; height:100%; width:50%; margin:auto;">
+                        <div class="container-blanco" style="border: 1px solid white;">
                             <table style="padding:20px; text-align: right; width:100%">
                                 <tr>
                                     <td style="width:50%">Departamento:</td>

@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AcompañanteBLL.cs" />
     <Compile Include="BodyCorreo.cs" />
     <Compile Include="ClienteBLL.cs" />
     <Compile Include="DepartamentoBLL.cs" />

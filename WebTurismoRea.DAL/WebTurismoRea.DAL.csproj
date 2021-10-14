@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AcompañanteDAL.cs" />
     <Compile Include="ClienteDAL.cs" />
     <Compile Include="DataAccess.cs" />
     <Compile Include="DepartamentoDAL.cs" />

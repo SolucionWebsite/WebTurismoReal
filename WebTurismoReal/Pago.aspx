@@ -5,40 +5,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="essss">
 <head runat="server">
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimun-scale=1.0" />
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" >
+    <link href="css/StylePago.css" rel="stylesheet" type="text/css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Lobster&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <title>OnlinePago</title>
-    <style>
-        .TextBox{
-            outline-color: darkorange;
-            height:30px;
-            border-radius:5px;
-            border: 1px solid lightgrey;
-            line-height:30px;
-            text-indent:10px;
-            width: 100%;
-        
-        }
-        .logo {
-            font-family: 'Lobster', cursive;
-            color:#117A65;
-            font-size: 35px;
-            line-height: 80px;
-            padding-left: 10px;
-            margin-bottom: 10px;
-        }
-</style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
             <br />
-            <div class="container" style="width:60%; border:3px solid lightgrey; align-content:center">
+            <div class="container-pago">
                 <asp:Panel runat="server" style="margin:20px;" >
                     <h3>OnlinePago</h3>
                     <table>
@@ -53,7 +34,7 @@
                         </tr>
                     </table>
                     <br />
-                    <div class="container" style="width:50%" >
+                    <div class="container-pago2">
                         <h5>Método de pago</h5>
                         <asp:DropDownList ID="CmbPago" runat="server" CssClass="TextBox" AutoPostBack="true" AppendDataBoundItems="true" OnSelectedIndexChanged="CmbPago_SelectedIndexChanged">
                             <asp:ListItem Value="0" Text="Seleccionar" />

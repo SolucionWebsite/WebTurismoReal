@@ -75,9 +75,19 @@
                 </li>
                 <li>
                     <a href="/Index">Reservar</a>
-                </li><li>
-                    <a href="/Login1">Log in</a>
                 </li>
+                <%if (Session["IdUsuario"] == null)
+                    {%>
+                    <li>
+                    <a href="/Login1">Log in</a>
+                    </li>
+                    <%}%>
+                   <%else
+                    {%>
+                    <li>
+                    <a href="/CuentaDatos">Mi Cuenta</a>
+                    </li>
+                    <%} %>
             </ul>
         </nav>
             </div>
@@ -118,9 +128,11 @@
                             </tr>
                             <tr>
                                 <td>
-                                <fieldset style="text-align:left;">
-                               <legend style="margin-left:4px;" >Provincia</legend>
-                               <div><asp:DropDownList  class="form-control" AutoPostBack="true"  ID="Cmb_Provincia" runat="server"  ToolTip="Seleccionar región" OnSelectedIndexChanged="Cmb_Provincia_SelectedIndexChanged"></asp:DropDownList>
+                                <fieldset>
+                               <legend>Provincia</legend>
+                               <div>
+                                   <asp:DropDownList class="form-control" AutoPostBack="true" name="cmb_provincia" ID="Cmb_Provincia" ToolTip="Seleccionar región" OnSelectedIndexChanged="Cmb_Provincia_SelectedIndexChanged" runat="server">
+                                   </asp:DropDownList>
                                </div>
                                </fieldset>
                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="Cmb_Provincia" Display="Dynamic" ErrorMessage="Olvidaste seleccionar provincia" ForeColor="white" ValidationGroup="Validador1" InitialValue="0"></asp:RequiredFieldValidator>
@@ -128,8 +140,8 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <fieldset style="text-align:left;">
-                               <legend style="margin-left:4px;" >Comuna</legend>
+                                    <fieldset>
+                               <legend>Comuna</legend>
                                <div><asp:DropDownList  class="form-control" AutoPostBack="true" ID="Cmb_Comuna" runat="server"  ToolTip="Seleccionar región" OnSelectedIndexChanged="Cmb_Comuna_SelectedIndexChanged"></asp:DropDownList>
                                     </div>
                                </fieldset>
@@ -138,8 +150,8 @@
                             </tr>
                             <tr>
                                 <td>
-                               <fieldset style="text-align:left;">
-                               <legend style="margin-left:4px;" >Fecha ingreso</legend>
+                               <fieldset>
+                               <legend>Fecha ingreso</legend>
                                <div><asp:TextBox ID="Txt_Fecha_Llegada" CssClass="form-control" runat="server" ToolTip="Seleccionar fecha de llegada" Textmode="Date" ></asp:TextBox>
                                 </div>
                                </fieldset>
@@ -148,8 +160,8 @@
                             </tr>
                             <tr>
                                 <td>
-                               <fieldset style="text-align:left;">
-                               <legend style="margin-left:4px;" >Fecha salida</legend>
+                               <fieldset>
+                               <legend>Fecha salida</legend>
                                <div><asp:TextBox ID="Txt_Fecha_Salida" CssClass="form-control" runat="server" ToolTip="Seleccionar fecha de salida" Textmode="Date" ></asp:TextBox>
                               </div>
                                </fieldset>

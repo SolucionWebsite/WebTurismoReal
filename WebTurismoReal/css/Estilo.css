@@ -232,12 +232,12 @@ h5 {
 
 fieldset {
     text-align: left;
-    border: 2px solid #117A65;
+    border: 1.7px solid #117A65;
 }
 
 legend {
-    margin-left: 4px;
-    font-weight: bold;
+    margin-left: 5px;
+    font-weight: 300;
     font-size: 18px;
 }
 
@@ -654,7 +654,7 @@ legend {
 
     .contenedor-50 {
         text-align: center;
-        width: 50%;
+        width: 100%;
         margin: 0 auto;
         padding-top: 10px;
         padding-bottom: 10px;
@@ -756,3 +756,26 @@ legend {
     }
 }
 
+.div-r {
+    width:49.5%; 
+    float:left; 
+    margin-right:10px;
+}
+
+.div-l {
+    width:49.5%; 
+    float:left; 
+    clear:right;
+}
+
+@media (max-width: 952px) {
+    .div-r {
+        width: 100%;
+        float: initial;
+    }
+
+    .div-l {
+        width: 100%;
+        float: initial;
+    }
+}

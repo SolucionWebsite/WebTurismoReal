@@ -49,9 +49,19 @@
                 </li>
                 <li>
                     <a href="/Index">Reservar</a>
-                </li><li>
-                    <a href="/Login" class="active">Log in</a>
                 </li>
+                <%if (Session["IdUsuario"] == null)
+                    {%>
+                    <li>
+                    <a href="/Login1">Log in</a>
+                    </li>
+                    <%}%>
+                   <%else
+                    {%>
+                    <li>
+                    <a href="/CuentaDatos">Mi Cuenta</a>
+                    </li>
+                    <%} %>
             </ul>
         </nav>
             </div>

@@ -34,6 +34,7 @@ namespace WebTurismoReal
             string usuario = "";
             string correo = "";
             string rut = "";
+            string id = "";
 
             if (existe == true)
             {
@@ -45,6 +46,7 @@ namespace WebTurismoReal
                         usuario = c.Nombre + " " + c.ApellidoP;
                         correo = c.Correo;
                         rut = c.Rut;
+                        id = c.Id;
                     }
                 }
 
@@ -54,6 +56,7 @@ namespace WebTurismoReal
                     Session["Correo"] = correo;
                     Session["Rut"] = rut;
                     Session["Usuario"] = usuario;
+                    Session["IdUsuario"] = id;
                     Response.Redirect($"http://localhost:57174/Detalle2");
                 }
                 else

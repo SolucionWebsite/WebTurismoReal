@@ -1,0 +1,56 @@
+﻿/*Página Pago*/
+
+.TextBox {
+    outline-color: darkorange;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    line-height: 30px;
+    text-indent: 10px;
+    width: 100%;
+}
+
+.logo {
+    font-family: 'Lobster', cursive;
+    color: #117A65;
+    font-size: 35px;
+    line-height: 80px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+
+.container-pago {
+    width: 60%;
+    border: 3px solid lightgrey;
+    align-content: center;
+    margin: auto;
+}
+
+.container-pago2 {
+    width: 50%;
+    align-content: center;
+    margin: auto;
+}
+
+@media (max-width: 952px) {
+    .logo {
+        font-family: 'Lobster', cursive;
+        color: #117A65;
+        font-size: 30px;
+        line-height: 80px;
+        padding-left: 10px;
+        margin-bottom: 10px;
+    }
+
+    .container-pago {
+        width: 100%;
+        border: 3px solid lightgrey;
+        align-content: center;
+    }
+
+    .container-pago2 {
+        width: 100%;
+        align-content: center;
+        margin: auto;
+    }
+}

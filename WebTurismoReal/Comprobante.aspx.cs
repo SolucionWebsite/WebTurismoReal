@@ -30,17 +30,24 @@ namespace WebTurismoReal
 
             ClientScript.RegisterStartupScript(this.GetType(), "myalert", "PagoExitoso()", true);
 
-            Lbl_Fecha.Text = DateTime.Now.ToString("dd-MM-yyyy HH:mm", CultureInfo.CurrentCulture);
-            Lbl_Nombre.Text = Session["Usuario"].ToString();
-            Lbl_Rut.Text = Session["Rut"].ToString();
-            Lbl_Direccion.Text = Session["Depto"].ToString();
-            Lbl_Ubicacion.Text = Session["Comuna"].ToString() + ", " + Session["Provincia"].ToString() + ", " + Session["Region"].ToString();
-            Lbl_Dias.Text = Session["Dias"].ToString();
-            Lbl_Tipo_Pago.Text = Session["Tipo_pago"].ToString();
-            Lbl_Monto.Text = Session["Abono"].ToString();
-            Lbl_Correo.Text = Session["Correo"].ToString();
-            CrearPDF();
-
+            try
+            {
+                Lbl_Fecha.Text = DateTime.Now.ToString("dd-MM-yyyy HH:mm", CultureInfo.CurrentCulture);
+                Lbl_Nombre.Text = Session["Usuario"].ToString();
+                Lbl_Rut.Text = Session["Rut"].ToString();
+                Lbl_Direccion.Text = Session["Depto"].ToString();
+                Lbl_Ubicacion.Text = Session["Comuna"].ToString() + ", " + Session["Provincia"].ToString() + ", " + Session["Region"].ToString();
+                Lbl_Dias.Text = Session["Dias"].ToString();
+                Lbl_Tipo_Pago.Text = Session["Tipo_pago"].ToString();
+                Lbl_Monto.Text = Session["Abono"].ToString();
+                Lbl_Correo.Text = Session["Correo"].ToString();
+                CrearPDF();
+                EnviarEmail();
+            }
+            catch (Exception)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "SessionExpired()", true);
+            }
         }
 
         public Stream GetStreamFile(string filePath)
@@ -83,7 +90,8 @@ namespace WebTurismoReal
                 Console.WriteLine(ex.Message);
             }
         }
-        public void Btn_Enviar_Correo_Click(object sender, EventArgs e)
+
+        public void EnviarEmail()
         {
             CrearPDF();
 
@@ -121,8 +129,6 @@ namespace WebTurismoReal
             {
                 Console.WriteLine(ex.Message);
             }
-
-
         }
     }
 }

@@ -130,6 +130,8 @@
     <Content Include="css\Estilo.css" />
     <Content Include="css\NewStyle.css" />
     <Content Include="css\Style.css" />
+    <Content Include="css\StylePago.css" />
+    <Content Include="CuentaDatos.aspx" />
     <Content Include="Detalle.aspx" />
     <Content Include="Detalle2.aspx" />
     <Content Include="Disponibilidad.aspx" />
@@ -147,7 +149,6 @@
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Index.aspx" />
     <Content Include="Login.aspx" />
-    <Content Include="newform.css" />
     <Content Include="Pago.aspx" />
     <Content Include="prueba.aspx" />
     <Content Include="Registro.aspx" />
@@ -199,6 +200,13 @@
     </Compile>
     <Compile Include="Comprobante.aspx.designer.cs">
       <DependentUpon>Comprobante.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CuentaDatos.aspx.cs">
+      <DependentUpon>CuentaDatos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CuentaDatos.aspx.designer.cs">
+      <DependentUpon>CuentaDatos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Detalle.aspx.cs">
       <DependentUpon>Detalle.aspx</DependentUpon>

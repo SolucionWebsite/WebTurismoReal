@@ -13,12 +13,12 @@
 
 fieldset {
     text-align: left;
-    border: 2px solid #0E6655;
+    border: 1.7px solid #0E6655;
 }
 
 legend {
-    margin-left: 4px;
-    font-weight: bold;
+    margin-left: 5px;
+    font-weight: 300;
     font-size: 18px;
 }
 

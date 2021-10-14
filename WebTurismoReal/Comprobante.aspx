@@ -22,8 +22,23 @@
                   icon: 'success',
                   title: 'Pago exitoso!',
                   showConfirmButton: false,
-                  timer: 2500
+                  timer: 2000
                 })
+        }
+        function SessionExpired() {
+        swal.fire({
+            title: "Tu sesión expiró!!",
+            text: 'Vuelve a la página principal para tomar la reserva otra vez',
+            type: "warning",
+                confirmButtonText: 'Volver',
+                confirmButtonColor: '#117A65',
+                iconColor: '#117A65'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/Index";
+            }
+        }
+           );
         }
     </script>
     <style>
@@ -59,9 +74,19 @@
                 </li>
                 <li>
                     <a href="/Index2">Reservar</a>
-                </li><li>
-                    <a href="/Cuenta-Datos">Mi cuenta</a>
                 </li>
+                <%if (Session["IdUsuario"] == null)
+                    {%>
+                    <li>
+                    <a href="/Login1">Log in</a>
+                    </li>
+                    <%}%>
+                   <%else
+                    {%>
+                    <li>
+                    <a href="/CuentaDatos">Mi Cuenta</a>
+                    </li>
+                    <%} %>
             </ul>
         </nav>
             </div>

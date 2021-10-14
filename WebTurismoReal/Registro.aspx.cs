@@ -15,6 +15,12 @@ namespace WebTurismoReal
 
         public void Page_Load(object sender, EventArgs e)
         {
+            Btn_1.Style.Add(HtmlTextWriterStyle.BackgroundColor, "#117A65");
+            Btn_1.Style.Add(HtmlTextWriterStyle.Color, "White");
+            Btn_2.Style.Add(HtmlTextWriterStyle.BackgroundColor, "#117A65");
+            Btn_3.Style.Add(HtmlTextWriterStyle.BackgroundColor, "#117A65");
+            Btn_2.Style.Add(HtmlTextWriterStyle.Color, "White");
+            Btn_3.Style.Add(HtmlTextWriterStyle.Color, "White");
 
             if (!IsPostBack)
             {
@@ -58,33 +64,39 @@ namespace WebTurismoReal
                 int id_genero = Convert.ToInt32(CmbGenero.SelectedValue);
                 int id_nacionalidad = Convert.ToInt32(CmbNacionalidad.SelectedValue);
                 DateTime FechaToDate = Convert.ToDateTime(TxtFechaNac.Text);
-
                 int lenghtHash = claveHash.Length;
 
-                cliente.Rut = TxtRut.Text;
-                cliente.Nombre = TxtNombre.Text;
-                cliente.ApellidoP = TxtApellidoP.Text;
-                cliente.ApellidoM = TxtApellidoM.Text;
-                cliente.Telefono = telefonoCodigo;
-                cliente.Correo = TxtCorreo.Text;
-                cliente.FechaNac = FechaToDate.ToShortDateString();
-                cliente.Clave = claveHash;
-                cliente.GeneroC = id_genero;
-                cliente.NacionalidadC = id_nacionalidad;
-
-                if (cliente.RegistroCliente(cliente) == 1)
+                if (FechaToDate > DateTime.Now)
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "Exitoso()", true);
-                }
-                else if (cliente.RegistroCliente(cliente) == 0)
-                {
-                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "Existente()", true);
+                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "Imposible()", true);
                 }
                 else
                 {
-                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "Error()", true);
-                }
+                    cliente.Rut = TxtRut.Text;
+                    cliente.Nombre = TxtNombre.Text;
+                    cliente.ApellidoP = TxtApellidoP.Text;
+                    cliente.ApellidoM = TxtApellidoM.Text;
+                    cliente.Telefono = telefonoCodigo;
+                    cliente.Correo = TxtCorreo.Text;
+                    cliente.FechaNac = FechaToDate.ToShortDateString();
+                    cliente.Clave = claveHash;
+                    cliente.GeneroC = id_genero;
+                    cliente.NacionalidadC = id_nacionalidad;
 
+                    if (cliente.RegistroCliente(cliente) == 1)
+                    {
+                        ClientScript.RegisterStartupScript(this.GetType(), "myalert", "Exitoso()", true);
+                    }
+                    else if (cliente.RegistroCliente(cliente) == 0)
+                    {
+                        ClientScript.RegisterStartupScript(this.GetType(), "myalert", "Existente()", true);
+                    }
+                    else
+                    {
+                        ClientScript.RegisterStartupScript(this.GetType(), "myalert", "Error()", true);
+                    }
+                }
+                
             }
         }
 

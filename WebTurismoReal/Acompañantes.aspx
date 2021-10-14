@@ -52,7 +52,66 @@
                 }}
            );
         }
-        
+        function SessionExpired() {
+        swal.fire({
+            title: "Tu sesión expiró!!",
+            text: 'Vuelve a la página principal para tomar la reserva otra vez',
+            type: "warning",
+                confirmButtonText: 'Volver',
+                confirmButtonColor: '#117A65',
+                iconColor: '#117A65'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/Index";
+            }
+        }
+           );
+        }
+        function Exitoso() {
+            const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 2000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                })
+
+                Toast.fire({
+                  icon: 'success',
+                  title: 'Acompañante añadido!'
+                })
+        }
+        function Existente() {
+            Swal.fire({
+                  icon: 'warning',
+                  title: 'Oops...',
+                  text: 'Ya existe un registro con estos datos!',
+                  iconColor: '#117A65',
+                  confirmButtonColor: '#117A65'
+                })
+        }
+        function Error() {
+            Swal.fire({
+                  icon: 'warning',
+                  title: 'Error :(',
+                  text: 'Algo ocurrió!',
+                  iconColor: '#117A65',
+                  confirmButtonColor: '#117A65'
+                })
+        }
+        function Imposible() {
+            Swal.fire({
+                  icon: 'warning',
+                  title: 'Oops, revisa la fecha de nacimiento...',
+                  text: 'La fecha no puede ser mayor a la fecha de hoy!',
+                  iconColor: '#117A65',
+                  confirmButtonColor: '#117A65'
+                })
+        }
     </script>
 <body>
     <div class="container">
@@ -73,9 +132,19 @@
                 </li>
                 <li>
                     <a href="/Index1">Reservar</a>
-                </li><li>
-                    <a href="/Cuenta-datos" class="active">Mi cuenta</a>
                 </li>
+                <%if (Session["IdUsuario"] == null)
+                    {%>
+                    <li>
+                    <a href="/Login1">Log in</a>
+                    </li>
+                    <%}%>
+                   <%else
+                    {%>
+                    <li>
+                    <a href="/CuentaDatos">Mi Cuenta</a>
+                    </li>
+                    <%} %>
             </ul>
         </nav>
             </div>
@@ -83,7 +152,7 @@
             <div class="row">
                 <div class="card" style="margin-top:5px;">
                     <h5 style="font-size:30px; margin-bottom:5px;">Registra a tus acompañantes</h5>
-                    <asp:Label Text="Este paso es opcional por ahora, puedes añadir, modificar o quitar acompañantes en tu cuenta más tarde, pero obligatoriamente debes registrarlos al menos 1 día antes del ingreso al departamento" runat="server" />
+                    <asp:Label Text="Este paso es opcional por ahora, puedes añadir, modificar o quitar acompañantes en tu cuenta más tarde, pero obligatoriamente debes registrarlos al menos 24 horas antes del ingreso al departamento" runat="server" />
                 </div>
                 <div class="contenedor">   
                 <div class="progreso-contenedor">   
@@ -101,43 +170,61 @@
                         <div class="rowlist">
                             <fieldset style="border: 2px solid white;">
                                <legend style="font-weight: 200;">Lista de acompañantes</legend>
-                               <div><asp:ListBox CssClass="form-control" style=" height:100px;" runat="server">
-                                                <asp:ListItem Text="" />
+                               <div><asp:ListBox ID="ListaAcompanantes" CssClass="form-control" style=" height:100px;" runat="server">
+                                                <asp:ListItem Text="ksdsk" />
                                                 <asp:ListItem Text="" />
                                             </asp:ListBox></div>
                                </fieldset>
                             <div class="a-container">
                                 <div class="fila">
                                         <div class="columna-1" style="width:100%;">
-                                            <asp:TextBox ID="Txt_Nombre_A"  CssClass="form-control1" placeholder="Ingresa el nombre" runat="server" />
+                                            <asp:TextBox ID="Txt_Nombre_A" CssClass="form-control1" placeholder="Ingresa el nombre" runat="server" />
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="Txt_Nombre_A" Display="Dynamic" ErrorMessage="Olvidaste ingresar el nombre" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
-                                        
+                                            <asp:RegularExpressionValidator  runat="server" ErrorMessage="No se permiten carácteres especiales" 
+                                            ValidationExpression="^[a-z A-Z ñÑ]*$" ControlToValidate="Txt_Nombre_A" Display="Dynamic" ForeColor="white" 
+                                            ValidationGroup="Validador1"></asp:RegularExpressionValidator>
                                         </div>
                                     </div>
                                             <div class="fila">
                                         <div class="columna-1" style="width:100%;">
                                             <asp:TextBox ID="Txt_Apellido_A" CssClass="form-control1" placeholder="Ingresa el apellido paterno" runat="server" />
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="Txt_Apellido_A" Display="Dynamic" ErrorMessage="Olvidaste ingresar el apellido paterno" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
-                                        
+                                            <asp:RegularExpressionValidator  runat="server" ErrorMessage="No se permiten carácteres especiales" 
+                                            ValidationExpression="^[a-z A-Z ñÑ]*$" ControlToValidate="Txt_Apellido_A" Display="Dynamic" ForeColor="white" 
+                                            ValidationGroup="Validador1"></asp:RegularExpressionValidator>
                                         </div>
                                     </div>
                                             <div class="fila">
                                         <div class="columna-1" style="width:100%;">
                                             <asp:TextBox ID="Txt_Apellido_M" CssClass="form-control1" placeholder="Ingresa el apellido materno" runat="server" />
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="Txt_Apellido_M" Display="Dynamic" ErrorMessage="Olvidaste ingresar el apellido materno" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
-                                        
+                                            <asp:RegularExpressionValidator  runat="server" ErrorMessage="No se permiten carácteres especiales" 
+                                            ValidationExpression="^[a-z A-Z ñÑ]*$" ControlToValidate="Txt_Apellido_M" Display="Dynamic" ForeColor="white" 
+                                            ValidationGroup="Validador1"></asp:RegularExpressionValidator>
                                         </div>
                                     </div>
                                             <div class="fila">
                                         <div class="columna-1" style="width:100%;">
-                                            <asp:TextBox ID="Txt_Telefono_A" CssClass="form-control1" placeholder="Ingresa el teléfono"  runat="server" />
+                                            <asp:TextBox ID="Txt_Telefono_A" CssClass="form-control1" placeholder="Teléfono sin código +569"  runat="server" />
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="Txt_Telefono_A" Display="Dynamic" ErrorMessage="Olvidaste ingresar el teléfono" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
-                                        
+                                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
+                                                                    ControlToValidate="Txt_Telefono_A" ErrorMessage="Ingrese sólo números"
+                                                                    ForeColor="white"
+                                                                    ValidationExpression="^[0-9]*" Display="Dynamic">
+                                            </asp:RegularExpressionValidator>
                                         </div>
                                     </div>
+                                    <div class="fila">
+                                            <div class="columna-1" style="width:100%;">
+                                                <asp:TextBox ID="Txt_Rut_A" CssClass="form-control1" placeholder="Rut con puntos y guíon"  runat="server" />
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="Txt_Rut_A" Display="Dynamic" ErrorMessage="Olvidaste ingresar el teléfono" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
+                                                <asp:RegularExpressionValidator  runat="server" ErrorMessage="Olidaste puntos y guión" ValidationExpression="^(\d{1,3}(\.?\d{3}){2})\-?([\dkK])$" ControlToValidate="Txt_Rut_A" Display="Dynamic" ForeColor="white" ValidationGroup="Validador1"></asp:RegularExpressionValidator>
+                                    
+                                            </div>
+                                        </div>
                                             <div class="fila">
                                         <div class="columna-1" style="width:100%;">
-                                            <asp:TextBox ID="Txt_Nacimiento_A" CssClass="form-control1" placeholder="Ingresa la fecha de nacimiento"  runat="server" />
+                                            <asp:TextBox ID="Txt_Nacimiento_A" CssClass="form-control1" placeholder="Ingresa la fecha de nacimiento"  textmode="Date"  runat="server" />
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="Txt_Nacimiento_A" Display="Dynamic" ErrorMessage="Olvidaste ingresar la fecha de nacimiento" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
                                         
                                         </div>
@@ -153,7 +240,7 @@
                                         <div class="columna-1" style="width:100%;">
                                             <asp:DropDownList ID="CmbGenero" CssClass="form-control1" runat="server">
                                         </asp:DropDownList>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" InitialValue="0" runat="server" ControlToValidate="CmbGenero" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu género" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" InitialValue="0" runat="server" ControlToValidate="CmbGenero" Display="Dynamic" ErrorMessage="Olvidaste ingresar el género" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
                                         
                                         </div>
                                     </div>
@@ -161,7 +248,7 @@
                                         <div class="columna-1" style="width:100%;">
                                             <asp:DropDownList ID="CmbNacionalidad" CssClass="form-control1" runat="server">
                                         </asp:DropDownList>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" InitialValue="0" runat="server" ControlToValidate="CmbNacionalidad" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu nacionalidad" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" InitialValue="0" runat="server" ControlToValidate="CmbNacionalidad" Display="Dynamic" ErrorMessage="Olvidaste ingresar el nacionalidad" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
                                         
                                         </div>
                                     </div>
@@ -169,7 +256,7 @@
                             </div>
                             <div class="fila">
                                         <div class="columna-1" style="width:50%; padding:10px;">
-                                            <asp:Button ID="Btn_Añadir" CssClass="btn" Text="Añadir" runat="server" ValidationGroup="Validador" />
+                                            <asp:Button ID="Btn_Añadir" CssClass="btn" Text="Añadir" runat="server" ValidationGroup="Validador" OnClick="Btn_Añadir_Click" />
                                         </div>
                                         <div class="columna-2" style="width:50%;">
                                             <asp:Button ID="Btn_Continuar" CssClass="btn" Text="Continuar" runat="server" OnClick="Btn_Continuar_Click" />

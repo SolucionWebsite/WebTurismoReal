@@ -1,0 +1,79 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using WebTurismoRea.DAL;
+
+namespace WebTurismoReal.BLL
+{
+    public class AcompañanteBLL
+    {
+        public string Id { get; set; }
+        public string Rut { get; set; }
+        public string Nombre { get; set; }
+        public string ApellidoP { get; set; }
+        public string ApellidoM { get; set; }
+        public string Telefono { get; set; }
+        public string Correo { get; set; }
+        public string FechaNac { get; set; }
+        public int GeneroC { get; set; }
+        public int NacionalidadC { get; set; }
+        public int IdCliente { get; set; }
+        public int IdReserva { get; set; }
+
+        public List<AcompañanteBLL> ListaAcompañantes(int id_cliente)
+        {
+            AcompañanteDAL dal = new AcompañanteDAL();
+
+            List<AcompañanteDAL> lista = dal.RegistroAcompañantes(id_cliente);
+            List<AcompañanteBLL> lista2 = new List<AcompañanteBLL>();
+
+            foreach (AcompañanteDAL c in lista)
+            {
+                AcompañanteBLL acompañante = new AcompañanteBLL();
+
+                acompañante.Id = c.Id;
+                acompañante.Rut = c.Rut;
+                acompañante.Nombre = c.Nombre;
+                acompañante.ApellidoP = c.ApellidoP;
+                acompañante.ApellidoM = c.ApellidoM;
+                acompañante.Telefono = c.Telefono;
+                acompañante.Correo = c.Correo;
+                acompañante.FechaNac = c.FechaNac;
+                acompañante.GeneroC = c.GeneroC;
+                acompañante.NacionalidadC = c.NacionalidadC;
+                acompañante.IdCliente = c.IdCliente;
+
+                lista2.Add(acompañante);
+            }
+
+            return lista2;
+        }
+
+        public int AgregarAcompañante(AcompañanteBLL acompañante)
+        {
+            int retorno;
+
+            AcompañanteDAL registros = new AcompañanteDAL();
+
+            registros.Id = Id;
+            registros.Rut = Rut;
+            registros.Nombre = Nombre;
+            registros.ApellidoP = ApellidoP;
+            registros.ApellidoM = ApellidoM;
+            registros.Telefono = Telefono;
+            registros.Correo = Correo;
+            registros.FechaNac = FechaNac;
+            registros.GeneroC = GeneroC;
+            registros.NacionalidadC = NacionalidadC;
+            registros.IdCliente = IdCliente;
+            registros.IdReserva = IdReserva;
+
+            retorno = registros.AgregarAcompañante(registros);
+
+            return retorno;
+        }
+
+    }
+}
