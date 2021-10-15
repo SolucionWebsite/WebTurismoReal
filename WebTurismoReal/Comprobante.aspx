@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Comprobante de reserva</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimun-scale=1.0" />
     <link href="css/Estilo.css" rel="stylesheet" type="text/css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -67,13 +68,13 @@
             <asp:Label Text="Turismo Real" CssClass="logo" runat="server" />
             <ul>
                 <li>
-                    <a href="/Index2">Home</a>
+                    <a href="/Index">Home</a>
                 </li>
                 <li>
                     <a href="/Servicios">Servicios</a>
                 </li>
                 <li>
-                    <a href="/Index2">Reservar</a>
+                    <a href="/Index">Reservar</a>
                 </li>
                 <%if (Session["IdUsuario"] == null)
                     {%>
@@ -92,7 +93,10 @@
             </div>
         <div class="row">
                 <div class="card">
-                    <h5 style="font-size:30px; margin-bottom:10px;">COMPROBANTE DE COMPRA</h5>
+                    <h5 style="font-size:30px; margin-bottom:10px; margin-top:5px;">COMPROBANTE DE COMPRA</h5>
+                    <asp:Label ID="Lbl_Nombre_1" Text="" runat="server" />, Recibimos tu solicitud de reserva!
+                    <p>Gracias por preferir a Turismo Real! Se ha enviado un correo con este comprobante adjunto y la información sobre la reserva a</p>
+                    <asp:Label ID="Lbl_Correo" Text="" style="padding-left:3px;" runat="server" />
                 </div>
             </div>
         <form id="form1" runat="server">
@@ -184,10 +188,6 @@
                                         <asp:Label ID="Lbl_Monto" Text="" runat="server" /></td>
                                 </tr>
                              </table>
-                        <div class="row">
-                            <p>Se ha enviado un correo con este comprobante adjunto y la información sobre la reserva a</p>
-                            <asp:Label ID="Lbl_Correo" Text="" style="padding-left:3px;" runat="server" />
-                            </div>
                         </div>
                     </div>
                 </div>

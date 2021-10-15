@@ -13,6 +13,24 @@ namespace WebTurismoReal {
     public partial class Comprobante {
         
         /// <summary>
+        /// Lbl_Nombre_1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Lbl_Nombre_1;
+        
+        /// <summary>
+        /// Lbl_Correo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Lbl_Correo;
+        
+        /// <summary>
         /// form1 control.
         /// </summary>
         /// <remarks>
@@ -137,14 +155,5 @@ namespace WebTurismoReal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Lbl_Monto;
-        
-        /// <summary>
-        /// Lbl_Correo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_Correo;
     }
 }

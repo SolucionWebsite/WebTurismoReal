@@ -32,6 +32,7 @@ namespace WebTurismoReal
 
             try
             {
+                Lbl_Nombre_1.Text = Session["Usuario"].ToString();
                 Lbl_Fecha.Text = DateTime.Now.ToString("dd-MM-yyyy HH:mm", CultureInfo.CurrentCulture);
                 Lbl_Nombre.Text = Session["Usuario"].ToString();
                 Lbl_Rut.Text = Session["Rut"].ToString();

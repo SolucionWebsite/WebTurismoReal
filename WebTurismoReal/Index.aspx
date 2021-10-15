@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="@sweetalert2/themes/minimal/minimal.css">
     <script src="sweetalert2/dist/sweetalert2.min.js"></script>
     <script>
-        
         function FechasIncongruentes() {
             Swal.fire({
                   icon: 'warning',

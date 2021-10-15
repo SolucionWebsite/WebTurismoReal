@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -13,7 +14,7 @@ namespace WebTurismoReal
         {
             string url = HttpContext.Current.Request.Url.AbsoluteUri;
             string[] separado = url.Split('/');
-            if (separado[separado.Length - 1] == null)
+            if (separado[separado.Length - 1] == "Pago")
             {
                 LblTtotal.Text = "$0";
             }
@@ -50,15 +51,14 @@ namespace WebTurismoReal
 
         public void BtnPagar1_Click(object sender, EventArgs e)
         {
-            Session["Tipo_pago"] = "Crédito";
-            Response.Redirect($"http://localhost:57174/Comprobante");
-
+            Session["Tipo_pago"] = "Débito";
+            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "ValidarPago()", true);
         }
 
         public void BtnPagar2_Click(object sender, EventArgs e)
         {
-            Session["Tipo_pago"] = "Débito";
-            Response.Redirect($"http://localhost:57174/Comprobante");
+            Session["Tipo_pago"] = "Crédito";
+            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "ValidarPago()", true);
         }
     }
 }

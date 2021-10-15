@@ -40,6 +40,15 @@ namespace WebTurismoReal {
         protected global::System.Web.UI.WebControls.DropDownList CmbPago;
         
         /// <summary>
+        /// RequiredFieldValidator10 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator10;
+        
+        /// <summary>
         /// PanelDebito control.
         /// </summary>
         /// <remarks>
@@ -184,13 +193,13 @@ namespace WebTurismoReal {
         protected global::System.Web.UI.WebControls.Panel PanelCredito;
         
         /// <summary>
-        /// TxtNumero control.
+        /// TxtNombre control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtNumero;
+        protected global::System.Web.UI.WebControls.TextBox TxtNombre;
         
         /// <summary>
         /// RequiredFieldValidator7 control.
@@ -200,6 +209,24 @@ namespace WebTurismoReal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator7;
+        
+        /// <summary>
+        /// TxtNumero control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtNumero;
+        
+        /// <summary>
+        /// ValidadoNumeroCredito control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ValidadoNumeroCredito;
         
         /// <summary>
         /// TxtFecha control.
