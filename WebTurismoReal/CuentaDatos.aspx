@@ -61,7 +61,7 @@
                 <%if (Session["IdUsuario"] == null)
                     {%>
                     <li>
-                    <a href="/Login1">Log in</a>
+                    <a href="/Login">Log in</a>
                     </li>
                     <%}%>
                    <%else
@@ -85,13 +85,17 @@
                     <div class="card" style="margin-top:5px; padding:15px;">
                         <table style="width:100%;">
                             <tr>
-                                <td><asp:Button ID="Button1" CssClass="btn-active" Text="Mis datos" runat="server"/></td>
-                                <td><asp:Button ID="Button2" CssClass="btn" Text="Mis reservas" runat="server" OnClick="Btn_Mis_Reservas_Click" /></td>
+                                <td><asp:Button ID="Btn_Datos" CssClass="btn-active" Text="Mis datos" runat="server" OnClick="Btn_Datos_Click"/></td>
+                                <td><asp:Button ID="Btn_Reservas" CssClass="btn" Text="Mis reservas" runat="server" OnClick="Btn_Reservas_Click"/></td>
                             
                             </tr>
                             <tr>
-                                <td><asp:Button ID="Button3" CssClass="btn" Text="Servicios Extra" runat="server" OnClick="Btn_Servicio_Extra_Click" /></td>
-                                <td><asp:Button ID="Button4" CssClass="btn" Text="Cambiar contraseña" runat="server" OnClick="Btn_Cambiar_Clave_Click"/></td>
+                                <td><asp:Button ID="Btn_Servicios" CssClass="btn" Text="Servicios Extra" runat="server" OnClick="Btn_Servicios_Click"/></td>
+                                <td><asp:Button ID="Btn_Clave" CssClass="btn" Text="Cambiar contraseña" runat="server" OnClick="Btn_Clave_Click"/></td>
+                            </tr>
+                            <tr>
+                                <td><asp:Button ID="Btn_Acompañantes" CssClass="btn" Text="Mis acompañantes" runat="server" OnClick="Btn_Acompañantes_Click"/></td>
+                                <td><asp:Button ID="Btn_Cerrar_Sesion" CssClass="btn" Text="Cerrar Sesión" runat="server"/></td>
                             </tr>
                         </table>
                     </div>
@@ -100,7 +104,7 @@
                         <div class="row">
                             <h5 style="font-size:18px; margin-bottom:20px;">Información cliente</h5>
                         </div>
-                        <div style="margin-top: 30px; border: 2px solid white; padding:10px; height:100%;">
+                        <div>
 
                             <div class="div-r">
                                 <fieldset>
@@ -153,9 +157,9 @@
                             <div class="div-l">
                                 <fieldset>
                                <legend>Género</legend>
-                               <div><asp:DropDownList ID="Cmb_Genero" Enabled="false" CssClass="form-control" runat="server">
+                               <div><asp:DropDownList ID="CmbGenero" Enabled="false" CssClass="form-control" runat="server">
                                     </asp:DropDownList>
-                                    <asp:RequiredFieldValidator runat="server" ErrorMessage="Olvidaste ingresar el género" ControlToValidate="Cmb_Genero" Display="Dynamic" ForeColor="white" ValidationGroup="Validador1"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator runat="server" ErrorMessage="Olvidaste ingresar el género" ControlToValidate="CmbGenero" Display="Dynamic" ForeColor="white" ValidationGroup="Validador1"></asp:RequiredFieldValidator>
                                </div>
                                </fieldset>
                             </div>
@@ -171,9 +175,9 @@
                             <div class="div-l">
                                 <fieldset>
                                <legend>Nacionalidad</legend>
-                               <div><asp:DropDownList ID="Cmb_Nacionalidad" Enabled="false" CssClass="form-control" runat="server">
+                               <div><asp:DropDownList ID="CmbNacionalidad" Enabled="false" CssClass="form-control" runat="server">
                                     </asp:DropDownList></div>
-                                    <asp:RequiredFieldValidator runat="server" ErrorMessage="Olvidaste ingresar tu nacionalidad" ControlToValidate="Cmb_Nacionalidad" Display="Dynamic" ForeColor="white" ValidationGroup="Validador1"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator runat="server" ErrorMessage="Olvidaste ingresar tu nacionalidad" ControlToValidate="CmbNacionalidad" Display="Dynamic" ForeColor="white" ValidationGroup="Validador1"></asp:RequiredFieldValidator>
                                
                                </fieldset>
                             </div>

@@ -193,18 +193,7 @@ namespace WebTurismoReal
 
                 if (depto.BuscarDepartamento(id) == true)
                 {
-                    string id_depto = depto.Id;
-                    string direccion = depto.Direccion;
-                    string region = depto.Region;
-                    string provincia = depto.Provincia.Replace(" ", String.Empty);
-                    string comuna = depto.Comuna;
-                    string dias = Lbl_Dias.Text;
-                    string fecha_ida = Lbl_Fechas.Text.Substring(0, 10);
-                    string fecha_vuelta = Lbl_Fechas.Text.Substring(13, 10);
-                    string acompañantes = Lbl_acompañantes.Text;
-                    string total_pago = Lbl_Total.Text;
-
-                    string total2 = total_pago.Replace(".", "");
+                    string total2 = Lbl_Total.Text.Replace(".", "");
                     string total3 = total2.Trim(new Char[] { '$', ' ' });
 
                     int abono = Convert.ToInt32(total3) * 30 / 100;
@@ -213,30 +202,22 @@ namespace WebTurismoReal
                     string abono1 = abono.ToString("C", CultureInfo.CurrentCulture);
                     string restante = pago_restante.ToString("C", CultureInfo.CurrentCulture);
 
-                    string id_deptoEncode = Base64Encode(id_depto);
-                    string direccionEncode = Base64Encode(direccion);
-                    string regionEncode = Base64Encode(region);
-                    string provinciaEncode = Base64Encode(provincia);
-                    string comunaEncode = Base64Encode(comuna);
-                    string diasEncode = Base64Encode(dias);
-                    string fecha_i_Encode = Base64Encode(fecha_ida);
-                    string fecha_v_Encode = Base64Encode(fecha_vuelta);
-                    string acompañantesEncode = Base64Encode(acompañantes);
-                    string totalEncode = Base64Encode(total_pago);
-                    string abonoEncode = Base64Encode(abono1);
-                    string restanteEncode = Base64Encode(restante);
-
-                    if (Session["IdUsuario"] == null)
-                    {
-                        Response.Redirect($"http://localhost:57174/Detalle/{id_deptoEncode}/{direccionEncode}/{regionEncode}/{provinciaEncode}/{comunaEncode}/" +
-                        $"{diasEncode}/{fecha_i_Encode}/{fecha_v_Encode}/{acompañantesEncode}/{totalEncode}/{abonoEncode}/{restanteEncode}");
-
-                    }
-                    else
-                    {
-                        Response.Redirect($"http://localhost:57174/Detalle2/{id_deptoEncode}/{direccionEncode}/{regionEncode}/{provinciaEncode}/{comunaEncode}/" +
-                                $"{diasEncode}/{fecha_i_Encode}/{fecha_v_Encode}/{acompañantesEncode}/{totalEncode}/{abonoEncode}/{restanteEncode}");
-                    }
+                    Session.Timeout = 60;
+                    Session["Id_Depto"] = depto.Id;
+                    Session["Depto"] = depto.Direccion;
+                    Session["Region"] = depto.Region;
+                    Session["Provincia"] = depto.Provincia.Replace(" ", String.Empty);
+                    Session["Comuna"] = depto.Comuna;
+                    Session["Dias"] = Lbl_Dias.Text;
+                    Session["Ida"] = Lbl_Fechas.Text.Substring(0, 10);
+                    Session["Vuelta"] = Lbl_Fechas.Text.Substring(13, 10);
+                    Session["Acompañantes"] = Lbl_acompañantes.Text;
+                    Session["Total"] = Lbl_Total.Text;
+                    Session["Abono"] = abono1;
+                    Session["Restante"] = restante;
+                    
+                    Response.Redirect($"http://localhost:57174/Detalle");
+                        
                     
                 }
             }

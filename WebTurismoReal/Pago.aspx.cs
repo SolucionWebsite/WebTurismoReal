@@ -12,17 +12,13 @@ namespace WebTurismoReal
     {
         public void Page_Load(object sender, EventArgs e)
         {
-            string url = HttpContext.Current.Request.Url.AbsoluteUri;
-            string[] separado = url.Split('/');
-            if (separado[separado.Length - 1] == "Pago")
+            if (Session["Abono"] == null)
             {
                 LblTtotal.Text = "$0";
             }
             else
             {
-                string total = separado[separado.Length - 1];
-                string totalDecode = Base64Decode(total);
-                LblTtotal.Text = totalDecode;
+                LblTtotal.Text = Session["Abono"].ToString();
             }
         }
 

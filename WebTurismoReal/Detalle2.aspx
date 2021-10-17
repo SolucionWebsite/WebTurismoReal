@@ -68,18 +68,18 @@
             <asp:Label Text="Turismo Real" CssClass="logo" runat="server" />
             <ul>
                 <li>
-                    <a href="/Index2">Home</a>
+                    <a href="/Index">Home</a>
                 </li>
                 <li>
-                    <a href="/Servicios2">Servicios</a>
+                    <a href="/Servicios">Servicios</a>
                 </li>
                 <li>
-                    <a href="/Index2">Reservar</a>
+                    <a href="/Index">Reservar</a>
                 </li>
                 <%if (Session["IdUsuario"] == null)
                     {%>
                     <li>
-                    <a href="/Login1">Log in</a>
+                    <a href="/Login">Log in</a>
                     </li>
                     <%}%>
                    <%else

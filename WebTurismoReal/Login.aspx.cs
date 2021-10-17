@@ -21,6 +21,11 @@ namespace WebTurismoReal
             Btn_3.Style.Add(HtmlTextWriterStyle.BackgroundColor, "#117A65");
             Btn_2.Style.Add(HtmlTextWriterStyle.Color, "White");
             Btn_3.Style.Add(HtmlTextWriterStyle.Color, "White");
+
+            if (Request.UrlReferrer.ToString() != HttpContext.Current.Request.Url.AbsoluteUri)
+            {
+                ViewState["PreviousPageUrl"] = Request.UrlReferrer.ToString();
+            }
         }
 
         public void Btn_Login_Click(object sender, EventArgs e)
@@ -52,12 +57,23 @@ namespace WebTurismoReal
 
                 if (claveHash == claveUsuario)
                 {
-                    Session.Timeout = 50;
+                    Session.Timeout = 60;
                     Session["Correo"] = correo;
                     Session["Rut"] = rut;
                     Session["Usuario"] = usuario;
                     Session["IdUsuario"] = id;
-                    Response.Redirect($"http://localhost:57174/Detalle2");
+
+                    string paginaAnterior = ViewState["PreviousPageUrl"].ToString();
+
+                    if (paginaAnterior.Contains("Detalle") || paginaAnterior.Contains("Registro"))
+                    {
+                        Response.Redirect($"http://localhost:57174/Detalle");
+                    }
+                    else
+                    {
+                        Response.Redirect($"http://localhost:57174/CuentaDatos");
+                    }
+                    
                 }
                 else
                 {

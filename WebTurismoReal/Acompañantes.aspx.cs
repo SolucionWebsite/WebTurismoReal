@@ -15,7 +15,7 @@ namespace WebTurismoReal
         public void Page_Load(object sender, EventArgs e)
         {
             MaintainScrollPositionOnPostBack = true;
-            
+
             Btn_1.Style.Add(HtmlTextWriterStyle.BackgroundColor, "#117A65");
             Btn_1.Style.Add(HtmlTextWriterStyle.Color, "White");
             Btn_2.Style.Add(HtmlTextWriterStyle.BackgroundColor, "#117A65");
@@ -30,6 +30,11 @@ namespace WebTurismoReal
                 CargarNacionalidad();
                 CargarGenero();
                 CargarLista();
+            }
+
+            if (Session["IdUsuario"] == null)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "SessionExpired()", true);
             }
         }
 
@@ -130,7 +135,7 @@ namespace WebTurismoReal
                     Txt_Nacimiento_A.Text = "";
                     CmbGenero.SelectedValue = "0";
                     CmbNacionalidad.SelectedValue = "0";
-                    Txt_Telefono_A.Text = "0";
+                    Txt_Telefono_A.Text = "";
                     CargarLista();
                 }
                 else if (acompañante.AgregarAcompañante(acompañante) == 0)

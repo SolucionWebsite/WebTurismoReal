@@ -69,8 +69,9 @@
             <div style="height:100%;">   
         <div style="border: 5px solid black; height:100%; position : absolute;">   
             HOLAA
-
-
+            <asp:TextBox ID="contraseña" runat="server" />
+            <asp:Label ID="clavehash" Text="text" runat="server" />
+            <asp:Button Text="text" runat="server" OnClick="Unnamed1_Click" />
             <div class="container-main">   
            <fieldset style="text-align:left;">
            <legend style="margin-left:4px;" >Correo</legend>

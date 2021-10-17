@@ -31,40 +31,58 @@ namespace WebTurismoReal {
         protected global::System.Web.UI.WebControls.Label Lbl_Usuario;
         
         /// <summary>
-        /// Button1 control.
+        /// Btn_Datos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button Btn_Datos;
         
         /// <summary>
-        /// Button2 control.
+        /// Btn_Reservas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button Btn_Reservas;
         
         /// <summary>
-        /// Button3 control.
+        /// Btn_Servicios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
+        protected global::System.Web.UI.WebControls.Button Btn_Servicios;
         
         /// <summary>
-        /// Button4 control.
+        /// Btn_Clave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button4;
+        protected global::System.Web.UI.WebControls.Button Btn_Clave;
+        
+        /// <summary>
+        /// Btn_Acompañantes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_Acompañantes;
+        
+        /// <summary>
+        /// Btn_Cerrar_Sesion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_Cerrar_Sesion;
         
         /// <summary>
         /// Txt_Nombre control.
@@ -112,13 +130,13 @@ namespace WebTurismoReal {
         protected global::System.Web.UI.WebControls.TextBox Txt_Rut;
         
         /// <summary>
-        /// Cmb_Genero control.
+        /// CmbGenero control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Cmb_Genero;
+        protected global::System.Web.UI.WebControls.DropDownList CmbGenero;
         
         /// <summary>
         /// Txt_Telefono control.
@@ -130,13 +148,13 @@ namespace WebTurismoReal {
         protected global::System.Web.UI.WebControls.TextBox Txt_Telefono;
         
         /// <summary>
-        /// Cmb_Nacionalidad control.
+        /// CmbNacionalidad control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Cmb_Nacionalidad;
+        protected global::System.Web.UI.WebControls.DropDownList CmbNacionalidad;
         
         /// <summary>
         /// Txt_Correo control.

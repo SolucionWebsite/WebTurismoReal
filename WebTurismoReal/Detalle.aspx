@@ -30,6 +30,30 @@
     }
 </style>
     <script> 
+    function LoginExitoso() {
+            Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Has ingresado con éxito!',
+                  showConfirmButton: false,
+                  timer: 3000
+                })
+        }
+    function SessionExpired() {
+        swal.fire({
+            title: "Tu sesión expiró!!",
+            text: 'Vuelve a la página principal para tomar la reserva otra vez',
+            type: "warning",
+                confirmButtonText: 'Volver',
+                confirmButtonColor: '#117A65',
+                iconColor: '#117A65'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/Index";
+            }
+        }
+           );
+        }
     function Pagar() {
         swal.fire({
             title: "¿Tienes una cuenta?",
@@ -76,7 +100,7 @@
                 <%if (Session["IdUsuario"] == null)
                     {%>
                     <li>
-                    <a href="/Login1">Log in</a>
+                    <a href="/Login">Log in</a>
                     </li>
                     <%}%>
                    <%else

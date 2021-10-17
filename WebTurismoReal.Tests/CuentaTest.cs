@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace WebTurismoReal.Tests
 {
     [TestClass]
-    public class UnitTest3
+    public class CuentaTest
     {
         [TestMethod]
         public void TestMethod1()

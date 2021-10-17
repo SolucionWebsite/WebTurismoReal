@@ -35,9 +35,9 @@ namespace WebTurismoReal
             Cmb_Region.DataTextField = "NOMBRE_REGION";
             Cmb_Region.DataValueField = "ID_REGION";
             Cmb_Region.DataBind();
-            Cmb_Region.Items.Insert(0, new System.Web.UI.WebControls.ListItem("Seleccionar", "0"));
-            Cmb_Provincia.Items.Insert(0, new System.Web.UI.WebControls.ListItem("Seleccionar", "0"));
-            Cmb_Comuna.Items.Insert(0, new System.Web.UI.WebControls.ListItem("Seleccionar", "0"));
+            Cmb_Region.Items.Insert(0, new ListItem("Seleccionar", "0"));
+            Cmb_Provincia.Items.Insert(0, new ListItem("Seleccionar", "0"));
+            Cmb_Comuna.Items.Insert(0, new ListItem("Seleccionar", "0"));
 
         }
 
@@ -84,16 +84,18 @@ namespace WebTurismoReal
                 string idComunaEncode = Base64Encode(id_comuna);
                 string fechaEntradaEncode = Base64Encode(fechaEntrada.Date.ToShortDateString());
                 string fechaSalidaEncode = Base64Encode(fechaSalida.Date.ToShortDateString());
-                string diasEncode = Base64Encode(Convert.ToInt32(difDias.Days).ToString());
+                string diasEncode;
 
-                if (diasEncode == "0")
+                if (difDias.ToString() == "00:00:00")
                 {
-                    diasEncode = "1";
+                    string dia = "1";
+                    diasEncode = Base64Encode(dia);
                     Response.Redirect($"Disponibilidad/{idRegionEncode}/{idProvinciaEncode}/{idComunaEncode}/{comunaEncode}/{provinciaEncode}/" +
                    $"{regionEncode}/{fechaEntradaEncode}/{fechaSalidaEncode}/{diasEncode}", true);
                 }
                 else
-                { 
+                {
+                    diasEncode = Base64Encode(Convert.ToInt32(difDias.Days).ToString());
                     Response.Redirect($"Disponibilidad/{idRegionEncode}/{idProvinciaEncode}/{idComunaEncode}/{comunaEncode}/{provinciaEncode}/" +
                    $"{regionEncode}/{fechaEntradaEncode}/{fechaSalidaEncode}/{diasEncode}", true);
                     
@@ -113,7 +115,7 @@ namespace WebTurismoReal
             Cmb_Provincia.DataTextField = "NOMBRE_PROVINCIA";
             Cmb_Provincia.DataValueField = "ID_PROV";
             Cmb_Provincia.DataBind();
-            Cmb_Provincia.Items.Insert(0, new System.Web.UI.WebControls.ListItem("Seleccionar", "0"));
+            Cmb_Provincia.Items.Insert(0, new ListItem("Seleccionar", "0"));
 
         }
 
@@ -131,7 +133,7 @@ namespace WebTurismoReal
             Cmb_Comuna.DataTextField = "NOMBRE_COMUNA";
             Cmb_Comuna.DataValueField = "ID_COMUNA";
             Cmb_Comuna.DataBind();
-            Cmb_Comuna.Items.Insert(0, new System.Web.UI.WebControls.ListItem("Seleccionar", "0"));
+            Cmb_Comuna.Items.Insert(0, new ListItem("Seleccionar", "0"));
         }
     }
 }

@@ -106,7 +106,7 @@
                 <%if (Session["IdUsuario"] == null)
                     {%>
                     <li>
-                    <a href="/Login1">Log in</a>
+                    <a href="/Login">Log in</a>
                     </li>
                     <%}%>
                    <%else
