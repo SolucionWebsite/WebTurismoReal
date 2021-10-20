@@ -86,9 +86,6 @@ namespace WebTurismoReal
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "myalert", "SessionExpired()", true);
             }
-
-            
-
         }
 
         public void Btn_Continuar_Click(object sender, EventArgs e)

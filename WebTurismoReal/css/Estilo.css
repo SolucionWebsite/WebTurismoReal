@@ -779,3 +779,21 @@ legend {
         float: initial;
     }
 }
+
+.scroll-div {
+    margin-top: 10px;
+    width: 1020px;
+    padding: 2px;
+    overflow: scroll;
+    height: 100%;
+}
+
+@media (max-width: 952px) {
+    .scroll-div {
+        margin-top: 10px;
+        width: 100%;
+        padding: 2px;
+        overflow: scroll;
+        height: 100%;
+    }
+}

@@ -187,5 +187,51 @@ namespace WebTurismoRea.DAL
                 return Lista;
             }
         }
+
+        public int ModificarCliente(string rutCliente, ClienteDAL cliente)
+        {
+            using (da.Connection())
+            {
+                int retorno;
+                try
+                {
+                    OracleCommand cmd = new OracleCommand("SP_UPDATECLIENTE", da.Connection())
+                    {
+                        CommandText = "SP_UPDATECLIENTE",
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    cmd.Connection.Open();
+
+                    cmd.Parameters.Add("V_RUT_CLI", rutCliente);
+                    cmd.Parameters.Add("V2_RUT_CLI", cliente.Rut);
+                    cmd.Parameters.Add("V_NOMBRE_CLI", cliente.Nombre);
+                    cmd.Parameters.Add("V_AP_PATERNO_CLI", cliente.ApellidoP);
+                    cmd.Parameters.Add("V_AP_MATERNO_CLI", cliente.ApellidoM);
+                    cmd.Parameters.Add("V_NUM_TELEFONO_CLI", cliente.Telefono);
+                    cmd.Parameters.Add("V_EMAIL_CLI", cliente.Correo);
+                    cmd.Parameters.Add("V_FEC_NAC_CLI", cliente.FechaNac);
+                    cmd.Parameters.Add("V_CONTRASEÑA_CLI", cliente.Clave);
+                    cmd.Parameters.Add("V_GENERO_ID_GEN", cliente.GeneroC);
+                    cmd.Parameters.Add("V_NACIONALIDAD_ID_NACIONALIDAD", cliente.NacionalidadC);
+                    cmd.Parameters.Add("RETORNO", OracleDbType.Int32).Direction = ParameterDirection.Output;
+
+                    cmd.ExecuteNonQuery();
+
+                    retorno = Convert.ToInt32(cmd.Parameters["RETORNO"].Value.ToString().Trim());
+
+                    cmd.Connection.Close();
+
+                    return 1;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return 0;
+                }
+            }
+        }
+
+
     }
 }

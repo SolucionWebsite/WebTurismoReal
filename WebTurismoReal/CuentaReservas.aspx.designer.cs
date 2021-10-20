@@ -10,7 +10,7 @@
 namespace WebTurismoReal {
     
     
-    public partial class Detalle2 {
+    public partial class CuentaReservas {
         
         /// <summary>
         /// form1 control.
@@ -22,156 +22,147 @@ namespace WebTurismoReal {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Btn_1 control.
+        /// Lbl_Usuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_1;
+        protected global::System.Web.UI.WebControls.Label Lbl_Usuario;
         
         /// <summary>
-        /// Btn_2 control.
+        /// Btn_Datos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_2;
+        protected global::System.Web.UI.WebControls.Button Btn_Datos;
         
         /// <summary>
-        /// Btn_3 control.
+        /// Btn_Reservas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_3;
+        protected global::System.Web.UI.WebControls.Button Btn_Reservas;
         
         /// <summary>
-        /// Btn_4 control.
+        /// Btn_Servicios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_4;
+        protected global::System.Web.UI.WebControls.Button Btn_Servicios;
         
         /// <summary>
-        /// Btn_5 control.
+        /// Btn_Clave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_5;
+        protected global::System.Web.UI.WebControls.Button Btn_Clave;
         
         /// <summary>
-        /// Lbl_Depto control.
+        /// Btn_Acompañantes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_Depto;
+        protected global::System.Web.UI.WebControls.Button Btn_Acompañantes;
         
         /// <summary>
-        /// Lbl_Region control.
+        /// Btn_Cerrar_Sesion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_Region;
+        protected global::System.Web.UI.WebControls.Button Btn_Cerrar_Sesion;
         
         /// <summary>
-        /// Lbl_Provincia control.
+        /// GridReservas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_Provincia;
+        protected global::System.Web.UI.WebControls.GridView GridReservas;
         
         /// <summary>
-        /// Lbl_Comuna control.
+        /// PanelModificar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_Comuna;
+        protected global::System.Web.UI.WebControls.Panel PanelModificar;
         
         /// <summary>
-        /// Lbl_Dias control.
+        /// Cmb_Opciones control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_Dias;
+        protected global::System.Web.UI.WebControls.DropDownList Cmb_Opciones;
         
         /// <summary>
-        /// Lbl_Ida control.
+        /// Panel_Departamento control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_Ida;
+        protected global::System.Web.UI.WebControls.Panel Panel_Departamento;
         
         /// <summary>
-        /// Lbl_Vuelta control.
+        /// GridDepartamentos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_Vuelta;
+        protected global::System.Web.UI.WebControls.GridView GridDepartamentos;
         
         /// <summary>
-        /// Lbl_Acompañantes control.
+        /// Panel_Fecha control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_Acompañantes;
+        protected global::System.Web.UI.WebControls.Panel Panel_Fecha;
         
         /// <summary>
-        /// Lbl_Total control.
+        /// TxtFechaIda control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_Total;
+        protected global::System.Web.UI.WebControls.TextBox TxtFechaIda;
         
         /// <summary>
-        /// Lbl_Abono control.
+        /// TxtFechaRegreso control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_Abono;
+        protected global::System.Web.UI.WebControls.TextBox TxtFechaRegreso;
         
         /// <summary>
-        /// Lbl_Restante control.
+        /// Panel_Guardar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_Restante;
-        
-        /// <summary>
-        /// BtnPagar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnPagar;
+        protected global::System.Web.UI.WebControls.Panel Panel_Guardar;
     }
 }

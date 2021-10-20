@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -14,6 +15,8 @@ namespace WebTurismoReal
 
         public void Page_Load(object sender, EventArgs e)
         {
+            MaintainScrollPositionOnPostBack = true;
+
             if (Session["Usuario"] == null)
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "myalert", "SessionExpired()", true);
@@ -21,15 +24,13 @@ namespace WebTurismoReal
             else
             {
                 Lbl_Usuario.Text = Session["Usuario"].ToString();
-                CargarDatosCliente();
+                if (!IsPostBack)
+                {
+                    CargarNacionalidad();
+                    CargarGenero();
+                    CargarDatosCliente();
+                }
             }
-
-            if (!IsPostBack)
-            {
-                CargarNacionalidad();
-                CargarGenero();
-            }
-
         }
 
         public void CargarNacionalidad()
@@ -94,10 +95,12 @@ namespace WebTurismoReal
                         nombre = c.Nombre;
                         apellidoP = c.ApellidoP;
                         apellidoM = c.ApellidoM;
-                        fechaNac = c.FechaNac;
+                        DateTime date = new DateTime();
+                        date = Convert.ToDateTime(c.FechaNac);
+                        fechaNac = date.ToString("yyyy-MM-dd");
                         rut = c.Rut;
                         genero = c.GeneroC;
-                        telefono = c.Telefono;
+                        telefono = c.Telefono.Remove(0, 4);
                         nacionalidad = c.NacionalidadC;
                         correo = c.Correo;
                     }
@@ -108,9 +111,9 @@ namespace WebTurismoReal
                 Txt_Apellido_M.Text = apellidoM;
                 Txt_Fecha_Nacimiento.Text = fechaNac;
                 Txt_Rut.Text = rut;
-                CmbGenero.SelectedIndex = genero;
+                CmbGenero.SelectedValue = genero.ToString();
                 Txt_Telefono.Text = telefono;
-                CmbNacionalidad.SelectedIndex = nacionalidad;
+                CmbNacionalidad.SelectedValue = nacionalidad.ToString();
                 Txt_Correo.Text = correo;
 
             }
@@ -141,10 +144,51 @@ namespace WebTurismoReal
             Response.Redirect("CuentaAcompañantes.aspx");
         }
 
-        public void Btn_Cerrar_Sesion_Click(object sender, EventArgs e)
+        public void Btn_Cerrar_Sesion_Click1(object sender, EventArgs e)
         {
             Session.Abandon();
             Response.Redirect("Index.aspx");
+        }
+
+        public void Btn_Guardar_Cambios_Click(object sender, EventArgs e)
+        {
+            string rutCliente = Session["Rut"].ToString();
+
+            string telefonoCodigo = "+569" + Txt_Telefono.Text;
+            DateTime fechaToDate = Convert.ToDateTime(Txt_Fecha_Nacimiento.Text);
+            string fechaString = fechaToDate.ToString("dd-MM-yyyy", CultureInfo.CurrentCulture);
+
+            cliente.Rut = Txt_Rut.Text;
+            cliente.Nombre = Txt_Nombre.Text;
+            cliente.ApellidoP = Txt_Apellido_P.Text;
+            cliente.ApellidoM = Txt_Apellido_M.Text;
+            cliente.Telefono = telefonoCodigo;
+            cliente.Correo = Txt_Correo.Text;
+            cliente.FechaNac = fechaString;
+            cliente.GeneroC = Int32.Parse(CmbGenero.SelectedValue);
+            cliente.NacionalidadC = Int32.Parse(CmbNacionalidad.SelectedValue);
+            
+            if (cliente.ModificarCliente(rutCliente, cliente) == 1)
+            {
+                CargarDatosCliente();
+
+                Txt_Nombre.Enabled = false;
+                Txt_Apellido_P.Enabled = false;
+                Txt_Apellido_M.Enabled = false;
+                Txt_Correo.Enabled = false;
+                Txt_Fecha_Nacimiento.Enabled = false;
+                CmbGenero.Enabled = false;
+                CmbNacionalidad.Enabled = false;
+                Txt_Rut.Enabled = false;
+                Txt_Telefono.Enabled = false;
+
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "ActualizacionExitosa()", true);
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "ActualizacionFallida()", true);
+            }
+
         }
     }
 }

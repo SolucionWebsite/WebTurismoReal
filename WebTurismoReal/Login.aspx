@@ -53,7 +53,7 @@
                 <%if (Session["IdUsuario"] == null)
                     {%>
                     <li>
-                    <a href="/Login">Log in</a>
+                    <a href="/Login" class="active">Log in</a>
                     </li>
                     <%}%>
                    <%else

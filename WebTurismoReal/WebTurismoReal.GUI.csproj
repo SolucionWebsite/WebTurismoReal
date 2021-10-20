@@ -131,9 +131,11 @@
     <Content Include="css\NewStyle.css" />
     <Content Include="css\Style.css" />
     <Content Include="css\StylePago.css" />
+    <Content Include="CuentaAcompañantes.aspx" />
+    <Content Include="CuentaClave.aspx" />
     <Content Include="CuentaDatos.aspx" />
+    <Content Include="CuentaReservas.aspx" />
     <Content Include="Detalle.aspx" />
-    <Content Include="Detalle2.aspx" />
     <Content Include="Disponibilidad.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -180,6 +182,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Servicios.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -201,6 +204,20 @@
     <Compile Include="Comprobante.aspx.designer.cs">
       <DependentUpon>Comprobante.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CuentaAcompañantes.aspx.cs">
+      <DependentUpon>CuentaAcompañantes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CuentaAcompañantes.aspx.designer.cs">
+      <DependentUpon>CuentaAcompañantes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CuentaClave.aspx.cs">
+      <DependentUpon>CuentaClave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CuentaClave.aspx.designer.cs">
+      <DependentUpon>CuentaClave.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CuentaDatos.aspx.cs">
       <DependentUpon>CuentaDatos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -208,19 +225,19 @@
     <Compile Include="CuentaDatos.aspx.designer.cs">
       <DependentUpon>CuentaDatos.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CuentaReservas.aspx.cs">
+      <DependentUpon>CuentaReservas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CuentaReservas.aspx.designer.cs">
+      <DependentUpon>CuentaReservas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Detalle.aspx.cs">
       <DependentUpon>Detalle.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Detalle.aspx.designer.cs">
       <DependentUpon>Detalle.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Detalle2.aspx.cs">
-      <DependentUpon>Detalle2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Detalle2.aspx.designer.cs">
-      <DependentUpon>Detalle2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Disponibilidad.aspx.cs">
       <DependentUpon>Disponibilidad.aspx</DependentUpon>
@@ -267,6 +284,13 @@
     </Compile>
     <Compile Include="Registro.aspx.designer.cs">
       <DependentUpon>Registro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Servicios.aspx.cs">
+      <DependentUpon>Servicios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Servicios.aspx.designer.cs">
+      <DependentUpon>Servicios.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

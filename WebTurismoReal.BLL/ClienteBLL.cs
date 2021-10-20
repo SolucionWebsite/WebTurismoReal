@@ -91,5 +91,29 @@ namespace WebTurismoReal.BLL
 
             return lista2;
         }
+
+        public int ModificarCliente(string rutCliente, ClienteBLL cliente)
+        {
+            int retorno;
+
+            ClienteDAL registros = new ClienteDAL();
+            
+            registros.Rut = Rut;
+            registros.Nombre = Nombre;
+            registros.ApellidoP = ApellidoP;
+            registros.ApellidoM = ApellidoM;
+            registros.Telefono = Telefono;
+            registros.Correo = Correo;
+            registros.FechaNac = FechaNac;
+            registros.Clave = Clave;
+            registros.GeneroC = GeneroC;
+            registros.NacionalidadC = NacionalidadC;
+
+            retorno = registros.ModificarCliente(rutCliente, registros);
+
+            return retorno;
+        }
+
+
     }
 }

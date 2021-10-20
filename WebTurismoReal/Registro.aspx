@@ -195,12 +195,12 @@
                                 <tr>
                                     <td class="auto-style1">Teléfono</td>
                                     <td>
-                                        <asp:TextBox runat="server" placeholder="Teléfono Ej: 12334566" class="form-control1" TextMode="Phone" ID="TxtTelefono" MaxLength="8" />
+                                        <asp:TextBox runat="server" placeholder="Teléfono sin código +569" class="form-control1" TextMode="Phone" ID="TxtTelefono" MaxLength="8" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="TxtTelefono" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu telefono" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
                                         <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
-                                                                    ControlToValidate="TxtTelefono" ErrorMessage="Ingrese sólo números"
+                                                                    ControlToValidate="TxtTelefono" ErrorMessage="El télefono debe ser de 8 números"
                                                                     ForeColor="white"
-                                                                    ValidationExpression="^[0-9]*" Display="Dynamic">
+                                                                    ValidationExpression="^[0-9]{8}$" Display="Dynamic">
                                         </asp:RegularExpressionValidator>
                                         </td>
                                     

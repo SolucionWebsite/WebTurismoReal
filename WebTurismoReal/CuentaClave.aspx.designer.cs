@@ -10,7 +10,7 @@
 namespace WebTurismoReal {
     
     
-    public partial class CuentaDatos {
+    public partial class CuentaClave {
         
         /// <summary>
         /// form1 control.
@@ -85,111 +85,30 @@ namespace WebTurismoReal {
         protected global::System.Web.UI.WebControls.Button Btn_Cerrar_Sesion;
         
         /// <summary>
-        /// Txt_Nombre control.
+        /// Txt_Clave_Actual control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Txt_Nombre;
+        protected global::System.Web.UI.WebControls.TextBox Txt_Clave_Actual;
         
         /// <summary>
-        /// Txt_Apellido_P control.
+        /// Txt_Clave_Nueva control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Txt_Apellido_P;
+        protected global::System.Web.UI.WebControls.TextBox Txt_Clave_Nueva;
         
         /// <summary>
-        /// Txt_Apellido_M control.
+        /// Btn_Guardar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Txt_Apellido_M;
-        
-        /// <summary>
-        /// Txt_Fecha_Nacimiento control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Txt_Fecha_Nacimiento;
-        
-        /// <summary>
-        /// Txt_Rut control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Txt_Rut;
-        
-        /// <summary>
-        /// CmbGenero control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CmbGenero;
-        
-        /// <summary>
-        /// Txt_Telefono control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Txt_Telefono;
-        
-        /// <summary>
-        /// RegularExpressionValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
-        
-        /// <summary>
-        /// CmbNacionalidad control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CmbNacionalidad;
-        
-        /// <summary>
-        /// Txt_Correo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Txt_Correo;
-        
-        /// <summary>
-        /// Btn_Editar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_Editar;
-        
-        /// <summary>
-        /// Btn_Guardar_Cambios control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_Guardar_Cambios;
+        protected global::System.Web.UI.WebControls.Button Btn_Guardar;
     }
 }

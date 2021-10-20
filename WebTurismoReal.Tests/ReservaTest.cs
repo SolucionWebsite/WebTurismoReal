@@ -121,5 +121,32 @@ namespace WebTurismoReal.Tests
             Assert.IsTrue(acompañante.AgregarAcompañante(acompañante) == 1);
         }
 
+        [TestMethod]
+        public void RegistroReserva_DatosVálidos_RegistroGuardadoBD()
+        {
+            //Requerimiento: Crear un sistema de reservas en donde el usuario pueda acceder fácilmente para arrendar departamentos y agregar servicios extra, además de función de pago.
+            //Entrada: datos correctos
+            //Salida: Registro almacenado en la base de datos, retorno 1
+
+            //Arrange
+            ReservaBLL reserva = new ReservaBLL();
+
+            reserva.FechaEntrada = "02/12/2022";
+            reserva.FechaSalida = "12/12/2022";
+            reserva.Estado = "Pagada";
+            reserva.FechaReserva = "18/10/2021";
+            reserva.Abono = "99990";
+            reserva.ValorFinal = "199990";
+            reserva.IdCliente = 1;
+            reserva.IdDepto = 1;
+            
+            //Act
+            reserva.CrearReserva(reserva);
+
+
+            //Assert
+            Assert.IsTrue(reserva.CrearReserva(reserva) == 1);
+        }
+
     }
 }

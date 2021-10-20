@@ -22,9 +22,16 @@ namespace WebTurismoReal
             Btn_2.Style.Add(HtmlTextWriterStyle.Color, "White");
             Btn_3.Style.Add(HtmlTextWriterStyle.Color, "White");
 
-            if (Request.UrlReferrer.ToString() != HttpContext.Current.Request.Url.AbsoluteUri)
+            try
             {
-                ViewState["PreviousPageUrl"] = Request.UrlReferrer.ToString();
+                if (Request.UrlReferrer.ToString() != HttpContext.Current.Request.Url.AbsoluteUri)
+                {
+                    ViewState["PreviousPageUrl"] = Request.UrlReferrer.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -101,7 +108,6 @@ namespace WebTurismoReal
             string hashString = Encoding.Default.GetString(hash);
 
             return hashString;
-
         }
 
     }

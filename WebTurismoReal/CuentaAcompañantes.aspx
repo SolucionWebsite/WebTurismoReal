@@ -1,10 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Acompañantes.aspx.cs" Inherits="WebTurismoReal.Acompañantes" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CuentaAcompañantes.aspx.cs" Inherits="WebTurismoReal.CuentaAcompañantes" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head runat="server">
-    <title>Acompañantes</title>
+    <title>Mi cuenta</title>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimun-scale=1.0" />
     <link href="css/Estilo.css" rel="stylesheet" type="text/css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,56 +17,62 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="@sweetalert2/themes/minimal/minimal.css">
     <script src="sweetalert2/dist/sweetalert2.min.js"></script>
-    <style>
-        .progreso {
-    background-color: #117A65;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    height: 2px;
-    width: 75%;
-    z-index: -1;
-    transition: 0.4s ease;
-    }
-</style>
-</head>
-    <script>
-        function Pagar() {
-            swal.fire({
-            title: "Es momento de pagar!",
-            text: 'Para reservar es necesario abonar un 30% del total de la reserva, si continúas serás redirigido a una página web de pago',
-            type: "question",
-                showDenyButton: true,
-                confirmButtonText: 'Continuar',
-                confirmButtonColor: '#117A65',
-                denyButtonText: 'Cancelar',
-                denyButtonColor: '#117A65',
-                showCloseButton: true,
-                iconColor: '#117A65'
-           }).then((result) => {
-               if (result.isConfirmed) {
-                   window.location.href = "/Pago";
-               }
-               else if (result.isDenied) {
-                   window.location.href = "/Index";
-                }}
-           );
+    <style> 
+        td{
+            padding-left:10px;
+            padding-right:10px;
+            padding-bottom:5px;
+            padding-top:5px;
         }
+        .scroll-div {
+            margin-top: 10px; 
+            width:1020px;
+            padding: 2px; 
+            overflow:scroll; 
+            height:100%;
+        }
+
+        @media (max-width: 952px) {
+            .scroll-div {
+                margin-top: 10px;
+                width: 100%;
+                padding: 2px;
+                overflow: scroll;
+                height: 100%;
+            }
+        }
+    </style>
+    <script> 
         function SessionExpired() {
         swal.fire({
-            title: "Tu sesión expiró!!",
-            text: 'Vuelve a la página principal para tomar la reserva otra vez',
+            title:"Tu sesión expiró!!",
+            text: 'Vuelve al login para ingresar nuevamente',
             type: "warning",
                 confirmButtonText: 'Volver',
                 confirmButtonColor: '#117A65',
                 iconColor: '#117A65'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = "/Index";
-            }
+                window.location.href = "/Login";
+            }});
         }
-           );
+        function ActualizacionExitosa() {
+            Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Los cambios se guardaron con éxito!',
+                  showConfirmButton: false,
+                  timer: 2000
+                })
+        }
+        function ActualizacionFallida() {
+            Swal.fire({
+                  position: 'top-end',
+                  icon: 'warning',
+                  title: 'Los cambios no se guardaron!',
+                  showConfirmButton: false,
+                  timer: 2000
+                })
         }
         function Exitoso() {
             const Toast = Swal.mixin({
@@ -103,18 +110,10 @@
                   confirmButtonColor: '#117A65'
                 })
         }
-        function Imposible() {
-            Swal.fire({
-                  icon: 'warning',
-                  title: 'Oops, revisa la fecha de nacimiento...',
-                  text: 'La fecha no puede ser mayor a la fecha de hoy!',
-                  iconColor: '#117A65',
-                  confirmButtonColor: '#117A65'
-                })
-        }
     </script>
+</head>
 <body>
-    <div class="container">
+    <div class="container" >
             <div class="row" >
                 <nav>  
             <input type="checkbox" id="check"/>
@@ -142,7 +141,7 @@
                    <%else
                     {%>
                     <li>
-                    <a href="/CuentaDatos">Mi Cuenta</a>
+                    <a href="/CuentaDatos" class="active">Mi Cuenta</a>
                     </li>
                     <%} %>
             </ul>
@@ -151,32 +150,131 @@
             <form id="form1" runat="server">
             <div class="row">
                 <div class="card" style="margin-top:5px;">
-                    <h5 style="font-size:30px; margin-bottom:5px;">Registra a tus acompañantes</h5>
-                    <asp:Label Text="Este paso es opcional por ahora, puedes añadir, modificar o quitar acompañantes en tu cuenta más tarde, pero obligatoriamente debes registrarlos al menos 24 horas antes del ingreso al departamento" runat="server" />
-                </div>
-                <div class="contenedor">   
-                <div class="progreso-contenedor">   
-                    <div class="progreso" id="progreso"></div>
-                    <asp:Button ID="Btn_1" Text="1" CssClass="redondo" runat="server" />
-                    <asp:Button ID="Btn_2" Text="2" CssClass="redondo" runat="server" />
-                    <asp:Button ID="Btn_3" Text="3" CssClass="redondo" runat="server" />
-                    <asp:Button ID="Btn_4" Text="4" CssClass="redondo" runat="server" />
-                    <asp:Button ID="Btn_5" Text="5" CssClass="redondo" runat="server" />
-                </div>
+                    <h5 style="font-size:30px; margin-bottom:10px;">¡Bienvenido/a!</h5>
+                    <asp:Label ID="Lbl_Usuario" Text="[Nombre]" runat="server" />
                 </div>
             </div>
-                <div class="row" style="height:100%">
-                        <div class="card" style="margin-top:5px; height:100%; padding:30px;">
-                        <div class="rowlist">
-                            <fieldset style="border: 2px solid white;">
-                               <legend style="font-weight: 200;">Lista de acompañantes</legend>
-                               <div><asp:ListBox ID="ListaAcompanantes" CssClass="form-control" style=" height:100px;" runat="server">
-                                                <asp:ListItem Text="ksdsk" />
-                                                <asp:ListItem Text="" />
-                                            </asp:ListBox></div>
-                               </fieldset>
+                <div class="row" style="margin:auto;">
 
-                            <div class="a-container">
+                    <div class="card" style="margin-top:5px; padding:15px;">
+                        <table style="width:100%;">
+                            <tr>
+                                <td><asp:Button ID="Btn_Datos" CssClass="btn" Text="Mis datos" runat="server" OnClick="Btn_Datos_Click"/></td>
+                                <td><asp:Button ID="Btn_Reservas" CssClass="btn" Text="Mis reservas" runat="server" OnClick="Btn_Reservas_Click"/></td>
+                            
+                            </tr>
+                            <tr>
+                                <td><asp:Button ID="Btn_Servicios" CssClass="btn" Text="Servicios Extra" runat="server" OnClick="Btn_Servicios_Click"/></td>
+                                <td><asp:Button ID="Btn_Clave" CssClass="btn" Text="Cambiar contraseña" runat="server" OnClick="Btn_Clave_Click"/></td>
+                            </tr>
+                            <tr>
+                                <td><asp:Button ID="Btn_Acompañantes" CssClass="btn-active" Text="Mis acompañantes" runat="server" OnClick="Btn_Acompañantes_Click"/></td>
+                                <td><asp:Button ID="Btn_Cerrar_Sesion" CssClass="btn" Text="Cerrar Sesión" runat="server" OnClick="Btn_Cerrar_Sesion_Click1"/></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="card" style="margin-top:5px; padding:15px;">
+                        <div class="row">
+                            <h5 style="font-size:18px;">Mis acompañantes</h5>
+                        </div>
+                        <div class="scroll-div" >
+                           <% WebTurismoReal.BLL.AcompañanteBLL a = new WebTurismoReal.BLL.AcompañanteBLL();
+                               var coleccion = a.ListaA(Int32.Parse(Session["IdUsuario"].ToString()));
+                               if (coleccion == null || coleccion.Count == 0)
+                               {%>
+                            <div class="row">
+                                <div class="col">
+                                <h6>No tienes acompañantes ingresados.</h6>
+                                </div>
+                            </div>
+                            <%}%>
+                            <%else
+                            {%>
+                            <table >
+                                <tr style="width:100%; white-space:nowrap; margin-top:3px; height:100%; color:white; background-color:#117A65; " >
+                                    <td>
+                                        
+                                    </td>
+                                    <td style="visibility:collapse; display:none; ">
+                                        
+                                    </td>
+                                    <td>
+                                        NOMBRE
+                                    </td>
+                                    <td>
+                                        PRIMER APELLIDO
+                                    </td>
+                                    <td>
+                                        SEGUNDO APELLIDO
+                                    </td>
+                                    <td>
+                                        RUT
+                                    </td>
+                                    <td>
+                                        FECHA DE NACIMIENTO
+                                    </td>
+                                    <td>
+                                        TELÉFONO
+                                    </td>
+                                    <td>
+                                        CORREO
+                                    </td>
+                                </tr>
+                            <asp:Repeater runat="server" id="Repeater1" OnItemCommand="ItemSelect" EnableVIewState = "true">
+                                <ItemTemplate>
+                                    <asp:Panel id="FilaRepeater" runat="server" BackColor="Gainsboro" style="width:100%; margin-top:3px; height:100%; color:black;" >
+                                    <tr style="white-space:nowrap; color:black;">
+                                    <td>
+                                        <asp:Button Text="SELECCIONAR" CssClass="btn" style="height:30px;" runat="server" /></td>
+                                    <td  style="visibility:collapse; display:none;">
+                                        <asp:Label Text="" runat="server" /><%# DataBinder.Eval(Container.DataItem, "Id")%>
+                                        
+                                    </td>
+                                    <td><p><%# DataBinder.Eval(Container.DataItem, "Nombre")%></p></td>
+                                    <td><p><%# DataBinder.Eval(Container.DataItem, "ApellidoP")%></p></td>
+                                    <td><p><%# DataBinder.Eval(Container.DataItem, "ApellidoM")%></p></td>
+                                    <td>
+                                        <asp:Label ID="LblRut" Text="text" runat="server" /><%# DataBinder.Eval(Container.DataItem, "Rut")%></td>
+                                    <td><p><%# DataBinder.Eval(Container.DataItem, "FechaNac")%></p></td>
+                                    <td><p><%# DataBinder.Eval(Container.DataItem, "Telefono")%></p></td>
+                                    <td><p><%# DataBinder.Eval(Container.DataItem, "Correo")%></p></td>
+                                    
+                                </tr>
+                                        </asp:Panel>
+                            
+                                </ItemTemplate>
+                            </asp:Repeater>
+                                </table>
+                            <%}%>
+                               
+                            </div>
+                        <div>
+                            <div style="margin-top: 10px; width:100%; padding:10px; overflow:scroll; height:100%;" >
+                            <asp:GridView ID="GridAcompañantes" runat="server" DataKeyNames="ID" CssClass="gridview" BackColor="#0B5345" BorderStyle="none" BorderColor="#117A65" OnSelectedIndexChanged="GridAcompañantes_SelectedIndexChanged" >
+                            <AlternatingRowStyle Wrap="False" />
+                            <HeaderStyle BackColor="#117A65" CssClass="Gridheader" Wrap="false" HorizontalAlign="Center" ForeColor="White" />
+                            <PagerStyle ForeColor="#117A65" HorizontalAlign="Center"/>
+                            <RowStyle BackColor="white" ForeColor="black" Wrap="false" />
+                            <SelectedRowStyle BackColor="#0B5345" ForeColor="White" />
+                            <Columns>
+                                <asp:ButtonField ControlStyle-CssClass="btn" ControlStyle-Height="30px" ButtonType="Button" CommandName="Select" ShowHeader="True" Text="Seleccionar" >
+                                <ControlStyle  CssClass="btn" Height="30px"></ControlStyle>
+                                </asp:ButtonField>
+                            </Columns>
+                        </asp:GridView>
+                       </div>
+                            <br />
+                            <div>
+                                <asp:Button ID="Btn_Añadir_Acompañante" Text="Añadir acompañante" CssClass="btn" style="width:50%; " runat="server" OnClick="Btn_Añadir_Acompañante_Click" />
+                            </div>
+                      </div>
+                    </div>
+
+                    <asp:Panel ID="PanelAñadirAcompañantes" Visible="false" runat="server">
+                    <div class="card" style="margin-top:5px;">
+                        <div class="rowlist">
+                        <div class="a-container">
                                 <div class="fila">
                                         <div class="columna-1" style="width:100%;">
                                             <asp:TextBox ID="Txt_Nombre_A" CssClass="form-control1" placeholder="Ingresa el nombre" runat="server" />
@@ -254,21 +352,19 @@
                                         </div>
                                     </div>
                                     <br />
+                            <div>
+                                            <asp:Button ID="Btn_Guardar" CssClass="btn" Text="Guardar" runat="server" OnClick="Btn_Guardar_Click" />
+                                        </div>
                             </div>
-
-                            <div class="fila">
-                                        <div class="columna-1" style="width:50%; padding:10px;">
-                                            <asp:Button ID="Btn_Añadir" CssClass="btn" Text="Añadir" runat="server" ValidationGroup="Validador" OnClick="Btn_Añadir_Click" />
-                                        </div>
-                                        <div class="columna-2" style="width:50%;">
-                                            <asp:Button ID="Btn_Continuar" CssClass="btn" Text="Continuar" runat="server" OnClick="Btn_Continuar_Click" />
-                                        </div>
-                           </div>
-                                            
+                            
+                    </div>
+                        
                         </div>
-                           </div>
+                    </asp:Panel>
+
+                    </div>
+                </form>
                 </div>
-            </form>
-            </div>
+    
 </body>
 </html>

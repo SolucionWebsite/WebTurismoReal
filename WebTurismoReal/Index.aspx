@@ -160,7 +160,7 @@
                             <tr>
                                 <td>
                                <fieldset>
-                               <legend>Fecha salida</legend>
+                               <legend>Fecha regreso</legend>
                                <div><asp:TextBox ID="Txt_Fecha_Salida" CssClass="form-control" runat="server" ToolTip="Seleccionar fecha de salida" Textmode="Date" ></asp:TextBox>
                               </div>
                                </fieldset>

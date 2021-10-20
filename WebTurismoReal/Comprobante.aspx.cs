@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 using PdfSharp;
 using PdfSharp.Pdf;
 using SistemaTurismoReal.BLL;
+using WebTurismoReal.BLL;
 
 namespace WebTurismoReal
 {
@@ -70,6 +71,27 @@ namespace WebTurismoReal
                 var Renderer = new IronPdf.ChromePdfRenderer();
 
                 PDFComprobante cuerpo = new PDFComprobante();
+
+                ReservaBLL reserva = new ReservaBLL();
+                int idUsuario = Int32.Parse(Session["IdUsuario"].ToString());
+                int idDepto = Int32.Parse(Session["Id_Depto"].ToString());
+                string idComprobante = "";
+
+                List <ReservaBLL> lista = reserva.Reservas(idUsuario);
+
+                bool existe = lista.Any(x => x.IdCliente == idUsuario);
+
+                if (existe == true)
+                {
+                    foreach (ReservaBLL c in lista)
+                    {
+                        if (c.IdDepto == idDepto)
+                        {
+                            idComprobante = c.Id.ToString();
+                        }
+                    }
+                }
+                cuerpo.Comprobante = idComprobante;
                 cuerpo.Fecha = DateTime.Now.ToString("dd-MM-yyyy HH:mm", CultureInfo.CurrentCulture);
                 cuerpo.Nombre = Session["Usuario"].ToString();
                 cuerpo.Rut = Session["Rut"].ToString();
@@ -77,7 +99,9 @@ namespace WebTurismoReal
                 cuerpo.Ubicacion = Session["Comuna"].ToString() + ", " + Session["Provincia"].ToString() + ", " + Session["Region"].ToString();
                 cuerpo.Dias = Session["Dias"].ToString();
                 cuerpo.Tipo = Session["Tipo_pago"].ToString();
-                cuerpo.Monto = Session["Abono"].ToString();
+                cuerpo.ValorReserva = Session["Total"].ToString();
+                cuerpo.Abono = Session["Abono"].ToString();
+                cuerpo.ValorRestante = Session["Restante"].ToString();
 
                 var PDF = Renderer.RenderHtmlAsPdf(comprobante.PDFContenido(cuerpo));
 
@@ -131,5 +155,6 @@ namespace WebTurismoReal
                 Console.WriteLine(ex.Message);
             }
         }
+        
     }
 }

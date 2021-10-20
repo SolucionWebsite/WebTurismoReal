@@ -75,5 +75,32 @@ namespace WebTurismoReal.BLL
             return retorno;
         }
 
+        public List<AcompañanteBLL> ListaA(int id)
+        {
+            AcompañanteDAL dal = new AcompañanteDAL();
+
+
+            List<AcompañanteDAL> lista = dal.RegistroAcompañantes(id);
+
+            List<AcompañanteBLL> listaNueva = new List<AcompañanteBLL>();
+
+            foreach (AcompañanteDAL a in lista)
+            {
+                AcompañanteBLL acompañante = new AcompañanteBLL();
+
+                acompañante.Id = a.Id;
+                acompañante.Nombre = a.Nombre;
+                acompañante.ApellidoP = a.ApellidoP;
+                acompañante.ApellidoM = a.ApellidoM;
+                acompañante.Rut = a.Rut;
+                acompañante.FechaNac = a.FechaNac.Substring(0, 10);
+                acompañante.Telefono = a.Telefono;
+                acompañante.Correo = a.Correo;
+
+                listaNueva.Add(acompañante);
+            }
+
+            return listaNueva;
+        }
     }
 }
