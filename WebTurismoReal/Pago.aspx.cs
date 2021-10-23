@@ -50,29 +50,59 @@ namespace WebTurismoReal
         public void BtnPagar1_Click(object sender, EventArgs e)
         {
             Session["Tipo_pago"] = "Débito";
-            CrearReserva();
-            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "ValidarPago()", true);
+            //modificar reserva
+            ReservaBLL reserva = new ReservaBLL();
+
+            if (Session["IdUsuario"] != null)
+            {
+                List<ReservaBLL> lista = reserva.Reservas(Int32.Parse(Session["IdUsuario"].ToString()));
+
+                bool existe = lista.Any(x => x.Id == Int32.Parse(Session["IdReserva"].ToString()));
+
+                if (existe == true)
+                {
+                    reserva.Id = Int32.Parse(Session["IdReserva"].ToString());
+                    reserva.FechaEntrada = Session["Ida"].ToString();
+                    reserva.FechaSalida = Session["Vuelta"].ToString();
+                    reserva.Estado = "Pagado";
+                    reserva.FechaReserva = DateTime.Now.ToString("dd-MM-yyyy", CultureInfo.CurrentCulture);
+                    reserva.IdCliente = Int32.Parse(Session["IdUsuario"].ToString());
+                    reserva.IdDepto = Int32.Parse(Session["Id_Depto"].ToString());
+
+                    reserva.ModificarReserva(reserva);
+
+                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "ValidarPago()", true);
+                }
+            }
         }
 
         public void BtnPagar2_Click(object sender, EventArgs e)
         {
             Session["Tipo_pago"] = "Crédito";
-            CrearReserva();
-            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "ValidarPago()", true);
-        }
-
-        public void CrearReserva()
-        {
+            //modificar reserva
             ReservaBLL reserva = new ReservaBLL();
-            
-            reserva.FechaEntrada = Session["Ida"].ToString();
-            reserva.FechaSalida = Session["Vuelta"].ToString();
-            reserva.Estado = "Pagada";
-            reserva.FechaReserva = DateTime.Now.ToString("dd-MM-yyyy", CultureInfo.CurrentCulture);
-            reserva.IdCliente = Int32.Parse(Session["IdUsuario"].ToString());
-            reserva.IdDepto = Int32.Parse(Session["Id_Depto"].ToString());
 
-            reserva.CrearReserva(reserva);
+            if (Session["IdUsuario"] != null)
+            {
+                List<ReservaBLL> lista = reserva.Reservas(Int32.Parse(Session["IdUsuario"].ToString()));
+
+                bool existe = lista.Any(x => x.Id == Int32.Parse(Session["IdReserva"].ToString()));
+
+                if (existe == true)
+                {
+                    reserva.Id = Int32.Parse(Session["IdReserva"].ToString());
+                    reserva.FechaEntrada = Session["Ida"].ToString();
+                    reserva.FechaSalida = Session["Vuelta"].ToString();
+                    reserva.Estado = "Pagado";
+                    reserva.FechaReserva = DateTime.Now.ToString("dd-MM-yyyy", CultureInfo.CurrentCulture);
+                    reserva.IdCliente = Int32.Parse(Session["IdUsuario"].ToString());
+                    reserva.IdDepto = Int32.Parse(Session["Id_Depto"].ToString());
+
+                    reserva.ModificarReserva(reserva);
+
+                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "ValidarPago()", true);
+                }
+            }
         }
     }
 }

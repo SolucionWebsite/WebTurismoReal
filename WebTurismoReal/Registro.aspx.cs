@@ -22,10 +22,30 @@ namespace WebTurismoReal
             Btn_2.Style.Add(HtmlTextWriterStyle.Color, "White");
             Btn_3.Style.Add(HtmlTextWriterStyle.Color, "White");
 
-            if (!IsPostBack)
+            PanelProgreso.Visible = false;
+
+            try
             {
-                CargarNacionalidad();
-                CargarGenero();
+                if (Request.UrlReferrer.ToString() != HttpContext.Current.Request.Url.AbsoluteUri)
+                {
+                    Session["PreviousPageUrlRegistro"] = Request.UrlReferrer.ToString();
+
+                    if (Session["PreviousPageUrlRegistro"].ToString().Contains("Detalle"))
+                    {
+                        PanelProgreso.Visible = true;
+                    }
+                }
+
+                if (!IsPostBack)
+                {
+                    CargarNacionalidad();
+                    CargarGenero();
+                }
+            }
+            catch (Exception)
+            {
+                Session.Abandon();
+                Response.Redirect("PaginaNotFound.aspx");
             }
         }
 
@@ -82,7 +102,7 @@ namespace WebTurismoReal
                     cliente.Clave = claveHash;
                     cliente.GeneroC = id_genero;
                     cliente.NacionalidadC = id_nacionalidad;
-
+                    
                     if (cliente.RegistroCliente(cliente) == 1)
                     {
                         ClientScript.RegisterStartupScript(this.GetType(), "myalert", "Exitoso()", true);
@@ -109,6 +129,12 @@ namespace WebTurismoReal
             string hashString = Encoding.Default.GetString(hash);
 
             return hashString;
+        }
+
+        public void Btn_LogOut_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Index.aspx");
         }
     }
 }

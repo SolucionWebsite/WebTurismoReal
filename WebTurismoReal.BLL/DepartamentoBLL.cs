@@ -18,6 +18,7 @@ namespace WebTurismoReal.BLL
         public string Habitaciones { get; set; }
         public string Baños { get; set; }
         public string Valor_Dia { get; set; }
+        public Byte[] Imagen { get; set; }
 
         DepartamentoDAL depto = new DepartamentoDAL();
 
@@ -42,6 +43,54 @@ namespace WebTurismoReal.BLL
                 Valor_Dia = depto.Valor_Dia;
             }
             return true;
+        }
+
+        public List<DepartamentoBLL> ListaDepartamentosBuscar(int codigo)
+        {
+            DepartamentoDAL dal = new DepartamentoDAL();
+
+            List<DepartamentoDAL> lista = dal.ListaDepartamentosBuscar(codigo);
+            List<DepartamentoBLL> lista2 = new List<DepartamentoBLL>();
+
+            foreach (DepartamentoDAL c in lista)
+            {
+                DepartamentoBLL depto = new DepartamentoBLL();
+
+                depto.Id = c.Id;
+                depto.Valor_Dia = c.Valor_Dia;
+                depto.Comuna = c.Comuna;
+
+                lista2.Add(depto);
+            }
+
+            return lista2;
+        }
+
+        public List<DepartamentoBLL> ListaDepartamentos(int id_comuna)
+        {
+            DepartamentoDAL dal = new DepartamentoDAL();
+
+            List<DepartamentoDAL> lista = dal.ListaDepartamentos(id_comuna);
+            List<DepartamentoBLL> lista2 = new List<DepartamentoBLL>();
+
+            foreach (DepartamentoDAL c in lista)
+            {
+                DepartamentoBLL depto = new DepartamentoBLL();
+
+                depto.Id = c.Id;
+                depto.Direccion = c.Direccion;
+                depto.Comuna = c.Comuna;
+                depto.Provincia = c.Provincia;
+                depto.Region = c.Region;
+                depto.Habitaciones = c.Habitaciones;
+                depto.Baños = c.Baños;
+                depto.Valor_Dia = c.Valor_Dia;
+                depto.Imagen = c.Imagen;
+
+                lista2.Add(depto);
+            }
+
+            return lista2;
         }
     }
 }

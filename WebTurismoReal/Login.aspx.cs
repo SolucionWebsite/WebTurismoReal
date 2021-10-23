@@ -22,16 +22,24 @@ namespace WebTurismoReal
             Btn_2.Style.Add(HtmlTextWriterStyle.Color, "White");
             Btn_3.Style.Add(HtmlTextWriterStyle.Color, "White");
 
+            PanelProgreso.Visible = false;
+
             try
             {
                 if (Request.UrlReferrer.ToString() != HttpContext.Current.Request.Url.AbsoluteUri)
                 {
                     ViewState["PreviousPageUrl"] = Request.UrlReferrer.ToString();
+
+                    if (ViewState["PreviousPageUrl"].ToString().Contains("Detalle") || ViewState["PreviousPageUrl"].ToString().Contains("Registro"))
+                    {
+                        PanelProgreso.Visible = true;
+                    }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine(ex.Message);
+                Session.Abandon();
+                Response.Redirect("PaginaNotFound.aspx");
             }
         }
 
@@ -70,17 +78,44 @@ namespace WebTurismoReal
                     Session["Usuario"] = usuario;
                     Session["IdUsuario"] = id;
 
+                    string paginaAnteriorRegistro = "";
                     string paginaAnterior = ViewState["PreviousPageUrl"].ToString();
 
-                    if (paginaAnterior.Contains("Detalle") || paginaAnterior.Contains("Registro"))
+                    if (Session["PreviousPageUrlRegistro"] != null)
                     {
-                        Response.Redirect($"http://localhost:57174/Detalle");
+                        paginaAnteriorRegistro = Session["PreviousPageUrlRegistro"].ToString();
+
+                        if (paginaAnterior.Contains("Detalle"))
+                        {
+                            Response.Redirect("Detalle.aspx");
+                        }
+                        else if (paginaAnterior.Contains("Registro"))
+                        {
+                            if (paginaAnteriorRegistro.Contains("Detalle"))
+                            {
+                                Response.Redirect("Detalle.aspx");
+                            }
+                            else
+                            {
+                                Response.Redirect("CuentaDatos.aspx");
+                            }
+                        }
+                        else
+                        {
+                            Response.Redirect("CuentaDatos.aspx");
+                        }
                     }
                     else
                     {
-                        Response.Redirect($"http://localhost:57174/CuentaDatos");
+                        if (paginaAnterior.Contains("Detalle") || paginaAnterior.Contains("Registro"))
+                        {
+                            Response.Redirect("Detalle.aspx");
+                        }
+                        else
+                        {
+                            Response.Redirect($"CuentaDatos.aspx");
+                        }
                     }
-                    
                 }
                 else
                 {
@@ -110,5 +145,10 @@ namespace WebTurismoReal
             return hashString;
         }
 
+        public void Btn_LogOut_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Index.aspx");
+        }
     }
 }

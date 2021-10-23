@@ -22,6 +22,15 @@ namespace WebTurismoReal {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// Btn_LogOut control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Btn_LogOut;
+        
+        /// <summary>
         /// Lbl_Usuario control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace WebTurismoReal {
         protected global::System.Web.UI.WebControls.Button Btn_Reservas;
         
         /// <summary>
+        /// Btn_Acompañantes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_Acompañantes;
+        
+        /// <summary>
         /// Btn_Servicios control.
         /// </summary>
         /// <remarks>
@@ -65,24 +83,6 @@ namespace WebTurismoReal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Btn_Clave;
-        
-        /// <summary>
-        /// Btn_Acompañantes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_Acompañantes;
-        
-        /// <summary>
-        /// Btn_Cerrar_Sesion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_Cerrar_Sesion;
         
         /// <summary>
         /// Txt_Nombre control.

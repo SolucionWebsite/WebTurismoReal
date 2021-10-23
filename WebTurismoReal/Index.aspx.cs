@@ -26,6 +26,8 @@ namespace WebTurismoReal
             {
                 CargarLocalidad();
             }
+
+            Session.Abandon();
         }
 
         public void CargarLocalidad()
@@ -134,6 +136,12 @@ namespace WebTurismoReal
             Cmb_Comuna.DataValueField = "ID_COMUNA";
             Cmb_Comuna.DataBind();
             Cmb_Comuna.Items.Insert(0, new ListItem("Seleccionar", "0"));
+        }
+
+        public void Btn_LogOut_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Index.aspx");
         }
     }
 }

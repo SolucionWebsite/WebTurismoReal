@@ -3,6 +3,7 @@ using Oracle.ManagedDataAccess.Types;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -90,12 +91,12 @@ namespace WebTurismoRea.DAL
                     {
                         ReservaDAL reserva = new ReservaDAL();
                         reserva.Id = Int32.Parse(reader["ID_RSV"].ToString());
-                        reserva.FechaEntrada = reader["FECHA_INGRESO_RSV"].ToString();
-                        reserva.FechaSalida = reader["FECHA_SALIDA_RSV"].ToString();
+                        reserva.FechaEntrada = reader["FECHA_INGRESO_RSV"].ToString().Remove(10,8);
+                        reserva.FechaSalida = reader["FECHA_SALIDA_RSV"].ToString().Remove(10, 8);
                         reserva.Estado = reader["ESTADO_RSV"].ToString();
-                        reserva.FechaReserva = reader["FECHA_RSV"].ToString();
-                        reserva.Abono = reader["VALOR_INI_RSV"].ToString();
-                        reserva.ValorFinal = reader["VALOR_FIN_RSV"].ToString();
+                        reserva.FechaReserva = reader["FECHA_RSV"].ToString().Remove(10, 8);
+                        reserva.Abono = Convert.ToInt32(reader["VALOR_INI_RSV"]).ToString("C", CultureInfo.CurrentCulture);
+                        reserva.ValorFinal = Convert.ToInt32(reader["VALOR_FIN_RSV"]).ToString("C", CultureInfo.CurrentCulture);
                         reserva.IdCliente = Convert.ToInt32(reader["CLIENTE_ID_CLI"]);
                         reserva.IdDepto = Convert.ToInt32(reader["DEPARTAMENTO_ID_DPTO"]);
 
@@ -113,6 +114,50 @@ namespace WebTurismoRea.DAL
             }
         }
 
+        public int ModificarReserva(ReservaDAL reserva)
+        {
+            using (da.Connection())
+            {
+                int retorno;
+                try
+                {
+                    OracleCommand cmd = new OracleCommand("SP_UPDATERESERVA", da.Connection())
+                    {
+                        CommandText = "SP_UPDATERESERVA",
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    cmd.Connection.Open();
+
+                    cmd.Parameters.Add("V_ID_RSV", reserva.Id);
+                    cmd.Parameters.Add("V_FECHA_INGRESO_RSV", reserva.FechaEntrada);
+                    cmd.Parameters.Add("V_FECHA_SALIDA_RSV", reserva.FechaSalida);
+                    cmd.Parameters.Add("V_ESTADO_RSV", reserva.Estado);
+                    cmd.Parameters.Add("V_FECHA_RSV", null);
+                    cmd.Parameters.Add("V_VALOR_INI_RSV", reserva.Abono);
+                    cmd.Parameters.Add("V_VALOR_FIN_RSV", reserva.ValorFinal);
+                    cmd.Parameters.Add("V_CLIENTE_ID_CLI", reserva.IdCliente);
+                    cmd.Parameters.Add("V_DEPARTAMENTO_ID_DPTO", reserva.IdDepto);
+                    cmd.Parameters.Add("V_CHECK_IN_ID_CHECKIN", null);
+                    cmd.Parameters.Add("V_CHECK_OUT_ID_CHECKOUT", null);
+
+                    cmd.Parameters.Add("RETORNO", OracleDbType.Int32).Direction = ParameterDirection.Output;
+
+                    cmd.ExecuteNonQuery();
+
+                    retorno = Convert.ToInt32(cmd.Parameters["RETORNO"].Value.ToString().Trim());
+
+                    cmd.Connection.Close();
+
+                    return 1;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return 0;
+                }
+            }
+        }
 
 
     }

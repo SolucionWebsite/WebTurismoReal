@@ -3,6 +3,7 @@ using Oracle.ManagedDataAccess.Types;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace WebTurismoRea.DAL
         public string Habitaciones { get; set; }
         public string Baños { get; set; }
         public string Valor_Dia { get; set; }
+        public Byte[] Imagen { get; set; }
 
         public DataTable Departamentos(int id_region, int id_provincia, int id_comuna)
         {
@@ -109,5 +111,113 @@ namespace WebTurismoRea.DAL
                 return true;
             }
         }
+
+        public List<DepartamentoDAL> ListaDepartamentos(int idComuna)
+        {
+            List<DepartamentoDAL> Lista = new List<DepartamentoDAL>();
+
+            using (da.Connection())
+            {
+                try
+                {
+                    OracleCommand cmd = new OracleCommand("LISTARDEPARTAMENTOS", da.Connection());
+                    cmd.CommandText = "LISTARDEPARTAMENTOS";
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Connection.Open();
+                    OracleParameter prm = new OracleParameter();
+                    prm.OracleDbType = OracleDbType.RefCursor;
+                    prm.Direction = ParameterDirection.Output;
+
+                    cmd.Parameters.Add(prm);
+                    cmd.Parameters.Add("comuna_id", idComuna);
+                    cmd.ExecuteNonQuery();
+
+                    OracleRefCursor cursor = (OracleRefCursor)prm.Value;
+                    OracleDataReader reader = cursor.GetDataReader();
+
+                    while (reader.Read())
+                    {
+                        DepartamentoDAL depto = new DepartamentoDAL();
+
+                        depto.Id = reader["ID"].ToString();
+                        depto.Direccion = reader["DIRECCION"].ToString();
+                        depto.Comuna = reader["COMUNA"].ToString();
+                        depto.Provincia = reader["PROVINCIA"].ToString();
+                        depto.Region = reader["REGION"].ToString();
+                        depto.Habitaciones = reader["HABITACIONES"].ToString();
+                        depto.Baños = reader["BAÑOS"].ToString();
+                        depto.Valor_Dia = Convert.ToInt32(reader["VALOR_DÍA"]).ToString("C", CultureInfo.CurrentCulture);
+                        byte[] byteBLOBData = new Byte[0];
+                        try
+                        {
+                            byteBLOBData = (Byte[])(reader["FOTO"]);
+                            depto.Imagen = byteBLOBData;
+
+                            Lista.Add(depto);
+                        }
+                        catch (Exception)
+                        {
+                            depto.Imagen = byteBLOBData;
+                            Lista.Add(depto);
+                        }
+                    }
+                    cmd.Connection.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+                return Lista;
+            }
+        }
+
+        public List<DepartamentoDAL> ListaDepartamentosBuscar(int codigo)
+        {
+            List<DepartamentoDAL> Lista = new List<DepartamentoDAL>();
+
+            using (da.Connection())
+            {
+                try
+                {
+                    OracleCommand cmd = new OracleCommand("BUSCARDEPTOID", da.Connection());
+                    cmd.CommandText = "BUSCARDEPTOID";
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Connection.Open();
+                    OracleParameter prm = new OracleParameter();
+                    prm.OracleDbType = OracleDbType.RefCursor;
+                    prm.Direction = ParameterDirection.Output;
+
+                    cmd.Parameters.Add(prm);
+                    cmd.Parameters.Add("codigo", codigo);
+                    cmd.ExecuteNonQuery();
+
+                    OracleRefCursor cursor = (OracleRefCursor)prm.Value;
+                    OracleDataReader reader = cursor.GetDataReader();
+
+                    while (reader.Read())
+                    {
+                        DepartamentoDAL depto = new DepartamentoDAL();
+
+                        depto.Id = reader["ID_DPTO"].ToString();
+                        depto.Valor_Dia = reader["VALOR_DIARIO_DPTO"].ToString();
+                        depto.Comuna = reader["COMUNA_ID_COMUNA"].ToString();
+                        Lista.Add(depto);
+                    }
+                    cmd.Connection.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+                return Lista;
+            }
+        }
     }
+    
 }

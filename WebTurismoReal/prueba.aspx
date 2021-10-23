@@ -8,86 +8,72 @@
     <link href="css/Estilo.css" rel="stylesheet" type="text/css"/>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimun-scale=1.0" />
     <style> 
-        .redondo{
-          display: block;
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-          border-style: solid;
-          border-color: white;
-          font-size: 16px;
-        }
-        .contenedor{
+        .gridView {
+            margin:0 auto;
             text-align:center;
+            border:hidden;
         }
-        .progreso-contenedor{
-            display:flex;
-            justify-content: space-between;
-            position:relative;
-            width: 300px;
-        }
-        .progreso-contenedor::before{
-            content: '';
+
+        .gridView td {
+            padding-left:10px;
+            padding-right:10px;
+            padding-bottom:5px;
+            padding-top:5px;
+            border:hidden;
+            white-space: nowrap;
+            border: 1.5px solid darkgray;
             background-color: gainsboro;
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-            height: 1px;
-            width: 100%;
-            z-index: -1;
-            transition: 0.4s ease;
         }
-        .progreso{
-            background-color: #117A65;
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-            height: 2px;
-            width: 25%;
-            z-index: -1;
-            transition: 0.4s ease;
+        .gridViewHeader{
+            height:100%;
         }
+ 
+        .gridViewHeader th {
+        background-color:#117A65;
+        padding-left:10px;
+        padding-right:10px;
+        padding-bottom:5px;
+        padding-top:5px;
+        border:hidden;
+        color:white;
+        font-weight: lighter;
+        white-space:nowrap;
+        border: 1px solid gray;
+        }
+
+        .gridViewHeader th:first-child {
+        border-radius:5px 0 0 0;
+        }
+
+        .gridViewHeader th:last-child {
+        border-radius:0 5px 0 0;
+        }
+
+
     </style>
 </head>
-<body style="height:100%;">
+<body>
     
     <form id="form1" runat="server">
-        <div>
-            <div class="contenerdor">
-                <div class="progreso-contenedor">   
-                    <div class="progreso" id="progreso"></div>
-                    <asp:Button ID="Btn_1" Text="1" CssClass="redondo" runat="server" />
-                    <asp:Button ID="Btn_2" Text="2" CssClass="redondo" runat="server" />
-                    <asp:Button ID="Btn_3" Text="3" CssClass="redondo" runat="server" />
-                    <asp:Button ID="Btn_4" Text="4" CssClass="redondo" runat="server" />
-                    <asp:Button ID="Btn_5" Text="5" CssClass="redondo" runat="server" />
-                </div>
+        <div class="card">
+            <div style="overflow:scroll">
+                <asp:GridView ID="GridAcompañantes" CssClass="gridView" runat="server" OnSelectedIndexChanged="GridAcompañantes_SelectedIndexChanged">
+                    <AlternatingRowStyle Wrap="false"/>
+                            <HeaderStyle CssClass="gridViewHeader" />
+                            <PagerStyle ForeColor="#117A65" HorizontalAlign="Center" />
+                            <RowStyle CssClass="rowStyle" BackColor="gainsboro" ForeColor="black" Wrap="false" BorderStyle="Solid" BorderColor="LightGray" BorderWidth="5px"/>
+                            <SelectedRowStyle BackColor="#117A65" ForeColor="black" Wrap="False"/>
+                            <Columns>
+                                <asp:ButtonField ControlStyle-CssClass="btn" ControlStyle-Height="30px" ButtonType="Button" CommandName="Select" ShowHeader="True" Text="Seleccionar" >
+                                <HeaderStyle/>
+                                <ControlStyle  CssClass="btn"></ControlStyle>
+                                </asp:ButtonField>
+                            </Columns>
+            </asp:GridView>
             </div>
-
-            <div style="height:100%;">   
-        <div style="border: 5px solid black; height:100%; position : absolute;">   
-            HOLAA
-            <asp:TextBox ID="contraseña" runat="server" />
-            <asp:Label ID="clavehash" Text="text" runat="server" />
-            <asp:Button Text="text" runat="server" OnClick="Unnamed1_Click" />
-            <div class="container-main">   
-           <fieldset style="text-align:left;">
-           <legend style="margin-left:4px;" >Correo</legend>
-           <div><asp:TextBox runat="server"  placeholder="Ingresa tu correo" style="outline: none; background-color:rgba(0,0,0,0.0); color:white; border:none;" class="form-control" type="email" ID="TextBox1" />
-           </div>
-           </fieldset>
-            </div>
-           <fieldset>
-           <legend>Correo</legend>
-           <div><asp:TextBox runat="server" placeholder="Ingresa tu correo" legend="Correo" class="form-control" type="email" ID="TextBox2" />
-           </div>
-           </fieldset>
-
         </div>
-    </div>
-        </div>
+        
+            
     </form>
 </body>
 </html>

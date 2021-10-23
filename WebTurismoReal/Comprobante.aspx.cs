@@ -33,6 +33,7 @@ namespace WebTurismoReal
 
             try
             {
+                Lbl_Comprobante.Text = Session["IdReserva"].ToString();
                 Lbl_Nombre_1.Text = Session["Usuario"].ToString();
                 Lbl_Fecha.Text = DateTime.Now.ToString("dd-MM-yyyy HH:mm", CultureInfo.CurrentCulture);
                 Lbl_Nombre.Text = Session["Usuario"].ToString();
@@ -75,22 +76,8 @@ namespace WebTurismoReal
                 ReservaBLL reserva = new ReservaBLL();
                 int idUsuario = Int32.Parse(Session["IdUsuario"].ToString());
                 int idDepto = Int32.Parse(Session["Id_Depto"].ToString());
-                string idComprobante = "";
+                string idComprobante = Session["IdReserva"].ToString();
 
-                List <ReservaBLL> lista = reserva.Reservas(idUsuario);
-
-                bool existe = lista.Any(x => x.IdCliente == idUsuario);
-
-                if (existe == true)
-                {
-                    foreach (ReservaBLL c in lista)
-                    {
-                        if (c.IdDepto == idDepto)
-                        {
-                            idComprobante = c.Id.ToString();
-                        }
-                    }
-                }
                 cuerpo.Comprobante = idComprobante;
                 cuerpo.Fecha = DateTime.Now.ToString("dd-MM-yyyy HH:mm", CultureInfo.CurrentCulture);
                 cuerpo.Nombre = Session["Usuario"].ToString();
@@ -155,6 +142,11 @@ namespace WebTurismoReal
                 Console.WriteLine(ex.Message);
             }
         }
-        
+
+        public void Btn_LogOut_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Index.aspx");
+        }
     }
 }

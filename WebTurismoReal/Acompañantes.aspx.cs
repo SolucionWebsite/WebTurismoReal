@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -29,7 +30,7 @@ namespace WebTurismoReal
             {
                 CargarNacionalidad();
                 CargarGenero();
-                CargarLista();
+                CrearReserva();
             }
 
             if (Session["IdUsuario"] == null)
@@ -66,7 +67,7 @@ namespace WebTurismoReal
 
             try
             {
-                List<AcompañanteBLL> lista = bll.ListaAcompañantes(Int32.Parse(Session["IdUsuario"].ToString()));
+                List<AcompañanteBLL> lista = bll.ListaAcompañantes(Int32.Parse(Session["IdUsuario"].ToString()), Int32.Parse(Session["IdReserva"].ToString()));
 
                 List<string> ListaNombresAcompanantes = new List<string>();
 
@@ -91,6 +92,55 @@ namespace WebTurismoReal
         public void Btn_Continuar_Click(object sender, EventArgs e)
         {
             ClientScript.RegisterStartupScript(this.GetType(), "myalert", "Pagar()", true);
+        }
+        
+        public void CrearReserva()
+        {
+            ReservaBLL reserva = new ReservaBLL();
+
+            List<ReservaBLL> lista = reserva.Reservas(Int32.Parse(Session["IdUsuario"].ToString()));
+
+            string fechaIda = Session["Ida"].ToString();
+
+            bool existe = lista.Any(x => x.FechaEntrada == fechaIda);
+
+            if (existe == false)
+            {
+                reserva.FechaEntrada = Session["Ida"].ToString();
+                reserva.FechaSalida = Session["Vuelta"].ToString();
+                reserva.Estado = "Pago pendiente";
+                reserva.FechaReserva = DateTime.Now.ToString("dd-MM-yyyy", CultureInfo.CurrentCulture);
+                reserva.IdCliente = Int32.Parse(Session["IdUsuario"].ToString());
+                reserva.IdDepto = Int32.Parse(Session["Id_Depto"].ToString());
+
+                if (reserva.CrearReserva(reserva) == 1)
+                {
+                    List<ReservaBLL> refreshLista = reserva.Reservas(Int32.Parse(Session["IdUsuario"].ToString()));
+
+                    bool existeReserva = refreshLista.Any(x => x.FechaEntrada == fechaIda);
+
+                    if (existeReserva == true)
+                    {
+                        int idReserva = 0;
+
+                        foreach (ReservaBLL a in refreshLista)
+                        {
+                            if (a.FechaEntrada == Session["Ida"].ToString())
+                            {
+                                idReserva = a.Id;
+                            }
+                        }
+
+                        Session["IdReserva"] = idReserva;
+
+                        CargarLista();
+                    }
+                }
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "ReservaConFechaRepetida()", true);
+            }
         }
 
         public void Btn_Añadir_Click(object sender, EventArgs e)
@@ -119,7 +169,7 @@ namespace WebTurismoReal
                 acompañante.GeneroC = id_genero;
                 acompañante.NacionalidadC = id_nacionalidad;
                 acompañante.IdCliente = Int32.Parse(Session["IdUsuario"].ToString());
-                acompañante.IdReserva = 1;
+                acompañante.IdReserva = Int32.Parse(Session["IdReserva"].ToString());
 
                 if (acompañante.AgregarAcompañante(acompañante) == 1)
                 {
@@ -144,6 +194,12 @@ namespace WebTurismoReal
                     ClientScript.RegisterStartupScript(this.GetType(), "myalert", "Error()", true);
                 }
             }
+        }
+
+        public void Btn_LogOut_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Index.aspx");
         }
     }
 }

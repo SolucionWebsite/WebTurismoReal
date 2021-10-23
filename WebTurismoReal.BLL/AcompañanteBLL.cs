@@ -22,11 +22,11 @@ namespace WebTurismoReal.BLL
         public int IdCliente { get; set; }
         public int IdReserva { get; set; }
 
-        public List<AcompañanteBLL> ListaAcompañantes(int id_cliente)
+        public List<AcompañanteBLL> ListaAcompañantes(int id_cliente, int id_reserva)
         {
             AcompañanteDAL dal = new AcompañanteDAL();
 
-            List<AcompañanteDAL> lista = dal.RegistroAcompañantes(id_cliente);
+            List<AcompañanteDAL> lista = dal.RegistroAcompañantes(id_cliente, id_reserva);
             List<AcompañanteBLL> lista2 = new List<AcompañanteBLL>();
 
             foreach (AcompañanteDAL c in lista)
@@ -44,6 +44,7 @@ namespace WebTurismoReal.BLL
                 acompañante.GeneroC = c.GeneroC;
                 acompañante.NacionalidadC = c.NacionalidadC;
                 acompañante.IdCliente = c.IdCliente;
+                acompañante.IdReserva = c.IdReserva;
 
                 lista2.Add(acompañante);
             }
@@ -75,12 +76,12 @@ namespace WebTurismoReal.BLL
             return retorno;
         }
 
-        public List<AcompañanteBLL> ListaA(int id)
+        public List<AcompañanteBLL> ListaA(int id_cliente, int id_reserva)
         {
             AcompañanteDAL dal = new AcompañanteDAL();
 
 
-            List<AcompañanteDAL> lista = dal.RegistroAcompañantes(id);
+            List<AcompañanteDAL> lista = dal.RegistroAcompañantes(id_cliente, id_reserva);
 
             List<AcompañanteBLL> listaNueva = new List<AcompañanteBLL>();
 
@@ -101,6 +102,40 @@ namespace WebTurismoReal.BLL
             }
 
             return listaNueva;
+        }
+
+        public int ModificarAcompañante(string rutAcompañante, AcompañanteBLL acompañante)
+        {
+            int retorno;
+
+            AcompañanteDAL registros = new AcompañanteDAL();
+
+            registros.Rut = Rut;
+            registros.Nombre = Nombre;
+            registros.ApellidoP = ApellidoP;
+            registros.ApellidoM = ApellidoM;
+            registros.Telefono = Telefono;
+            registros.Correo = Correo;
+            registros.FechaNac = FechaNac;
+            registros.IdCliente = IdCliente;
+            registros.GeneroC = GeneroC;
+            registros.NacionalidadC = NacionalidadC;
+            registros.IdReserva = IdReserva;
+            
+            retorno = registros.ModificarAcompañante(rutAcompañante, registros);
+
+            return retorno;
+        }
+
+        public int EliminarAcompañantes(string rut, string idReserva)
+        {
+            int retorno;
+
+            AcompañanteDAL a = new AcompañanteDAL();
+
+            retorno = a.EliminarAcompañante(rut, idReserva);
+
+            return retorno;
         }
     }
 }

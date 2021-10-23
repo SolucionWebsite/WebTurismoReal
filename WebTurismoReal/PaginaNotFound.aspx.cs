@@ -7,11 +7,17 @@ using System.Web.UI.WebControls;
 
 namespace WebTurismoReal
 {
-    public partial class Servicios : System.Web.UI.Page
+    public partial class PaginaNotFound : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+        public void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        public void BtnLogin_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Index.aspx");
         }
 
         public void Btn_LogOut_Click(object sender, EventArgs e)

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WebTurismoReal.BLL;
 
 namespace WebTurismoReal
 {
@@ -12,29 +14,56 @@ namespace WebTurismoReal
     {
         public void Page_Load(object sender, EventArgs e)
         {
-            Btn_1.Style.Add(HtmlTextWriterStyle.BackgroundColor, "#117A65");
-            Btn_1.Style.Add(HtmlTextWriterStyle.Color, "White");
-            Btn_2.Style.Add(HtmlTextWriterStyle.BackgroundColor, "#117A65");
+            AcompañanteBLL a = new AcompañanteBLL();
+
+            CargarTabla();
+        }
+
+        public void CargarTabla()
+        {
+            AcompañanteBLL bll = new AcompañanteBLL();
+            
+                List<AcompañanteBLL> lista = bll.ListaAcompañantes(28,61);
+
+                List<AcompañanteBLL> listaNueva = new List<AcompañanteBLL>();
+
+                foreach (AcompañanteBLL a in lista)
+                {
+                    AcompañanteBLL acompañante = new AcompañanteBLL();
+
+                    acompañante.Id = a.Id;
+                    acompañante.Nombre = a.Nombre;
+                    acompañante.ApellidoP = a.ApellidoP;
+                    acompañante.ApellidoM = a.ApellidoM;
+                    acompañante.Rut = a.Rut;
+                    acompañante.FechaNac = a.FechaNac;
+                    acompañante.Telefono = a.Telefono;
+                    acompañante.Correo = a.Correo;
+
+                    listaNueva.Add(acompañante);
+                }
+
+                GridAcompañantes.DataSource = listaNueva;
+                GridAcompañantes.DataBind();
+
+                GridAcompañantes.HeaderRow.Cells[1].Text = "ID";
+                GridAcompañantes.HeaderRow.Cells[2].Text = "NOMBRE";
+                GridAcompañantes.HeaderRow.Cells[3].Text = "PRIMER APELLIDO";
+                GridAcompañantes.HeaderRow.Cells[4].Text = "SEGUNDO APELLIDO";
+                GridAcompañantes.HeaderRow.Cells[5].Text = "RUT";
+                GridAcompañantes.HeaderRow.Cells[6].Text = "FECHA DE NACIMIENTO";
+                GridAcompañantes.HeaderRow.Cells[7].Text = "TELÉFONO";
+                GridAcompañantes.HeaderRow.Cells[8].Text = "CORREO";
+
+                
+                GridAcompañantes.HeaderRow.Cells[1].Visible = false;
 
             
         }
 
-        public string GenerarHash(String clave)
+        protected void GridAcompañantes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(clave);
-            System.Security.Cryptography.SHA256Managed sha256 = new System.Security.Cryptography.SHA256Managed();
-            byte[] hash = sha256.ComputeHash(bytes);
-
-            string hashString = Encoding.Default.GetString(hash);
-
-            return hashString;
-
-        }
-
-        protected void Unnamed1_Click(object sender, EventArgs e)
-        {
-
-            clavehash.Text = GenerarHash(contraseña.Text);
+            GridAcompañantes.SelectedRowStyle.BackColor = Color.Blue;
         }
     }
 }

@@ -22,6 +22,15 @@ namespace WebTurismoReal {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// Btn_LogOut control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Btn_LogOut;
+        
+        /// <summary>
         /// Lbl_Usuario control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace WebTurismoReal {
         protected global::System.Web.UI.WebControls.Button Btn_Reservas;
         
         /// <summary>
+        /// Btn_Acompañantes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_Acompañantes;
+        
+        /// <summary>
         /// Btn_Servicios control.
         /// </summary>
         /// <remarks>
@@ -65,24 +83,6 @@ namespace WebTurismoReal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Btn_Clave;
-        
-        /// <summary>
-        /// Btn_Acompañantes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_Acompañantes;
-        
-        /// <summary>
-        /// Btn_Cerrar_Sesion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_Cerrar_Sesion;
         
         /// <summary>
         /// GridReservas control.
@@ -121,6 +121,15 @@ namespace WebTurismoReal {
         protected global::System.Web.UI.WebControls.Panel Panel_Departamento;
         
         /// <summary>
+        /// GridDeptoActual control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridDeptoActual;
+        
+        /// <summary>
         /// GridDepartamentos control.
         /// </summary>
         /// <remarks>
@@ -157,12 +166,39 @@ namespace WebTurismoReal {
         protected global::System.Web.UI.WebControls.TextBox TxtFechaRegreso;
         
         /// <summary>
-        /// Panel_Guardar control.
+        /// Panel_Guardar_Fecha control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel_Guardar;
+        protected global::System.Web.UI.WebControls.Panel Panel_Guardar_Fecha;
+        
+        /// <summary>
+        /// BtnGuardarFecha control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnGuardarFecha;
+        
+        /// <summary>
+        /// Panel_Guardar_Depto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel_Guardar_Depto;
+        
+        /// <summary>
+        /// BtnGuardarDepto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnGuardarDepto;
     }
 }

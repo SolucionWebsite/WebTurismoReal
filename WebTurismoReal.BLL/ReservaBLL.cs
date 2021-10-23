@@ -47,10 +47,13 @@ namespace WebTurismoReal.BLL
             {
                 ReservaBLL reserva = new ReservaBLL();
 
+                reserva.Id = c.Id;
                 reserva.FechaEntrada = c.FechaEntrada;
                 reserva.FechaSalida = c.FechaSalida;
                 reserva.Estado = c.Estado;
                 reserva.FechaReserva = c.FechaReserva;
+                reserva.Abono = c.Abono;
+                reserva.ValorFinal = c.ValorFinal;
                 reserva.IdCliente = c.IdCliente;
                 reserva.IdDepto = c.IdDepto;
 
@@ -60,6 +63,25 @@ namespace WebTurismoReal.BLL
             return lista2;
         }
 
+        public int ModificarReserva(ReservaBLL reserva)
+        {
+            int retorno;
 
+            ReservaDAL registros = new ReservaDAL();
+
+            registros.Id = Id;
+            registros.FechaEntrada = FechaEntrada;
+            registros.FechaSalida = FechaSalida;
+            registros.Estado = Estado;
+            registros.FechaReserva = FechaReserva;
+            registros.Abono = Abono;
+            registros.ValorFinal = ValorFinal;
+            registros.IdCliente = IdCliente;
+            registros.IdDepto = IdDepto;
+
+            retorno = registros.ModificarReserva(registros);
+
+            return retorno;
+        }
     }
 }

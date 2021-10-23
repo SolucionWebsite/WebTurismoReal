@@ -26,7 +26,7 @@ namespace WebTurismoRea.DAL
         public int IdCliente { get; set; }
         public int IdReserva { get; set; }
 
-        public List<AcompañanteDAL> RegistroAcompañantes(int id_cliente)
+        public List<AcompañanteDAL> RegistroAcompañantes(int id_cliente, int id_reserva)
         {
             List<AcompañanteDAL> Lista = new List<AcompañanteDAL>();
 
@@ -45,6 +45,7 @@ namespace WebTurismoRea.DAL
 
                     cmd.Parameters.Add(prm);
                     cmd.Parameters.Add("id_cliente", id_cliente);
+                    cmd.Parameters.Add("id_reserva", id_reserva);
                     cmd.ExecuteNonQuery();
 
                     OracleRefCursor cursor = (OracleRefCursor)prm.Value;
@@ -60,8 +61,10 @@ namespace WebTurismoRea.DAL
                         acompañante.FechaNac = reader["FEC_NAC_ACOMP"].ToString();
                         acompañante.Telefono = reader["NUM_TEL_ACOMP"].ToString();
                         acompañante.Correo = reader["EMAIL_ACOMP"].ToString();
+                        acompañante.IdCliente = Convert.ToInt32(reader["CLIENTE_ID_CLI"].ToString());
                         acompañante.GeneroC = Convert.ToInt32(reader["GENERO_ID_GEN"]);
                         acompañante.NacionalidadC = Convert.ToInt32(reader["NACIONALIDAD_ID_NACIONALIDAD"]);
+                        acompañante.IdReserva = Convert.ToInt32(reader["A_RESERVA_ID_RSV"].ToString());
                         acompañante.Rut = reader["RUT_ACOMP"].ToString();
 
                         Lista.Add(acompañante);
@@ -104,6 +107,87 @@ namespace WebTurismoRea.DAL
                     cmd.Parameters.Add("V_GENERO_ID_GEN", acompañante.GeneroC);
                     cmd.Parameters.Add("V_NACIONALIDAD_ID_NACIONALIDAD", acompañante.NacionalidadC);
                     cmd.Parameters.Add("V_ID_RSV", acompañante.IdReserva);
+                    cmd.Parameters.Add("RETORNO", OracleDbType.Int32).Direction = ParameterDirection.Output;
+
+                    cmd.ExecuteNonQuery();
+
+                    retorno = Convert.ToInt32(cmd.Parameters["RETORNO"].Value.ToString().Trim());
+
+                    cmd.Connection.Close();
+
+                    return 1;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return 0;
+                }
+            }
+        }
+
+        public int ModificarAcompañante(string rutAcompañante, AcompañanteDAL acompañante)
+        {
+            using (da.Connection())
+            {
+                int retorno;
+                try
+                {
+                    OracleCommand cmd = new OracleCommand("SP_UPDATEACOMPAÑANTE", da.Connection())
+                    {
+                        CommandText = "SP_UPDATEACOMPAÑANTE",
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    cmd.Connection.Open();
+
+                    cmd.Parameters.Add("V_NOMBRE_ACOMP", acompañante.Nombre);
+                    cmd.Parameters.Add("V_AP_PATERNO_ACOMP", acompañante.ApellidoP);
+                    cmd.Parameters.Add("V_AP_MATERNO_ACOMP", acompañante.ApellidoM);
+                    cmd.Parameters.Add("V_FEC_NAC_ACOMP", acompañante.FechaNac);
+                    cmd.Parameters.Add("V_NUM_TEL_ACOMP", acompañante.Telefono);
+                    cmd.Parameters.Add("V_EMAIL_ACOMP", acompañante.Correo);
+                    cmd.Parameters.Add("V_CLIENTE_ID_CLI", acompañante.IdCliente);
+                    cmd.Parameters.Add("V_GENERO_ID_GEN", acompañante.GeneroC);
+                    cmd.Parameters.Add("V_NACIONALIDAD_ID_NACIONALIDAD", acompañante.NacionalidadC);
+                    cmd.Parameters.Add("V_RUT_ACOMP", rutAcompañante);
+                    cmd.Parameters.Add("V2_RUT_ACOMP", acompañante.Rut);
+                    cmd.Parameters.Add("V_A_RESERVA_ID_RSV", acompañante.IdReserva);
+                    
+                    cmd.Parameters.Add("RETORNO", OracleDbType.Int32).Direction = ParameterDirection.Output;
+
+                    cmd.ExecuteNonQuery();
+
+                    retorno = Convert.ToInt32(cmd.Parameters["RETORNO"].Value.ToString().Trim());
+
+                    cmd.Connection.Close();
+
+                    return 1;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return 0;
+                }
+            }
+        }
+
+        public int EliminarAcompañante(string rut, string idReserva)
+        {
+            using (da.Connection())
+            {
+                int retorno;
+                try
+                {
+                    OracleCommand cmd = new OracleCommand("SP_DELETEACOMPAÑANTE", da.Connection())
+                    {
+                        CommandText = "SP_DELETEACOMPAÑANTE",
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    cmd.Connection.Open();
+
+                    cmd.Parameters.Add("V_RUT_ACOMP", rut);
+                    cmd.Parameters.Add("V_A_RESERVA_ID_RSV", idReserva);
                     cmd.Parameters.Add("RETORNO", OracleDbType.Int32).Direction = ParameterDirection.Output;
 
                     cmd.ExecuteNonQuery();

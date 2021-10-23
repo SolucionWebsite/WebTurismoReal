@@ -58,7 +58,14 @@ namespace WebTurismoRea.DAL
 
                     cmd.Connection.Close();
 
-                    return 1;
+                    if (retorno == 1)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
                 }
                 catch (Exception ex)
                 {

@@ -190,5 +190,11 @@ namespace WebTurismoReal
             }
 
         }
+
+        public void Btn_LogOut_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Index.aspx");
+        }
     }
 }

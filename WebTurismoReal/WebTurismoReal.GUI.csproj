@@ -151,6 +151,7 @@
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Index.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="PaginaNotFound.aspx" />
     <Content Include="Pago.aspx" />
     <Content Include="prueba.aspx" />
     <Content Include="Registro.aspx" />
@@ -262,6 +263,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaginaNotFound.aspx.cs">
+      <DependentUpon>PaginaNotFound.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaginaNotFound.aspx.designer.cs">
+      <DependentUpon>PaginaNotFound.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pago.aspx.cs">
       <DependentUpon>Pago.aspx</DependentUpon>

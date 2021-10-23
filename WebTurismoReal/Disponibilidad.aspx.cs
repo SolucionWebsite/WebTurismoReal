@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -54,28 +56,9 @@ namespace WebTurismoReal
                 Lbl_Id_Region.Text = idRegionDecode;
 
                 DepartamentoBLL departamentos = new DepartamentoBLL();
-
-                DataTable registros = departamentos.Departamentos(Convert.ToInt32(Lbl_Id_Region.Text), Convert.ToInt32(Lbl_Id_Provincia.Text), Convert.ToInt32(Lbl_Id_Comuna.Text));
-
-                List<DepartamentoBLL> listadepto = new List<DepartamentoBLL>();
-
-                for (int i = 0; i < registros.Rows.Count; i++)
-                {
-                    DepartamentoBLL depto = new DepartamentoBLL();
-
-                    depto.Id = registros.Rows[i]["ID"].ToString();
-                    depto.Direccion = registros.Rows[i]["DIRECCION"].ToString();
-                    depto.Region = registros.Rows[i]["REGION"].ToString();
-                    depto.Provincia = registros.Rows[i]["PROVINCIA"].ToString();
-                    depto.Comuna = registros.Rows[i]["COMUNA"].ToString();
-                    depto.Habitaciones = registros.Rows[i]["HABITACIONES"].ToString();
-                    depto.Baños = registros.Rows[i]["BAÑOS"].ToString();
-                    int deptoTable = Convert.ToInt32(registros.Rows[i]["VALOR_DÍA"]);
-                    string deptoTableCulture = deptoTable.ToString("C", CultureInfo.CurrentCulture);
-                    depto.Valor_Dia = deptoTableCulture;
-                    listadepto.Add(depto);
-                }
-
+                
+                List<DepartamentoBLL> listadepto = departamentos.ListaDepartamentos(Convert.ToInt32(Lbl_Id_Comuna.Text));
+                
                 GridDepartamentos.DataSource = listadepto;
                 GridDepartamentos.DataBind();
 
@@ -85,10 +68,6 @@ namespace WebTurismoReal
                 }
                 else
                 {
-                    GridDepartamentos.HeaderStyle.Font.Bold = false;
-                    GridDepartamentos.HeaderRow.Cells[1].Width = 50;
-                    GridDepartamentos.HeaderStyle.Height = 30;
-                    
                     GridDepartamentos.HeaderRow.Cells[1].Text = "ID";
                     GridDepartamentos.HeaderRow.Cells[2].Text = "DIRECCIÓN";
                     GridDepartamentos.HeaderRow.Cells[3].Text = "COMUNA";
@@ -116,9 +95,27 @@ namespace WebTurismoReal
             return textoDecode;
         }
 
-        protected void GridDepartamentos_SelectedIndexChanged(object sender, EventArgs e)
+        public void GridDepartamentos_SelectedIndexChanged(object sender, EventArgs e)
         {
+            DepartamentoBLL depto = new DepartamentoBLL();
 
+            int index = GridDepartamentos.SelectedRow.RowIndex;
+            int id = Convert.ToInt32(GridDepartamentos.DataKeys[index].Value);
+
+            List<DepartamentoBLL> lista = depto.ListaDepartamentos(Convert.ToInt32(Lbl_Id_Comuna.Text));
+
+            string rutaFoto = "";
+
+            foreach (DepartamentoBLL d in lista)
+            {
+                if (Int32.Parse(d.Id) == id)
+                {
+                    rutaFoto = ConvertirImagen(d.Imagen);
+                }
+            }
+            
+            ImgFotoDepto.ImageUrl = rutaFoto;
+            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "FotoDepto()", true);
         }
 
         public void Btn_Calcular_Click(object sender, EventArgs e)
@@ -221,6 +218,30 @@ namespace WebTurismoReal
                     
                 }
             }
+        }
+
+        public void GridDepartamentos_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[1].Visible = false;
+        }
+
+        public void Btn_LogOut_Click1(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Index.aspx");
+        }
+
+        public string ConvertirImagen(byte[] _image)
+        {
+            string imagen = null;
+
+            string ruta = Server.MapPath("/assets/img/");
+            ruta = Path.Combine(ruta, _image.Length.ToString() + ".jpeg");
+            MemoryStream ms = new MemoryStream(_image);
+            Bitmap SA = (Bitmap)System.Drawing.Image.FromStream(ms);
+            SA.Save(ruta, System.Drawing.Imaging.ImageFormat.Jpeg);
+            imagen = "/assets/img/" + _image.Length.ToString() + ".jpeg";
+            return imagen;
         }
     }
 }

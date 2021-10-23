@@ -10,7 +10,7 @@
 namespace WebTurismoReal {
     
     
-    public partial class prueba {
+    public partial class PaginaNotFound {
         
         /// <summary>
         /// form1 control.
@@ -22,12 +22,21 @@ namespace WebTurismoReal {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// GridAcompañantes control.
+        /// Btn_LogOut control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridAcompañantes;
+        protected global::System.Web.UI.WebControls.LinkButton Btn_LogOut;
+        
+        /// <summary>
+        /// BtnLogin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnLogin;
     }
 }
