@@ -21,49 +21,15 @@ namespace WebTurismoReal
 
         public void CargarTabla()
         {
-            AcompañanteBLL bll = new AcompañanteBLL();
-            
-                List<AcompañanteBLL> lista = bll.ListaAcompañantes(28,61);
+            TourBLL t = new TourBLL();
 
-                List<AcompañanteBLL> listaNueva = new List<AcompañanteBLL>();
-
-                foreach (AcompañanteBLL a in lista)
-                {
-                    AcompañanteBLL acompañante = new AcompañanteBLL();
-
-                    acompañante.Id = a.Id;
-                    acompañante.Nombre = a.Nombre;
-                    acompañante.ApellidoP = a.ApellidoP;
-                    acompañante.ApellidoM = a.ApellidoM;
-                    acompañante.Rut = a.Rut;
-                    acompañante.FechaNac = a.FechaNac;
-                    acompañante.Telefono = a.Telefono;
-                    acompañante.Correo = a.Correo;
-
-                    listaNueva.Add(acompañante);
-                }
-
-                GridAcompañantes.DataSource = listaNueva;
-                GridAcompañantes.DataBind();
-
-                GridAcompañantes.HeaderRow.Cells[1].Text = "ID";
-                GridAcompañantes.HeaderRow.Cells[2].Text = "NOMBRE";
-                GridAcompañantes.HeaderRow.Cells[3].Text = "PRIMER APELLIDO";
-                GridAcompañantes.HeaderRow.Cells[4].Text = "SEGUNDO APELLIDO";
-                GridAcompañantes.HeaderRow.Cells[5].Text = "RUT";
-                GridAcompañantes.HeaderRow.Cells[6].Text = "FECHA DE NACIMIENTO";
-                GridAcompañantes.HeaderRow.Cells[7].Text = "TELÉFONO";
-                GridAcompañantes.HeaderRow.Cells[8].Text = "CORREO";
-
-                
-                GridAcompañantes.HeaderRow.Cells[1].Visible = false;
-
-            
+            GridTours.DataSource = t.ListaTour(1);
+            GridTours.DataBind();
         }
 
         protected void GridAcompañantes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            GridAcompañantes.SelectedRowStyle.BackColor = Color.Blue;
+            GridTours.SelectedRowStyle.BackColor = Color.Blue;
         }
     }
 }

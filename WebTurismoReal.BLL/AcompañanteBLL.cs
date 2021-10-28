@@ -79,8 +79,7 @@ namespace WebTurismoReal.BLL
         public List<AcompañanteBLL> ListaA(int id_cliente, int id_reserva)
         {
             AcompañanteDAL dal = new AcompañanteDAL();
-
-
+            
             List<AcompañanteDAL> lista = dal.RegistroAcompañantes(id_cliente, id_reserva);
 
             List<AcompañanteBLL> listaNueva = new List<AcompañanteBLL>();

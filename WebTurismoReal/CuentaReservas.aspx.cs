@@ -67,6 +67,9 @@ namespace WebTurismoReal
             else
             {
                 PanelModificar.Visible = true;
+                CargarDeptoActualyDisponibles();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "ScrollToADiv", "setTimeout(scrollToDiv, 1);", true);
+
             }
 
         }
@@ -141,6 +144,9 @@ namespace WebTurismoReal
                 Panel_Fecha.Visible = true;
                 Panel_Guardar_Fecha.Visible = true;
                 Panel_Guardar_Depto.Visible = false;
+
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "ScrollToADiv1", "setTimeout(scrollToDiv1, 1);", true);
+
             }
             else if (Cmb_Opciones.SelectedIndex == 2)
             {
@@ -149,60 +155,102 @@ namespace WebTurismoReal
                 Panel_Guardar_Depto.Visible = true;
                 Panel_Guardar_Fecha.Visible = false;
 
-                int index = GridReservas.SelectedRow.RowIndex;
-                int id = Convert.ToInt32(GridReservas.DataKeys[index].Value);
+                CargarDeptoActualyDisponibles();
 
-                int idDepto = 0;
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "ScrollToADiv2", "setTimeout(scrollToDiv2, 1);", true);
 
-                ReservaBLL r = new ReservaBLL();
-
-                List<ReservaBLL> lista = r.Reservas(Int32.Parse(Session["IdUsuario"].ToString()));
-
-                foreach (ReservaBLL item in lista)
-                {
-                    if (item.Id == id)
-                    {
-                        idDepto = item.IdDepto;
-                    }
-                }
-
-                DepartamentoBLL d = new DepartamentoBLL();
-
-                List<DepartamentoBLL> listaDeptos = d.ListaDepartamentosBuscar(idDepto);
-
-                GridDeptoActual.DataSource = listaDeptos;
-                GridDeptoActual.DataBind();
-
-                GridDeptoActual.HeaderRow.Cells[2].Text = "DIRECCIÓN";
-                GridDeptoActual.HeaderRow.Cells[3].Text = "COMUNA";
-                GridDeptoActual.HeaderRow.Cells[4].Text = "PROVINCIA";
-                GridDeptoActual.HeaderRow.Cells[5].Text = "REGIÓN";
-                GridDeptoActual.HeaderRow.Cells[6].Text = "HABITACIONES";
-                GridDeptoActual.HeaderRow.Cells[7].Text = "BAÑOS";
-                GridDeptoActual.HeaderRow.Cells[8].Text = "VALOR DÍA";
-
-                string idComuna = "";
-
-                foreach (DepartamentoBLL item in listaDeptos)
-                {
-                    if (item.Id == idDepto.ToString())
-                    {
-                        idComuna = item.Comuna;
-                    }
-                }
-
-                GridDepartamentos.DataSource = d.ListaDepartamentos(Int32.Parse(idComuna));
-                GridDepartamentos.DataBind();
-                
-                GridDepartamentos.HeaderRow.Cells[2].Text = "DIRECCIÓN";
-                GridDepartamentos.HeaderRow.Cells[3].Text = "COMUNA";
-                GridDepartamentos.HeaderRow.Cells[4].Text = "PROVINCIA";
-                GridDepartamentos.HeaderRow.Cells[5].Text = "REGIÓN";
-                GridDepartamentos.HeaderRow.Cells[6].Text = "HABITACIONES";
-                GridDepartamentos.HeaderRow.Cells[7].Text = "BAÑOS";
-                GridDepartamentos.HeaderRow.Cells[8].Text = "VALOR DÍA";
             }
         }
+
+        public void CargarDeptoActualyDisponibles()
+        {
+            int index = GridReservas.SelectedRow.RowIndex;
+            int id = Convert.ToInt32(GridReservas.DataKeys[index].Value);
+
+            int idDepto = 0;
+
+            ReservaBLL r = new ReservaBLL();
+
+            List<ReservaBLL> lista = r.Reservas(Int32.Parse(Session["IdUsuario"].ToString()));
+
+            foreach (ReservaBLL item in lista)
+            {
+                if (item.Id == id)
+                {
+                    idDepto = item.IdDepto;
+                }
+            }
+
+            DepartamentoBLL d = new DepartamentoBLL();
+
+            List<DepartamentoBLL> listaDepto = d.ListaDepartamentosBuscar(idDepto);
+
+            string comunaId1 = "";
+
+            foreach (DepartamentoBLL item in listaDepto)
+            {
+                if (item.Id == idDepto.ToString())
+                {
+                    comunaId1 = item.Comuna;
+                }
+            }
+
+            List<DepartamentoBLL> deptoActual = new List<DepartamentoBLL>();
+
+            List<DepartamentoBLL> listaDeptosComuna = d.ListaDepartamentos(Int32.Parse(comunaId1));
+
+            foreach (DepartamentoBLL item in listaDeptosComuna)
+            {
+                if (item.Id == idDepto.ToString())
+                {
+                    DepartamentoBLL depto = new DepartamentoBLL();
+                    depto.Id = item.Id;
+                    depto.Direccion = item.Direccion;
+                    depto.Region = item.Region;
+                    depto.Provincia = item.Provincia;
+                    depto.Comuna = item.Comuna;
+                    depto.Habitaciones = item.Habitaciones;
+                    depto.Baños = item.Baños;
+                    depto.Valor_Dia = item.Valor_Dia;
+
+                    deptoActual.Add(depto);
+
+                }
+            }
+
+            GridDeptoActual.DataSource = deptoActual;
+            GridDeptoActual.DataBind();
+
+            GridDeptoActual.HeaderRow.Cells[1].Text = "DIRECCIÓN";
+            GridDeptoActual.HeaderRow.Cells[2].Text = "COMUNA";
+            GridDeptoActual.HeaderRow.Cells[3].Text = "PROVINCIA";
+            GridDeptoActual.HeaderRow.Cells[4].Text = "REGIÓN";
+            GridDeptoActual.HeaderRow.Cells[5].Text = "HABITACIONES";
+            GridDeptoActual.HeaderRow.Cells[6].Text = "BAÑOS";
+            GridDeptoActual.HeaderRow.Cells[7].Text = "VALOR DÍA";
+
+            string idComuna = "";
+
+            foreach (DepartamentoBLL item in listaDepto)
+            {
+                if (item.Id == idDepto.ToString())
+                {
+                    idComuna = item.Comuna;
+                }
+            }
+
+            GridDepartamentos.DataSource = d.ListaDepartamentos(Int32.Parse(idComuna));
+            GridDepartamentos.DataBind();
+
+            GridDepartamentos.HeaderRow.Cells[2].Text = "DIRECCIÓN";
+            GridDepartamentos.HeaderRow.Cells[3].Text = "COMUNA";
+            GridDepartamentos.HeaderRow.Cells[4].Text = "PROVINCIA";
+            GridDepartamentos.HeaderRow.Cells[5].Text = "REGIÓN";
+            GridDepartamentos.HeaderRow.Cells[6].Text = "HABITACIONES";
+            GridDepartamentos.HeaderRow.Cells[7].Text = "BAÑOS";
+            GridDepartamentos.HeaderRow.Cells[8].Text = "VALOR DÍA";
+        }
+    
 
         public void Btn_LogOut_Click(object sender, EventArgs e)
         {
@@ -311,7 +359,7 @@ namespace WebTurismoReal
 
                 if (r.ModificarReserva(r) == 1)
                 {
-
+                    CargarDeptoActualyDisponibles();
                     ClientScript.RegisterStartupScript(this.GetType(), "myalert", "ActualizacionExitosa()", true);
                 }
                 else
@@ -324,7 +372,7 @@ namespace WebTurismoReal
 
         public void GridDeptoActual_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            e.Row.Cells[1].Visible = false;
+            e.Row.Cells[0].Visible = false;
         }
 
         public void GridDepartamentos_RowDataBound(object sender, GridViewRowEventArgs e)

@@ -93,16 +93,15 @@
                             <img src="/assets/img/Tour.jpg" />
                         </div>
                         <div>
-                            <h5 style="font-size: 25px;">Tour guíado por la zona</h5>
+                            <h5 style="font-size: 25px;">Diversos Tours</h5>
                             <p>
-                                Si ya reservaste un departamento puedes incluir un tour guíado por la zona que escogiste de 
+                                Si ya reservaste un departamento puedes incluir un tour en la zona que escogiste de 
                                 destino, el encargado visitará los puntos más turísticos de la zona explicando su origen y otros aspectos,
-                                el tour comienza a las 9:00 am y termina a las 16:00 pm, 
+                                cada tour comienza a las 9:00 am y termina a las 16:00 pm, 
                                 incluye bienvenida con regalo, snack y almuerzo.
                             </p>
                             <p style="font-size: 15px; color: white; text-transform: uppercase; margin-top: 5px;">
-                                El tour se puede reservar 3 veces por reserva de arriendo y tiene un valor de $18.000 por
-                                persona independientemente de la zona a visitar.
+                                Un tour se puede reservar 3 veces como máximo por reserva de arriendo y el valor depende del tipo de tour.
                             </p>
                         </div>
                     </div>

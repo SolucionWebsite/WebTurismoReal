@@ -52,6 +52,9 @@
     <Compile Include="LocalidadDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReservaDAL.cs" />
+    <Compile Include="ServicioExtraDAL.cs" />
+    <Compile Include="TourDAL.cs" />
+    <Compile Include="TransporteDAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

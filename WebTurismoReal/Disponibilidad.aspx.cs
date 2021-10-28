@@ -152,6 +152,9 @@ namespace WebTurismoReal
                         Lbl_Dias.Text = diasDecode;
                         Lbl_acompañantes.Text = txt_acompañantes.Text;
                         Lbl_Total.Text = valor_final;
+
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "ScrollToADiv", "setTimeout(scrollToDiv, 1);", true);
+
                     }
                 }
                 else
@@ -238,9 +241,17 @@ namespace WebTurismoReal
             string ruta = Server.MapPath("/assets/img/");
             ruta = Path.Combine(ruta, _image.Length.ToString() + ".jpeg");
             MemoryStream ms = new MemoryStream(_image);
-            Bitmap SA = (Bitmap)System.Drawing.Image.FromStream(ms);
-            SA.Save(ruta, System.Drawing.Imaging.ImageFormat.Jpeg);
-            imagen = "/assets/img/" + _image.Length.ToString() + ".jpeg";
+            try
+            {
+                Bitmap SA = (Bitmap)System.Drawing.Image.FromStream(ms);
+                SA.Save(ruta, System.Drawing.Imaging.ImageFormat.Jpeg);
+                imagen = "/assets/img/" + _image.Length.ToString() + ".jpeg";
+            }
+            catch (Exception)
+            {
+                imagen = "/assets/img/NoImg.png";
+            }
+            
             return imagen;
         }
     }

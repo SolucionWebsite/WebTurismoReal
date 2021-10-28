@@ -88,7 +88,7 @@
                         <%else
                             {%>
                         <li>
-                            <a href="/CuentaDatos">Mi cuenta/a>
+                            <a href="/CuentaDatos">Mi cuenta</a>
                         </li>
                         <li>
                             <asp:LinkButton ID="Btn_LogOut" Text="Cerrar sesión" runat="server" OnClick="Btn_LogOut_Click" />

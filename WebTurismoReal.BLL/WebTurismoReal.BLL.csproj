@@ -49,6 +49,9 @@
     <Compile Include="PDFComprobante.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReservaBLL.cs" />
+    <Compile Include="ServicioExtraBLL.cs" />
+    <Compile Include="TourBLL.cs" />
+    <Compile Include="TransporteBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebTurismoRea.DAL\WebTurismoRea.DAL.csproj">

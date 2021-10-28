@@ -89,12 +89,9 @@
         }
     </script>
     <script type="text/javascript">
-        $(document).ready(function () {
-
-            var height = $(window).height();
-
-            $('.col-2').height(height);
-        });
+        function scrollToDiv() {
+            document.getElementById('Btn_Reservar').scrollIntoView();
+        }
     </script>
     <style>
         .progreso {
@@ -175,7 +172,7 @@
             </div>
             <div class="row">
                 <div class="card">
-                    <div class="div-blanco">
+                    <div style="width:100%;">
                         <asp:GridView ID="GridDepartamentos" runat="server" DataKeyNames="ID" OnRowDataBound="GridDepartamentos_RowDataBound" CssClass="gridView" OnSelectedIndexChanged="GridDepartamentos_SelectedIndexChanged">
                             <AlternatingRowStyle Wrap="False" />
                             <HeaderStyle CssClass="gridViewHeader" />

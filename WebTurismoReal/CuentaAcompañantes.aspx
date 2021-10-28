@@ -132,6 +132,14 @@
             })
         }
     </script>
+    <script type="text/javascript">
+        function scrollToDiv() {
+            document.getElementById('PanelAcompañantes').scrollIntoView();
+        }
+        function scrollToDiv1() {
+            document.getElementById('DivGuardar').scrollIntoView();
+        }
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -176,14 +184,14 @@
             </div>
 
             <div class="row">
-                <div class="card" style="margin-top: 5px;">
+                <div class="card" style="margin-top: 5px; margin-bottom:5px;">
                     <h5 style="font-size: 30px; margin-bottom: 10px;">¡Bienvenido/a!</h5>
                     <asp:Label ID="Lbl_Usuario" Text="[Nombre]" runat="server" />
                 </div>
             </div>
             <div class="row" style="margin: auto;">
 
-                <div class="card" style="margin-top: 5px; padding: 15px;">
+                <div class="card" style="margin-bottom: 5px; padding: 15px;">
                     <table style="width: 100%;">
                         <tr>
                             <td colspan="2">
@@ -204,14 +212,14 @@
                     </table>
                 </div>
                 <asp:Panel ID="PanelReservas" Visible="true" runat="server">
-                    <div class="card" style="margin-top: 5px;">
+                    <div class="card" style="margin-bottom: 5px;">
                         <div class="row">
                             <p style="font-weight: 600;">MIS RESERVAS</p>
                         </div>
                         <div class="row">
                             <p>La tabla de acompañantes se cargará según la reserva que selecciones</p>
                         </div>
-                        <div style="margin-top: 10px; width: 100%; padding: 10px; overflow: scroll; margin-bottom: 5px; height: 200px;">
+                        <div class="scroll-div" >
                             <asp:GridView ID="GridReservas" runat="server" DataKeyNames="ID" OnRowDataBound="GridReservas_RowDataBound1" CssClass="gridView" OnSelectedIndexChanged="GridReservas_SelectedIndexChanged">
                                 <AlternatingRowStyle Wrap="False" />
                                 <HeaderStyle CssClass="gridViewHeader" />
@@ -228,13 +236,16 @@
                     </div>
                 </asp:Panel>
                 <asp:Panel ID="PanelAcompañantes" Visible="false" runat="server">
-                    <div class="card" style="margin-top: 5px; padding: 15px;">
+                    <div class="card" style="margin-bottom: 5px; padding: 15px;">
                         <div class="row">
                             <p style="font-weight: 600">MIS ACOMPAÑANTES</p>
                         </div>
                         <div>
-
-                            <div style="margin-top: 10px; width: 100%; padding: 10px; overflow: scroll; height: 200px;">
+                            <asp:Panel ID="PanelNoAcompañantes" Visible="false" runat="server">
+                                <p>No tienes acompañantes asociados a la reserva</p>
+                            </asp:Panel>
+                            <asp:Panel ID="PanelSiAcompañantes" Visible="false" runat="server">
+                                <div class="scroll-div" >
                                 <asp:GridView ID="GridAcompañantes" runat="server" DataKeyNames="ID" OnRowDataBound="GridAcompañantes_RowDataBound" CssClass="gridView" OnSelectedIndexChanged="GridAcompañantes_SelectedIndexChanged">
                                     <AlternatingRowStyle Wrap="False" />
                                     <HeaderStyle CssClass="gridViewHeader" />
@@ -248,6 +259,9 @@
                                     </Columns>
                                 </asp:GridView>
                             </div>
+                            </asp:Panel>
+                            
+
                             <br />
                             <table style="width: 100%">
                                 <tr>
@@ -263,7 +277,7 @@
                     </div>
                 </asp:Panel>
                 <asp:Panel ID="PanelAñadirAcompañantes" Visible="false" runat="server">
-                    <div class="card" style="margin-top: 5px;">
+                    <div class="card" style="margin-bottom: 5px;">
                         <div class="row">
                             <p style="font-weight: 600;">DATOS DE ACOMPAÑANTE</p>
                         </div>
@@ -346,9 +360,11 @@
                                     </div>
                                 </div>
                                 <br />
+                                <asp:Panel ID="DivGuardar" runat="server">
                                 <div>
                                     <asp:Button ID="Btn_Guardar" ValidationGroup="Validador1" CssClass="btn" Text="Guardar" runat="server" OnClick="Btn_Guardar_Click" />
                                 </div>
+                                    </asp:Panel>
                             </div>
 
                         </div>

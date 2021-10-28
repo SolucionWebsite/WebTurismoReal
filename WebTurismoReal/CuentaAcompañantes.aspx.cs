@@ -104,14 +104,25 @@ namespace WebTurismoReal
                     GridAcompañantes.DataSource = listaNueva;
                     GridAcompañantes.DataBind();
 
-                    GridAcompañantes.HeaderRow.Cells[1].Text = "ID";
-                    GridAcompañantes.HeaderRow.Cells[2].Text = "RUT";
-                    GridAcompañantes.HeaderRow.Cells[3].Text = "NOMBRE";
-                    GridAcompañantes.HeaderRow.Cells[4].Text = "PRIMER APELLIDO";
-                    GridAcompañantes.HeaderRow.Cells[5].Text = "SEGUNDO APELLIDO";
-                    GridAcompañantes.HeaderRow.Cells[6].Text = "TELÉFONO";
-                    GridAcompañantes.HeaderRow.Cells[7].Text = "CORREO";
-                    GridAcompañantes.HeaderRow.Cells[8].Text = "FECHA DE NACIMIENTO";
+                    if (lista.Count == 0)
+                    {
+                        PanelNoAcompañantes.Visible = true;
+                        PanelSiAcompañantes.Visible = false;
+                    }
+                    else
+                    {
+                        PanelSiAcompañantes.Visible = true;
+                        PanelNoAcompañantes.Visible = false;
+
+                        GridAcompañantes.HeaderRow.Cells[1].Text = "ID";
+                        GridAcompañantes.HeaderRow.Cells[2].Text = "RUT";
+                        GridAcompañantes.HeaderRow.Cells[3].Text = "NOMBRE";
+                        GridAcompañantes.HeaderRow.Cells[4].Text = "PRIMER APELLIDO";
+                        GridAcompañantes.HeaderRow.Cells[5].Text = "SEGUNDO APELLIDO";
+                        GridAcompañantes.HeaderRow.Cells[6].Text = "TELÉFONO";
+                        GridAcompañantes.HeaderRow.Cells[7].Text = "CORREO";
+                        GridAcompañantes.HeaderRow.Cells[8].Text = "FECHA DE NACIMIENTO";
+                    }
                 }
                 catch (Exception)
                 {
@@ -191,13 +202,7 @@ namespace WebTurismoReal
         {
             Response.Redirect("CuentaAcompañantes.aspx");
         }
-
-        public void Btn_Cerrar_Sesion_Click1(object sender, EventArgs e)
-        {
-            Session.Abandon();
-            Response.Redirect("Index.aspx");
-        }
-
+        
         public void Btn_Añadir_Acompañante_Click(object sender, EventArgs e)
         {
             PanelAñadirAcompañantes.Visible = true;
@@ -205,6 +210,9 @@ namespace WebTurismoReal
             GridAcompañantes.SelectRow(-1);
 
             Limpiar();
+
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "ScrollToADiv1", "setTimeout(scrollToDiv1, 1);", true);
+
         }
 
         public void Limpiar()
@@ -284,6 +292,8 @@ namespace WebTurismoReal
                                 CmbNacionalidad.SelectedValue = "0";
                                 Txt_Telefono_A.Text = "";
                                 CargarTabla();
+                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "ScrollToADiv", "setTimeout(scrollToDiv, 1);", true);
+
                             }
                             else if (acompañante.AgregarAcompañante(acompañante) == 0)
                             {
@@ -344,8 +354,10 @@ namespace WebTurismoReal
                             CargarTabla();
                             Limpiar();
                             PanelAñadirAcompañantes.Visible = false;
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "ScrollToADiv", "setTimeout(scrollToDiv, 1);", true);
+
                         }
-                        
+
                     }
 
 
@@ -370,7 +382,8 @@ namespace WebTurismoReal
         public void Btn_Modificar_Acompañante_Click(object sender, EventArgs e)
         {
             PanelAñadirAcompañantes.Visible = true;
-            PanelAñadirAcompañantes.Focus();
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "ScrollToADiv1", "setTimeout(scrollToDiv1, 1);", true);
+
 
             if (Session["IdUsuario"] == null)
             {
@@ -436,6 +449,7 @@ namespace WebTurismoReal
             if (GridAcompañantes.SelectedRow == null)
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "myalert", "SeleccionarAcompañante()", true);
+                
             }
             else
             {
@@ -506,9 +520,11 @@ namespace WebTurismoReal
             {
                 PanelAcompañantes.Visible = true;
                 CargarTabla();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "ScrollToADiv", "setTimeout(scrollToDiv, 1);", true);
+
             }
 
-            
+
         }
 
         public void GridReservas_RowDataBound1(object sender, GridViewRowEventArgs e)

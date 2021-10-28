@@ -112,6 +112,24 @@ namespace WebTurismoReal {
         protected global::System.Web.UI.WebControls.Panel PanelAcompañantes;
         
         /// <summary>
+        /// PanelNoAcompañantes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PanelNoAcompañantes;
+        
+        /// <summary>
+        /// PanelSiAcompañantes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PanelSiAcompañantes;
+        
+        /// <summary>
         /// GridAcompañantes control.
         /// </summary>
         /// <remarks>
@@ -326,6 +344,15 @@ namespace WebTurismoReal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator6;
+        
+        /// <summary>
+        /// DivGuardar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel DivGuardar;
         
         /// <summary>
         /// Btn_Guardar control.

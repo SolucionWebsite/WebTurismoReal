@@ -95,6 +95,17 @@
             })
         }
     </script>
+    <script type="text/javascript">
+        function scrollToDiv() {
+            document.getElementById('PanelModificar').scrollIntoView();
+        }
+        function scrollToDiv1() {
+            document.getElementById('Panel_Guardar_Fecha').scrollIntoView();
+        }
+        function scrollToDiv2() {
+            document.getElementById('Panel_Guardar_Depto').scrollIntoView();
+        }
+    </script>
     <style>
         td {
             width: 50%;
@@ -144,14 +155,14 @@
             </div>
 
             <div class="row">
-                <div class="card" style="margin-top: 5px;">
+                <div class="card" style="margin-top: 5px; margin-bottom:5px;">
                     <h5 style="font-size: 30px; margin-bottom: 10px;">¡Bienvenido/a!</h5>
                     <asp:Label ID="Lbl_Usuario" Text="[Nombre]" runat="server" />
                 </div>
             </div>
             <div class="row" style="margin: auto;">
 
-                <div class="card" style="margin-top: 5px; padding: 15px;">
+                <div class="card" style="margin-bottom: 5px; padding: 15px;">
                     <table style="width: 100%;">
                         <tr>
                             <td colspan="2">
@@ -172,14 +183,14 @@
                     </table>
                 </div>
 
-                <div class="card" style="margin-top: 5px;">
+                <div class="card" style="margin-bottom: 5px;">
                     <div class="row">
                         <p style="font-weight: 600;">MIS RESERVAS</p>
                     </div>
                     <div class="row">
                         <p>Selecciona una reserva para modificarla</p>
                     </div>
-                    <div style="margin-top: 10px; width: 100%; padding: 10px; overflow: scroll; margin-bottom: 5px; height: 200px;">
+                    <div class="scroll-div" >
                         <asp:GridView ID="GridReservas" runat="server" DataKeyNames="ID" OnRowDataBound="GridReservas_RowDataBound1" CssClass="gridView" OnSelectedIndexChanged="GridReservas_SelectedIndexChanged">
                             <AlternatingRowStyle Wrap="False" />
                             <HeaderStyle CssClass="gridViewHeader" />
@@ -199,7 +210,7 @@
             </div>
 
             <asp:Panel ID="PanelModificar" runat="server" Visible="false">
-                <div class="card" style="margin-top: 5px;">
+                <div class="card" style="margin-bottom: 5px; padding-left:30px; padding-right:30px;">
                     <div class="row" style="text-align: center; margin-top: 10px;">¿Qué deseas modificar de la reserva?</div>
                     <p>Si deseas modificar la localidad de destino, debes cancelar la reserva y realizarla de nuevo</p>
                     <div class="container-blanco" style="text-align: center; margin-top: 10px; margin-bottom: 10px; border: none;">
@@ -211,24 +222,19 @@
                         </asp:DropDownList>
                     </div>
                     <asp:Panel ID="Panel_Departamento" Visible="false" runat="server">
-                        <div class="row" style="text-align: center;">Este es el departamento actual</div>
-                        <div class="fila" style="margin-top: 10px; width: 100%; padding: 10px; overflow: scroll; height: 100%;">
+                        <div class="row" style="text-align: center;">Este es el departamento actual asociado a la reserva</div>
+                        <div style="margin-top: 10px; width: 100%; padding: 2px; height:100%;">
                             <asp:GridView ID="GridDeptoActual" runat="server" DataKeyNames="ID" OnRowDataBound="GridDeptoActual_RowDataBound" CssClass="gridView" OnSelectedIndexChanged="GridDeptoActual_SelectedIndexChanged">
                             <AlternatingRowStyle Wrap="False" />
                             <HeaderStyle CssClass="gridViewHeader" />
                             <PagerStyle />
                             <RowStyle Wrap="false" />
                             <SelectedRowStyle CssClass="gridViewSeleccionada" />
-                            <Columns>
-                                <asp:ButtonField ControlStyle-CssClass="btn" ControlStyle-Height="30" ButtonType="Button" CommandName="Select" ShowHeader="True" Text="Seleccionar">
-                                    <ControlStyle CssClass="btn" Height="30px"></ControlStyle>
-                                </asp:ButtonField>
-                            </Columns>
                         </asp:GridView>
                         </div>
                         <br />
-                        <div class="row" style="text-align: center;">Estos son los departamentos disponibles según las fechas ingresadas</div>
-                        <div class="fila" style="margin-top: 10px; width: 100%; padding: 10px; overflow: scroll; height: 100%;">
+                        <div class="row" style="text-align: center; margin-top:10px;">Selecciona uno de estos departamentos disponibles</div>
+                        <div class="scroll-div">
                             <asp:GridView ID="GridDepartamentos" runat="server" DataKeyNames="ID" OnRowDataBound="GridDepartamentos_RowDataBound" CssClass="gridView" OnSelectedIndexChanged="GridDepartamentos_SelectedIndexChanged">
                             <AlternatingRowStyle Wrap="False" />
                             <HeaderStyle CssClass="gridViewHeader" />

@@ -20,13 +20,48 @@
         body {
             margin: 0;
             background-image: url(/assets/img/bg3.jpg);
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: top;
-            background-attachment: fixed;
-            font-family: 'Didact Gothic', sans-serif;
             font-size: 20px;
             height: 100%;
+        }
+        .container-notfound{
+            margin: auto; 
+            margin: 150px; 
+            text-align: left;
+        }
+        .titulo{
+            font-weight: 900; 
+            font-size: 45px; 
+            margin-left: 150px;
+        }
+        .boton{
+            width: 300px; 
+            margin-left: 150px;
+        }
+        p{
+            text-align: left; 
+            margin-left: 150px;
+        }
+
+        @media (max-width: 952px) {
+            .container-notfound{
+            margin: 0;
+            padding : 30px;
+            text-align: center;
+            align-content: center;
+        }
+            .titulo{
+                margin-left: 0;
+                font-weight: 900; 
+                font-size: 25px; 
+            }
+            .boton{
+                width: 300px; 
+                margin-left: 0;
+            }
+            p{
+                margin-left: 0;
+                text-align: left; 
+            }
         }
     </style>
 </head>
@@ -72,17 +107,17 @@
                 </nav>
             </div>
             <div style="background-color: white; width: 100%; height: 100%;" class="row">
-                <div style="margin: auto; margin: 150px; text-align: left;">
-                    <p style="font-weight: 900; font-size: 45px; margin-left: 150px;">LO SENTIMOS, TU RUTA SE HA PERDIDO... :(</p>
+                <div class="container-notfound">
+                    <p class="titulo">LO SENTIMOS, TU RUTA SE HA PERDIDO... :(</p>
                     <br />
-                    <p style="text-align: left; margin-left: 150px;">Esto puede ser provocado por:</p>
-                    <p style="text-align: left; margin-left: 150px;">• Recargar la página Login o Registro.</p>
-                    <p style="text-align: left; margin-left: 150px;">• Ingresar a la página Login o Registro directamente desde la URL.</p>
-                    <p style="text-align: left; margin-left: 150px;">• Tu conexión a internet se perdió por un momento.</p>
+                    <p>Esto puede ser provocado por:</p>
+                    <p>• Recargar la página Login o Registro.</p>
+                    <p>• Ingresar a la página Login o Registro directamente desde la URL.</p>
+                    <p>• Tu conexión a internet se perdió por un momento.</p>
                     <br />
-                    <p style="text-align: left; margin-left: 150px;">No te preocupes, puedes volver a lo que estabas haciendo.</p>
+                    <p >No te preocupes, puedes volver a lo que estabas haciendo.</p>
                     <br />
-                    <asp:Button ID="BtnLogin" Text="Volver a Home" Style="width: 300px; margin-left: 150px; align-self: flex-start;" CssClass="btn" runat="server" OnClick="BtnLogin_Click" />
+                    <asp:Button ID="BtnLogin" Text="Volver a Home" CssClass="btn boton" runat="server" OnClick="BtnLogin_Click" />
                 </div>
             </div>
         </div>

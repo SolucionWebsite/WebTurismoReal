@@ -9,7 +9,7 @@ namespace WebTurismoReal.Tests
     public class CuentaTest
     {
         [TestMethod]
-        public void ActualizaciónCliente_DatosVálidos_RegistroGuardadoBD()
+        public void ModificarCliente_DatosVálidos_RegistroGuardadoBD()
         {
             //Requerimiento: Crear y mantener registro de clientes
             //Entrada: datos correctos
@@ -57,6 +57,67 @@ namespace WebTurismoReal.Tests
             Assert.IsTrue(lista.Count > 0);
         }
 
+        [TestMethod]
+        public void ModificarReserva_DatosVálidos_RegistroGuardadoBD()
+        {
+            //Requerimiento: Crear y mantener registro de clientes
+            //Entrada: datos correctos
+            //Salida: Registro almacenado en la base de datos, retorno 1
 
+            //Arrange
+            ReservaBLL reserva = new ReservaBLL();
+
+            reserva.Id = 1;
+            reserva.Estado = "Pagada";
+            reserva.IdCliente = 1;
+            reserva.IdDepto = 1;
+            
+            //Act
+            reserva.ModificarReserva(reserva);
+            
+            //Assert
+            Assert.IsTrue(reserva.ModificarReserva(reserva) == 1);
+        }
+        
+
+        [TestMethod]
+        public void ModificarAcompañante_DatosVálidos_RegistroGuardadoBD()
+        {
+            //Requerimiento: Crear y mantener registro de clientes
+            //Entrada: datos correctos
+            //Salida: Registro almacenado en la base de datos, retorno 1
+
+            //Arrange
+            AcompañanteBLL acompañante = new AcompañanteBLL();
+
+            string rut = "22.544.475-k";
+            acompañante.Correo = "yeyo@gmail.com";
+
+            //Act
+            acompañante.ModificarAcompañante(rut, acompañante);
+
+            //Assert
+            Assert.IsTrue(acompañante.ModificarAcompañante(rut, acompañante) == 1);
+        }
+
+        [TestMethod]
+        public void EliminarAcompañante_DatosVálidos_RegistroEliminadoBD()
+        {
+            //Requerimiento: Crear y mantener registro de clientes
+            //Entrada: datos correctos
+            //Salida: Registro almacenado en la base de datos, retorno 1
+
+            //Arrange
+            AcompañanteBLL acompañante = new AcompañanteBLL();
+
+            string rut = "17.340.444-3";
+            string idReserva = "1";
+
+            //Act
+            int resultado = acompañante.EliminarAcompañantes(rut, idReserva);
+
+            //Assert
+            Assert.IsTrue(resultado == 1);
+        }
     }
 }

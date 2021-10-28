@@ -19,23 +19,22 @@ namespace WebTurismoReal.Tests
 
             //Arrange
             ClienteBLL cliente = new ClienteBLL();
-            cliente.Rut = "17.340.444-3";
-            cliente.Nombre = "Marco Antonio";
+            cliente.Rut = "22.340.444-3";
+            cliente.Nombre = "Juan Ignacio";
             cliente.ApellidoP = "Pérez";
             cliente.ApellidoM = "Rojas";
-            cliente.Telefono = "+56948497989";
-            cliente.Correo = "Marcoantoniorojas@gmail.com";
+            cliente.Telefono = "+56912345678";
+            cliente.Correo = "JuanPerez@gmail.com";
             cliente.FechaNac = "06-04-1992";
-            cliente.Clave = "1234Marco";
-            cliente.GeneroC = 2;
-            cliente.NacionalidadC = 32;
+            cliente.Clave = "1234Juan";
+            cliente.GeneroC = 2; //Masculino
+            cliente.NacionalidadC = 32; //Chilena
 
             //Act
-            cliente.RegistroCliente(cliente);
-
-
+            int resultado = cliente.RegistroCliente(cliente);
+            
             //Assert
-            Assert.IsTrue(cliente.RegistroCliente(cliente) == 1);
+            Assert.IsTrue(resultado == 0);
         }
         
         [TestMethod]
@@ -47,16 +46,14 @@ namespace WebTurismoReal.Tests
 
             //Arrange
             DepartamentoBLL departamento = new DepartamentoBLL();
-
-            int region = 1; //Arica y Parinacota
-            int provincia = 1; //Arica
+            
             int comuna = 1; //Arica
             
             //Act
-            DataTable registros = departamento.Departamentos(region, provincia, comuna);
+            List<DepartamentoBLL> registros = departamento.ListaDepartamentosBuscar(comuna);
             
             //Assert
-            Assert.IsTrue(registros.Rows.Count > 1);
+            Assert.IsTrue(registros.Count >= 1);
         }
 
         [TestMethod]
@@ -108,17 +105,17 @@ namespace WebTurismoReal.Tests
             acompañante.Telefono = "+56934245678";
             acompañante.Correo = "Marcelo@gmail.com";
             acompañante.FechaNac = "13-04-1978";
-            acompañante.GeneroC = 2;
-            acompañante.NacionalidadC = 32;
+            acompañante.GeneroC = 2; //Masculino 
+            acompañante.NacionalidadC = 32; //Chilena
             acompañante.IdCliente = 1;
             acompañante.IdReserva = 1;
 
             //Act
-            acompañante.AgregarAcompañante(acompañante);
+            int resultado = acompañante.AgregarAcompañante(acompañante);
 
 
             //Assert
-            Assert.IsTrue(acompañante.AgregarAcompañante(acompañante) == 1);
+            Assert.IsTrue(resultado == 1);
         }
 
         [TestMethod]

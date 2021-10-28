@@ -10,7 +10,7 @@
     height: 100%;
 }
 
-    /*body::after {
+/*body::after {
         content: "";
         position: relative;
         top: 0;
@@ -132,14 +132,13 @@ a.active, a:hover {
     #check:checked ~ ul {
         left: 0;
     }
-
 }
 
 .div-blanco {
-    margin:20px; 
-    border: none; 
-    overflow:scroll; 
-    height:100%;
+    margin: 20px;
+    border: none;
+    overflow: scroll;
+    height: 100%;
 }
 
 @media (max-width: 952px) {
@@ -179,13 +178,13 @@ a.active, a:hover {
 }
 
 h5 {
-    font-family:'Didact Gothic', sans-serif;
+    font-family: 'Didact Gothic', sans-serif;
     text-transform: uppercase;
     font-size: 40px;
 }
 
-.td1{
-    justify-content:flex-start;
+.td1 {
+    justify-content: flex-start;
     font-size: 22px;
 }
 
@@ -202,7 +201,8 @@ h5 {
         width: 100%;
         line-height: 20px;
     }
-    .td1{
+
+    .td1 {
         display: none;
     }
 }
@@ -228,7 +228,7 @@ h5 {
     padding: 10px;
     color: black;
     outline: none;
-    border : 1px solid gainsboro;
+    border: 1px solid gainsboro;
     border-radius: 5px;
 }
 
@@ -252,7 +252,7 @@ legend {
 
 ::selection {
     background: #117A65;
-    color: #fff; 
+    color: #fff;
 }
 
 
@@ -264,8 +264,8 @@ legend {
     font-family: 'Didact Gothic', sans-serif;
     font-size: 18px;
     text-transform: uppercase;
-    padding-left:5px;
-    padding-right:5px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
     .btn:hover {
@@ -274,7 +274,7 @@ legend {
         cursor: pointer;
     }
 
-.line{
+.line {
     display: inline-block;
     margin-top: 20px;
 }
@@ -377,12 +377,12 @@ legend {
     z-index: 100;
 }
 
-.container-2::after {
-    position: absolute;
-    height: 100%;
-    display: flex;
-    flex: 1;
-}
+    .container-2::after {
+        position: absolute;
+        height: 100%;
+        display: flex;
+        flex: 1;
+    }
 
 
 .container-3 {
@@ -397,38 +397,37 @@ legend {
     float: right;
 }
 
-@media (max-width: 952px) 
-    {
-        .container-2 {
-            margin-top: 5px;
-            margin-left: 0;
-            color: black;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(220, 220, 220, 0.9);
-            padding: 10px;
-            position: relative;
-            text-align: center;
-            justify-content: center;
-            display: inline-block;
-        }
-
-        .container-3 {
-            margin-top: 5px;
-            margin-right: 0;
-            color: black;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(220, 220, 220, 0.9);
-            padding: 10px;
-            position: relative;
-            text-align: center;
-            justify-content: center;
-            display: inline-block;
-        }
+@media (max-width: 952px) {
+    .container-2 {
+        margin-top: 5px;
+        margin-left: 0;
+        color: black;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(220, 220, 220, 0.9);
+        padding: 10px;
+        position: relative;
+        text-align: center;
+        justify-content: center;
+        display: inline-block;
     }
 
-.row-1{
+    .container-3 {
+        margin-top: 5px;
+        margin-right: 0;
+        color: black;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(220, 220, 220, 0.9);
+        padding: 10px;
+        position: relative;
+        text-align: center;
+        justify-content: center;
+        display: inline-block;
+    }
+}
+
+.row-1 {
     margin-top: 5px;
 }
 
@@ -451,12 +450,12 @@ legend {
     text-align: right;
     justify-content: center;
     padding: 15px;
-    align-content:center;
-    
+    align-content: center;
 }
+
 .columna-2 {
     width: 32%;
-    position:center;
+    position: center;
     justify-content: space-between;
     float: left;
     padding: 10px;
@@ -481,7 +480,7 @@ legend {
         width: 100%;
         text-align: left;
         justify-content: center;
-        display:inline-block;
+        display: inline-block;
     }
 
     .columna-2 {
@@ -523,7 +522,7 @@ legend {
 .container-blanco {
     border: 2px solid black;
     padding: 10px;
-    width: 50%; 
+    width: 50%;
     margin: 0 auto;
 }
 
@@ -536,31 +535,13 @@ legend {
     }
 }
 
-.gridview {
-    width: 100%;
-    height: 100%;
-    font-size: 18px;
-    font-family: 'Didact Gothic', sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    text-align: center;
-    padding-left: 5px;
-    padding-right: 5px;
-}
 
-.Gridheader {
-    padding-left: 5px;
-    padding-right: 5px;
-    font-style: normal;
-    font-weight: 100;
-}
-
-.auto-style1{
-    width:250px;
+.auto-style1 {
+    width: 250px;
 }
 
 @media (max-width: 952px) {
-    
+
     .auto-style1 {
         display: none;
     }
@@ -568,9 +549,9 @@ legend {
 
 
 .a-container {
-    width:100%; 
-    align-content:center; 
-    text-align:center;
+    width: 100%;
+    align-content: center;
+    text-align: center;
 }
 
 @media (max-width: 952px) {
@@ -581,8 +562,8 @@ legend {
         text-align: center;
     }
 
-    .columna-2{
-        width:100%;
+    .columna-2 {
+        width: 100%;
     }
 
     .columna-1 {
@@ -664,7 +645,6 @@ legend {
         padding-top: 10px;
         padding-bottom: 10px;
     }
-
 }
 
 .card {
@@ -736,9 +716,9 @@ legend {
 }
 
 .tabla1 {
-    text-align: center; 
-    width:50%; 
-    margin:auto;
+    text-align: center;
+    width: 50%;
+    margin: auto;
 }
 
 @media (max-width: 952px) {
@@ -750,8 +730,8 @@ legend {
 }
 
 .rowlist {
-    margin:auto; 
-    width:50%;
+    margin: auto;
+    width: 50%;
 }
 
 @media (max-width: 952px) {
@@ -762,15 +742,15 @@ legend {
 }
 
 .div-r {
-    width:49.5%; 
-    float:left; 
-    margin-right:10px;
+    width: 49.5%;
+    float: left;
+    margin-right: 10px;
 }
 
 .div-l {
-    width:49.5%; 
-    float:left; 
-    clear:right;
+    width: 49.5%;
+    float: left;
+    clear: right;
 }
 
 @media (max-width: 952px) {
@@ -787,11 +767,45 @@ legend {
 
 .scroll-div {
     margin-top: 10px;
-    width: 1020px;
+    width: 100%;
     padding: 2px;
     overflow: scroll;
-    height: 100%;
+    height: 200px;
 }
+
+    .scroll-div::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    .scroll-div::-webkit-scrollbar-thumb {
+        background: gray;
+        border-radius: 4px;
+    }
+
+        .scroll-div::-webkit-scrollbar-thumb:active {
+            background: blue;
+        }
+
+        .scroll-div::-webkit-scrollbar-thumb:hover {
+            background: darkgray;
+            box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+        }
+
+    .scroll-div::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 4px;
+    }
+
+        .scroll-div::-webkit-scrollbar-track:hover,
+        .scroll-div::-webkit-scrollbar-track:active {
+            background: gainsboro;
+        }
+
+::-webkit-scrollbar-corner {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
 
 @media (max-width: 952px) {
     .scroll-div {
@@ -799,7 +813,7 @@ legend {
         width: 100%;
         padding: 2px;
         overflow: scroll;
-        height: 100%;
+        height: 200px;
     }
 }
 
@@ -807,7 +821,6 @@ legend {
     margin: 0 auto;
     text-align: center;
     border: hidden;
-    width:100%;
 }
 
     .gridView td {

@@ -21,14 +21,7 @@ namespace WebTurismoReal.BLL
         public Byte[] Imagen { get; set; }
 
         DepartamentoDAL depto = new DepartamentoDAL();
-
-        public DataTable Departamentos(int id_region, int id_provincia, int id_comuna)
-        {
-            DataTable registrosDeptos = depto.Departamentos(id_region, id_provincia, id_comuna);
-
-            return registrosDeptos;
-        }
-
+    
         public bool BuscarDepartamento(int codigo)
         {
             if (depto.DetalleDepartamento(codigo) == true)

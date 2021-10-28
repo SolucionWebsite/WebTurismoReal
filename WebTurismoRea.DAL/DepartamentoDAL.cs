@@ -23,45 +23,7 @@ namespace WebTurismoRea.DAL
         public string Baños { get; set; }
         public string Valor_Dia { get; set; }
         public Byte[] Imagen { get; set; }
-
-        public DataTable Departamentos(int id_region, int id_provincia, int id_comuna)
-        {
-            using (da.Connection())
-            {
-                DataTable departamentosDisponibles = null;
-
-                try
-                {
-                    OracleCommand cmd = new OracleCommand("LISTARDEPARTAMENTOS", da.Connection());
-                    cmd.CommandText = "LISTARDEPARTAMENTOS";
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    cmd.Connection.Open();
-                    cmd.Parameters.Add("pcursor", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add("region_id", id_region);
-                    cmd.Parameters.Add("provincia_id", id_provincia);
-                    cmd.Parameters.Add("comuna_id", id_comuna);
-
-                    OracleDataAdapter adapter = new OracleDataAdapter();
-                    adapter.SelectCommand = cmd;
-                    DataTable tabla = new DataTable();
-                    adapter.Fill(tabla);
-
-                    departamentosDisponibles = tabla;
-                    int cantidad = tabla.Rows.Count;
-
-                    cmd.Connection.Close();
-
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error al encontrar registros: " + ex.Message);
-                }
-
-                return departamentosDisponibles;
-            }
-        }
-
+        
         public bool DetalleDepartamento(int codigo)
         {
             using (da.Connection())

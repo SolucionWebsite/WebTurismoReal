@@ -135,6 +135,7 @@
     <Content Include="CuentaClave.aspx" />
     <Content Include="CuentaDatos.aspx" />
     <Content Include="CuentaReservas.aspx" />
+    <Content Include="CuentaServicioExtra.aspx" />
     <Content Include="Detalle.aspx" />
     <Content Include="Disponibilidad.aspx" />
     <Content Include="favicon.ico" />
@@ -148,6 +149,9 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\turismorealdeptos - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\turismorealdeptos - ReadOnly - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\turismorealdeptos - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Index.aspx" />
     <Content Include="Login.aspx" />
@@ -232,6 +236,13 @@
     </Compile>
     <Compile Include="CuentaReservas.aspx.designer.cs">
       <DependentUpon>CuentaReservas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CuentaServicioExtra.aspx.cs">
+      <DependentUpon>CuentaServicioExtra.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CuentaServicioExtra.aspx.designer.cs">
+      <DependentUpon>CuentaServicioExtra.aspx</DependentUpon>
     </Compile>
     <Compile Include="Detalle.aspx.cs">
       <DependentUpon>Detalle.aspx</DependentUpon>

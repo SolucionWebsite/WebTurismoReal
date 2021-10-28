@@ -12,6 +12,7 @@
             margin:0 auto;
             text-align:center;
             border:hidden;
+            width: 100%;
         }
 
         .gridView td {
@@ -49,30 +50,82 @@
         border-radius:0 5px 0 0;
         }
 
+        .scroll-div {
+    margin-top: 10px;
+    width: 100%;
+    padding: 2px;
+    overflow: scroll;
+    height: 200px;
+}
+
+    .scroll-div::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    .scroll-div::-webkit-scrollbar-thumb {
+        background: gray;
+        border-radius: 4px;
+    }
+
+        .scroll-div::-webkit-scrollbar-thumb:active {
+            background: blue;
+        }
+
+        .scroll-div::-webkit-scrollbar-thumb:hover {
+            background: darkgray;
+            box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+        }
+
+    .scroll-div::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 4px;
+    }
+
+        .scroll-div::-webkit-scrollbar-track:hover,
+        .scroll-div::-webkit-scrollbar-track:active {
+            background: gainsboro;
+        }
+
+::-webkit-scrollbar-corner {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
 
     </style>
 </head>
 <body>
     
     <form id="form1" runat="server">
-        <div class="card">
-            <div style="overflow:scroll">
-                <asp:GridView ID="GridAcompañantes" CssClass="gridView" runat="server" OnSelectedIndexChanged="GridAcompañantes_SelectedIndexChanged">
-                    <AlternatingRowStyle Wrap="false"/>
+        <br />
+        <br />
+        <br />
+        <asp:Panel ID="PanelTour" runat="server">
+                    <div class="card" style="margin-top:5px;">
+                    <p>Seleccionar tour</p>
+                        <div class="scroll-div">
+                    <asp:GridView ID="GridTours" runat="server" DataKeyNames="ID" CssClass="gridView" >
+                            <AlternatingRowStyle Wrap="False" />
                             <HeaderStyle CssClass="gridViewHeader" />
-                            <PagerStyle ForeColor="#117A65" HorizontalAlign="Center" />
-                            <RowStyle CssClass="rowStyle" BackColor="gainsboro" ForeColor="black" Wrap="false" BorderStyle="Solid" BorderColor="LightGray" BorderWidth="5px"/>
-                            <SelectedRowStyle BackColor="#117A65" ForeColor="black" Wrap="False"/>
+                            <PagerStyle />
+                            <RowStyle Wrap="false" />
+                            <SelectedRowStyle CssClass="gridViewSeleccionada" />
                             <Columns>
-                                <asp:ButtonField ControlStyle-CssClass="btn" ControlStyle-Height="30px" ButtonType="Button" CommandName="Select" ShowHeader="True" Text="Seleccionar" >
-                                <HeaderStyle/>
-                                <ControlStyle  CssClass="btn"></ControlStyle>
+                                <asp:ButtonField ControlStyle-CssClass="btn" ControlStyle-Height="30" ButtonType="Button" CommandName="Select" ShowHeader="True" Text="Seleccionar">
+                                    <ControlStyle CssClass="btn" Height="30px"></ControlStyle>
                                 </asp:ButtonField>
                             </Columns>
-            </asp:GridView>
-            </div>
-        </div>
+                        </asp:GridView>
+                            </div>
+                        </div>
+                </asp:Panel>
         
+        <div class="card">
+            <form runat="server">
+            <asp:Button Text="Eliminar" CssClass="btn" style=" width:200px; text-transform:capitalize; border: 4px solid gainsboro; " runat="server" />
+            </form>
+        </div>
+                
             
     </form>
 </body>
