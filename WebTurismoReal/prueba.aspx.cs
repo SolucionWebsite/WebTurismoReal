@@ -19,6 +19,10 @@ namespace WebTurismoReal
             CargarTabla();
         }
 
+        public void jaja()
+        {
+            string jaja = "djjd";
+        }
         public void CargarTabla()
         {
             TourBLL t = new TourBLL();
