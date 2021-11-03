@@ -11,7 +11,7 @@ namespace WebTurismoReal.Tests
     public class ReservaTest
     { 
         [TestMethod]
-        public void RegistroCliente_DatosVálidos_RegistroGuardadoBD()
+        public void AgregarCliente_DatosVálidos_RegistroGuardadoBD()
         {
             //Requerimiento: Crear y mantener registro de clientes
             //Entrada: datos correctos
@@ -90,7 +90,7 @@ namespace WebTurismoReal.Tests
         }
 
         [TestMethod]
-        public void RegistroAcompañante_DatosVálidos_RegistroGuardadoBD()
+        public void AgregarAcompañante_DatosVálidos_RegistroGuardadoBD()
         {
             //Requerimiento: Crear y mantener registro de clientes
             //Entrada: datos correctos
@@ -119,7 +119,7 @@ namespace WebTurismoReal.Tests
         }
 
         [TestMethod]
-        public void RegistroReserva_DatosVálidos_RegistroGuardadoBD()
+        public void AgregarReserva_DatosVálidos_RegistroGuardadoBD()
         {
             //Requerimiento: Crear un sistema de reservas en donde el usuario pueda acceder fácilmente para arrendar departamentos y agregar servicios extra, además de función de pago.
             //Entrada: datos correctos

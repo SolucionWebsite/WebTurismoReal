@@ -120,11 +120,17 @@
                         </div>
                 </asp:Panel>
         
-        <div class="card">
-            <form runat="server">
-            <asp:Button Text="Eliminar" CssClass="btn" style=" width:200px; text-transform:capitalize; border: 4px solid gainsboro; " runat="server" />
-            </form>
-        </div>
+
+        <div class="card">   
+            <asp:TextBox ID="txt" runat="server" />
+            <asp:ValidationSummary ID="ValidationSummary1" HeaderText="La contraseña debe tener al menos:" DisplayMode="BulletList" ValidationGroup="1" runat="server" />
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ValidationGroup="1" ControlToValidate="txt" runat="server" Display="None"  ValidationExpression="^(?=.*?[A-Z]).{8,}$" ErrorMessage="1 letra máyuscula"></asp:RegularExpressionValidator>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ValidationGroup="1" ControlToValidate="txt" runat="server" Display="None"  ValidationExpression="^(?=.*?[a-z]).{8,}$" ErrorMessage="1 letra minúscula"></asp:RegularExpressionValidator>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" ValidationGroup="1" ControlToValidate="txt" runat="server" Display="None" ValidationExpression="^(?=.*?[0-9]).{8,}$" ErrorMessage="1 número"></asp:RegularExpressionValidator>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator4" ValidationGroup="1" ControlToValidate="txt" runat="server" Display="None" ValidationExpression="^(?=.*?[#?!@$%^&*-.]).{8,}$" ErrorMessage="1 carácter especial"></asp:RegularExpressionValidator>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator5" ValidationGroup="1" ControlToValidate="txt" runat="server" Display="None" ValidationExpression="^(?=.*?[A-Z]).{8,}$" ErrorMessage="un largo de mínimo 8 carácteres"></asp:RegularExpressionValidator>
+            <asp:Button ValidationGroup="1" Text="jaj" runat="server" />
+            </div>
                 
             
     </form>

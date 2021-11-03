@@ -141,6 +141,56 @@ namespace WebTurismoRea.DAL
             }
         }
 
+        public int ModificarServicioExtra(ServicioExtraDAL servicio)
+        {
+            //MODIFICAR
+            using (da.Connection())
+            {
+                int retorno;
+                try
+                {
+                    OracleCommand cmd = new OracleCommand("SP_UPDATESERVICIO", da.Connection())
+                    {
+                        CommandText = "SP_UPDATESERVICIO",
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    cmd.Connection.Open();
+
+                    cmd.Parameters.Add("V_FECHA_HORA_SERV", servicio.FechaAsistencia);
+                    cmd.Parameters.Add("V_CANT_ASISTENTES_SERV", servicio.Asistentes);
+                    cmd.Parameters.Add("V_TOUR_ID_TOUR", servicio.IdTour);
+                    cmd.Parameters.Add("V_TRANSPORTE_ID_TRANS", servicio.IdTransporte);
+                    cmd.Parameters.Add("V_RESERVA_ID_RSV", servicio.IdReserva);
+                    cmd.Parameters.Add("RETORNO", OracleDbType.Int32).Direction = ParameterDirection.Output;
+
+                    cmd.ExecuteNonQuery();
+
+                    retorno = Convert.ToInt32(cmd.Parameters["RETORNO"].Value.ToString().Trim());
+
+                    cmd.Connection.Close();
+
+                    if (retorno == 1)
+                    {
+                        return 1;
+                    }
+                    else if (retorno == 0)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return retorno;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return 0;
+                }
+            }
+        }
+
         public int EliminarServicioExtra(int id_servicio, int id_reserva)
         {
             using (da.Connection())

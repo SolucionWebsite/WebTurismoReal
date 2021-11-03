@@ -162,7 +162,12 @@
                                         </div>
                                     </fieldset>
                                     <asp:RequiredFieldValidator runat="server" ErrorMessage="Olvidaste ingresar la nueva clave" ControlToValidate="Txt_Clave_Nueva" Display="Dynamic" ForeColor="white" ValidationGroup="Validador1"></asp:RequiredFieldValidator>
-
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ValidationGroup="Validador" ControlToValidate="Txt_Clave_Nueva" runat="server" Display="Dynamic" ForeColor="White"  ValidationExpression="^(?=.*?[A-Z]).{8,}$" ErrorMessage="Falta al menos 1 letra máyuscula"></asp:RegularExpressionValidator>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator3" ValidationGroup="Validador" ControlToValidate="Txt_Clave_Nueva" runat="server" Display="Dynamic" ForeColor="White"  ValidationExpression="^(?=.*?[a-z]).{8,}$" ErrorMessage=",1 letra minúscula"></asp:RegularExpressionValidator>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator4" ValidationGroup="Validador" ControlToValidate="Txt_Clave_Nueva" runat="server" Display="Dynamic" ForeColor="White" ValidationExpression="^(?=.*?[0-9]).{8,}$" ErrorMessage=",1 número"></asp:RegularExpressionValidator>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator5" ValidationGroup="Validador" ControlToValidate="Txt_Clave_Nueva" runat="server" Display="Dynamic" ForeColor="White"  ValidationExpression="^(?=.*?[#?!@$%^&*-.]).{8,}$" ErrorMessage=",1 carácter especial"></asp:RegularExpressionValidator>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator6" ValidationGroup="Validador" ControlToValidate="Txt_Clave_Nueva" runat="server" Display="Dynamic" ForeColor="White"  ValidationExpression="^(?=.*?[A-Z]).{8,}$" ErrorMessage="y un largo de mínimo 8 carácteres"></asp:RegularExpressionValidator>
+            
                                 </div>
                                 <div class="fila">
                                     <div class="columna-1" style="padding: 5px; width: 100%;">

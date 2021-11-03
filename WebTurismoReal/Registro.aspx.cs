@@ -136,5 +136,37 @@ namespace WebTurismoReal
             Session.Abandon();
             Response.Redirect("Index.aspx");
         }
+
+        public void TxtRut_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                //-x
+                string ultimaParte = TxtRut.Text.Substring(TxtRut.Text.Length - 1, 1);
+                //.xxx-x
+                string penultimaParte = TxtRut.Text.Substring(TxtRut.Text.Length - 4, 4);
+                string penultimaParte2 = penultimaParte.Remove(3, 1);
+                //.xxx.xxx-x
+                string antepenultimaParte = TxtRut.Text.Substring(TxtRut.Text.Length - 7, 7);
+                string antepenultimaParte2 = antepenultimaParte.Remove(3, 4);
+                //xx.xxx.xxx-x
+                string source = TxtRut.Text;
+                // Remove a substring from the middle of the string.
+                string toRemove = antepenultimaParte;
+                string result = string.Empty;
+                int i = source.IndexOf(toRemove);
+                if (i >= 0)
+                {
+                    result = source.Remove(i, toRemove.Length);
+                }
+                
+                TxtRut.Text = result +  "." + antepenultimaParte2 + "." + penultimaParte2 + "-" + ultimaParte;
+            }
+            catch (Exception)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "FormatoRut()", true);
+            }
+            
+        }
     }
 }

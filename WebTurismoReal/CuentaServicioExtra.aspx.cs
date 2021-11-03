@@ -282,17 +282,124 @@ namespace WebTurismoReal
         public void Btn_Añadir_SE_Click(object sender, EventArgs e)
         {
             PanelAgregarSE.Visible = true;
+            PanelDetalleTour.Visible = false;
+            PanelDetalleTransporte.Visible = false;
+            PanelDatosTransporte.Visible = false;
+            PanelTourDatos.Visible = false;
+            GridTourActual.SelectRow(-1);
+            GridTransporteActual.SelectRow(-1);
+
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "ScrollToADiv1", "setTimeout(scrollToDiv1, 1);", true);
 
         }
 
         public void Btn_Modificar_SE_Click(object sender, EventArgs e)
         {
+            PanelAgregarSE.Visible = false;
+            PanelTour.Visible = false;
+            PanelTransporte.Visible = false;
+            PanelTourDatos.Visible = false;
+            PanelDatosTransporte.Visible = false;
+            PanelDetalleTour.Visible = false;
+            PanelDetalleTransporte.Visible = false;
 
+            int index = GridReservas.SelectedRow.RowIndex;
+            int id = Convert.ToInt32(GridReservas.DataKeys[index].Value);
+
+            if (GridTourActual.SelectedRow == null && GridTransporteActual.SelectedRow == null)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "Olvidar_Selecccionar_Servicio()", true);
+            }
+            else
+            {
+                if (GridTourActual.SelectedRow != null && GridTransporteActual.SelectedRow != null)
+                {
+                    GridTourActual.SelectRow(-1);
+                    GridTransporteActual.SelectRow(-1);
+                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "ModificarUnServicio()", true);
+                }
+                else if (GridTourActual.SelectedRow != null && GridTransporteActual.SelectedRow == null)
+                {
+                    //Modificar Tour
+                    PanelTourDatos.Visible = true;
+
+                    int indexTour = GridTourActual.SelectedRow.RowIndex;
+                    int idTour = Int32.Parse(GridTourActual.Rows[indexTour].Cells[1].Text);
+
+                    ServicioExtraBLL s = new ServicioExtraBLL();
+                    List<ServicioExtraBLL> listaTours = s.ListaServiciosExtra(id);
+
+                    string fechaAsistencia = "";
+                    string cantidadAsistentes = "";
+
+                    foreach (ServicioExtraBLL item in listaTours)
+                    {
+                        if (item.Id == idTour)
+                        {
+                            fechaAsistencia = item.FechaAsistencia;
+                            cantidadAsistentes = item.Asistentes.ToString();
+                        }
+                    }
+
+                    DateTime date = new DateTime();
+                    date = Convert.ToDateTime(fechaAsistencia);
+                    fechaAsistencia = date.ToString("yyyy-MM-dd");
+
+                    TxtFecha.Text = fechaAsistencia;
+                    TxtCantidadA.Text = cantidadAsistentes;
+
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "ScrollToADiv4", "setTimeout(scrollToDiv4, 1);", true);
+
+                }
+                else if (GridTourActual.SelectedRow == null && GridTransporteActual.SelectedRow != null)
+                {
+                    //Modificar Transporte
+                    PanelDatosTransporte.Visible = true;
+
+                    int indexTrans = GridTransporteActual.SelectedRow.RowIndex;
+                    int idTrans = Int32.Parse(GridTransporteActual.Rows[indexTrans].Cells[1].Text);
+
+                    ServicioExtraBLL s = new ServicioExtraBLL();
+                    List<ServicioExtraBLL> listaTours = s.ListaServiciosExtra(id);
+
+                    string fechaAbordo = "";
+                    string horaAbordo = "";
+                    string pasajeros = "";
+
+                    foreach (ServicioExtraBLL item in listaTours)
+                    {
+                        if (item.Id == idTrans)
+                        {
+                            fechaAbordo = item.FechaAsistencia;
+                            horaAbordo = item.Hora;
+                            pasajeros = item.Asistentes.ToString();
+                        }
+                    }
+
+                    DateTime date = new DateTime();
+                    date = Convert.ToDateTime(fechaAbordo);
+                    fechaAbordo = date.ToString("yyyy-MM-dd");
+
+                    TxtFechaAbordo.Text = fechaAbordo;
+                    TxtHora.Text = horaAbordo;
+                    TxtCantidadA.Text = pasajeros;
+
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "ScrollToADiv7", "setTimeout(scrollToDiv7, 1);", true);
+
+                }
+            }
         }
 
         public void Btn_Eliminar_SE_Click(object sender, EventArgs e)
         {
+            PanelAgregarSE.Visible = false;
+            PanelTour.Visible = false;
+            PanelTransporte.Visible = false;
+            PanelTourDatos.Visible = false;
+            PanelDatosTransporte.Visible = false;
+            PanelDetalleTour.Visible = false;
+            PanelDetalleTransporte.Visible = false;
+
             ServicioExtraBLL s = new ServicioExtraBLL();
 
             int index = GridReservas.SelectedRow.RowIndex;
@@ -517,45 +624,88 @@ namespace WebTurismoReal
             }
             else
             {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "ScrollToADiv5", "setTimeout(scrollToDiv5, 1);", true);
-
-                int indexT = GridTours.SelectedRow.RowIndex;
-
-                int valorTour = Int32.Parse(GridTours.Rows[indexT].Cells[3].Text.Replace("$", "").Replace(".", ""));
-                int cantidadPersonas = Int32.Parse(TxtCantidadA.Text);
-
-                int total = valorTour * cantidadPersonas;
-
-                PanelDetalleTour.Visible = true;
-
-                string nombre = GridTours.Rows[indexT].Cells[2].Text;
-                string zona = GridTours.Rows[indexT].Cells[6].Text;
-                string valorPP = GridTours.Rows[indexT].Cells[3].Text;
-
-                LblNombreTour.Text = nombre;
-                LblZona.Text = zona;
-                LblFechaAsistencia.Text = Convert.ToDateTime(TxtFecha.Text).ToShortDateString();
-                LblAsistentesTour.Text = TxtCantidadA.Text;
-                LblValorPersonaTour.Text = valorPP;
-                LblTotalTour.Text = total.ToString("C", CultureInfo.CurrentCulture);
-
-                foreach (ServicioExtraBLL item in listaServiciosActual)
+                if (GridTourActual.SelectedRow == null)
                 {
-                    DateTime fechaServicio = Convert.ToDateTime(item.FechaAsistencia);
-                    if (fechaIngresada == fechaServicio)
-                    {
-                        LblFechaServicio.InnerText = item.FechaAsistencia;
-                        ClientScript.RegisterStartupScript(this.GetType(), "myalert", "ImposibleFechasTour2()", true);
-                        PanelDetalleTour.Visible = false;
-                    }
-                    else
-                    {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "ScrollToADiv5", "setTimeout(scrollToDiv5, 1);", true);
+                    //Calcular desde botón agregar
 
+                    int indexT = GridTours.SelectedRow.RowIndex;
+
+                    int valorTour = Int32.Parse(GridTours.Rows[indexT].Cells[3].Text.Replace("$", "").Replace(".", ""));
+                    int cantidadPersonas = Int32.Parse(TxtCantidadA.Text);
+
+                    int total = valorTour * cantidadPersonas;
+
+                    PanelDetalleTour.Visible = true;
+
+                    string nombre = GridTours.Rows[indexT].Cells[2].Text;
+                    string zona = GridTours.Rows[indexT].Cells[6].Text;
+                    string valorPP = GridTours.Rows[indexT].Cells[3].Text;
+
+                    LblNombreTour.Text = nombre;
+                    LblZona.Text = zona;
+                    LblFechaAsistencia.Text = Convert.ToDateTime(TxtFecha.Text).ToShortDateString();
+                    LblAsistentesTour.Text = TxtCantidadA.Text;
+                    LblValorPersonaTour.Text = valorPP;
+                    LblTotalTour.Text = total.ToString("C", CultureInfo.CurrentCulture);
+
+                    foreach (ServicioExtraBLL item in listaServiciosActual)
+                    {
+                        DateTime fechaServicio = Convert.ToDateTime(item.FechaAsistencia);
+                        if (fechaIngresada == fechaServicio)
+                        {
+                            LblFechaServicio.InnerText = item.FechaAsistencia;
+                            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "ImposibleFechasTour2()", true);
+                            PanelDetalleTour.Visible = false;
+                        }
+                        else
+                        {
+                            FilaBotonContratar.Visible = true;
+                            FilaBotonModificar.Visible = false;
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "ScrollToADiv5", "setTimeout(scrollToDiv5, 1);", true);
+
+                        }
+                    }
+                }
+                else if (GridTours.SelectedRow == null)
+                {
+                    //Calcular desde botón modificar
+
+                    int indexT = GridTourActual.SelectedRow.RowIndex;
+
+                    int valorTour = Int32.Parse(GridTourActual.Rows[indexT].Cells[4].Text.Replace("$", "").Replace(".", ""));
+                    int cantidadPersonas = Int32.Parse(TxtCantidadA.Text);
+
+                    int total = valorTour * cantidadPersonas;
+
+                    PanelDetalleTour.Visible = true;
+
+                    string nombre = GridTourActual.Rows[indexT].Cells[3].Text;
+
+                    LblNombreTour.Text = nombre;
+                    FilaZona.Visible = false;
+                    LblFechaAsistencia.Text = Convert.ToDateTime(TxtFecha.Text).ToShortDateString();
+                    LblAsistentesTour.Text = TxtCantidadA.Text;
+                    LblValorPersonaTour.Text = valorTour.ToString("C", CultureInfo.CurrentCulture);
+                    LblTotalTour.Text = total.ToString("C", CultureInfo.CurrentCulture);
+
+                    foreach (ServicioExtraBLL item in listaServiciosActual)
+                    {
+                        DateTime fechaServicio = Convert.ToDateTime(item.FechaAsistencia);
+                        if (fechaIngresada == fechaServicio)
+                        {
+                            LblFechaServicio.InnerText = item.FechaAsistencia;
+                            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "ImposibleFechasTour2()", true);
+                            PanelDetalleTour.Visible = false;
+                        }
+                        else
+                        {
+                            FilaBotonContratar.Visible = false;
+                            FilaBotonModificar.Visible = true;
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "ScrollToADiv5", "setTimeout(scrollToDiv5, 1);", true);
+                        }
                     }
                 }
             }
-
         }
 
         public void BtnContratarTour_Click(object sender, EventArgs e)
@@ -702,6 +852,16 @@ namespace WebTurismoReal
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "myalert", "ServicioAgregadoFallido()", true);
             }
+        }
+
+        public void BtnModificarTransporte_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        public void BtnModificarTour_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

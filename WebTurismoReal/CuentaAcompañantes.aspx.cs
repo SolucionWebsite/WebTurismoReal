@@ -281,19 +281,10 @@ namespace WebTurismoReal
                         {
                             if (acompañante.AgregarAcompañante(acompañante) == 1)
                             {
-                                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "Exitoso()", true);
-                                Txt_Rut_A.Text = "";
-                                Txt_Nombre_A.Text = "";
-                                Txt_Apellido_A.Text = "";
-                                Txt_Apellido_M.Text = "";
-                                Txt_Correo_A.Text = "";
-                                Txt_Nacimiento_A.Text = "";
-                                CmbGenero.SelectedValue = "0";
-                                CmbNacionalidad.SelectedValue = "0";
-                                Txt_Telefono_A.Text = "";
                                 CargarTabla();
-                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "ScrollToADiv", "setTimeout(scrollToDiv, 1);", true);
-
+                                Limpiar();
+                                PanelAñadirAcompañantes.Visible = false;
+                                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "Exitoso()", true);
                             }
                             else if (acompañante.AgregarAcompañante(acompañante) == 0)
                             {
@@ -354,7 +345,6 @@ namespace WebTurismoReal
                             CargarTabla();
                             Limpiar();
                             PanelAñadirAcompañantes.Visible = false;
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "ScrollToADiv", "setTimeout(scrollToDiv, 1);", true);
 
                         }
 
@@ -449,7 +439,6 @@ namespace WebTurismoReal
             if (GridAcompañantes.SelectedRow == null)
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "myalert", "SeleccionarAcompañante()", true);
-                
             }
             else
             {

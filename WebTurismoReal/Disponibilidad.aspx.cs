@@ -120,7 +120,11 @@ namespace WebTurismoReal
 
         public void Btn_Calcular_Click(object sender, EventArgs e)
         {
-            try
+            if (GridDepartamentos.SelectedRow == null)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "DepartamentoNoSeleccionado()", true);
+            }
+            else
             {
                 int index = GridDepartamentos.SelectedRow.RowIndex;
 
@@ -128,7 +132,7 @@ namespace WebTurismoReal
 
                 DepartamentoBLL depto = new DepartamentoBLL();
 
-                if (Convert.ToInt32(txt_acompañantes.Text) <= 9)
+                if (Convert.ToInt32(txt_acompañantes.Text) <= 10 && Convert.ToInt32(txt_acompañantes.Text) > 0)
                 {
                     if (depto.BuscarDepartamento(id) == true)
                     {
@@ -161,12 +165,6 @@ namespace WebTurismoReal
                 {
                     ClientScript.RegisterStartupScript(this.GetType(), "myalert", "LimiteAcompañantes()", true);
                 }
-
-            }
-            catch (Exception)
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "DepartamentoNoSeleccionado()", true);
-
             }
         }
 

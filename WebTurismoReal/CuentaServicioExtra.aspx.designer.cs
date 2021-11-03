@@ -364,6 +364,15 @@ namespace WebTurismoReal {
         protected global::System.Web.UI.WebControls.Label LblNombreTour;
         
         /// <summary>
+        /// FilaZona control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow FilaZona;
+        
+        /// <summary>
         /// LblZona control.
         /// </summary>
         /// <remarks>
@@ -409,6 +418,15 @@ namespace WebTurismoReal {
         protected global::System.Web.UI.WebControls.Label LblTotalTour;
         
         /// <summary>
+        /// FilaBotonContratar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow FilaBotonContratar;
+        
+        /// <summary>
         /// BtnContratarTour control.
         /// </summary>
         /// <remarks>
@@ -416,6 +434,24 @@ namespace WebTurismoReal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnContratarTour;
+        
+        /// <summary>
+        /// FilaBotonModificar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow FilaBotonModificar;
+        
+        /// <summary>
+        /// BtnModificarTour control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnModificarTour;
         
         /// <summary>
         /// PanelDatosTransporte control.
@@ -569,5 +605,14 @@ namespace WebTurismoReal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnContratarTransporte;
+        
+        /// <summary>
+        /// BtnModificarTransporte control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnModificarTransporte;
     }
 }

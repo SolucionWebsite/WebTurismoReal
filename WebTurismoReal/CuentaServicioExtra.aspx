@@ -122,6 +122,15 @@
                 confirmButtonColor: '#117A65'
             })
         }
+        function ModificarUnServicio() {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Oops...',
+                text: 'Sólo puedes modificar un servicio a la vez!',
+                iconColor: '#117A65',
+                confirmButtonColor: '#117A65'
+            })
+        }
         function SessionExpired() {
             swal.fire({
                 title: "Tu sesión expiró!!",
@@ -168,8 +177,14 @@
                 confirmButtonColor: '#117A65'
             })
         }
-        function scrollToDiv() {
-            document.getElementById('PanelTransporte').scrollIntoView();
+        function ImposibleAcompañantesTour() {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Oops...',
+                text: 'La cantidad de asistentes no debe ser inferior a 0 ni superior a 10 personas',
+                iconColor: '#117A65',
+                confirmButtonColor: '#117A65'
+            })
         }
         function ImposibleFechasTransporte() {
             Swal.fire({
@@ -212,6 +227,9 @@
         }
         function scrollToDiv3() {
             document.getElementById('PanelTipoTrayecto').scrollIntoView();
+        }
+        function scrollToDiv4() {
+            document.getElementById('PanelTourDatos').scrollIntoView();
         }
         function scrollToDiv5() {
             document.getElementById('PanelDetalleTour').scrollIntoView();
@@ -478,7 +496,7 @@
                 <asp:Panel ID="PanelDetalleTour" Visible="false" runat="server">
                     <div class="card" style="margin-bottom: 5px;">
                         <br />
-                        <p>DETALLE DEL SERICIO DE TOUR</p>
+                        <p>DETALLE DEL SERVICIO DE TOUR</p>
                         <br />
                         <table style="margin: 0 auto; width: 700px;">
                             <tr>
@@ -486,7 +504,7 @@
                                 <td style="text-align: left; width: 50%; padding-left: 10px;">
                                     <asp:Label ID="LblNombreTour" runat="server" /></td>
                             </tr>
-                            <tr>
+                            <tr id="FilaZona" runat="server">
                                 <td style="text-align: right; width: 50%">Zona a visitar:</td>
                                 <td style="text-align: left; width: 50%; padding-left: 10px;">
                                     <asp:Label ID="LblZona" runat="server" /></td>
@@ -511,10 +529,16 @@
                                 <td style="text-align: left; width: 50%; padding-left: 10px;">
                                     <asp:Label ID="LblTotalTour" runat="server" /></td>
                             </tr>
-                            <tr>
+                            <tr id="FilaBotonContratar" runat="server">
                                 <td colspan="2">
                                     <br />
                                     <asp:Button ID="BtnContratarTour" Text="Contratar" CssClass="btn" runat="server" OnClick="BtnContratarTour_Click" />
+                                </td>
+                            </tr>
+                            <tr id="FilaBotonModificar" runat="server">
+                                <td colspan="2">
+                                    <br />
+                                    <asp:Button ID="BtnModificarTour" Text="GuardarCambios" CssClass="btn" runat="server" OnClick="BtnModificarTour_Click" />
                                 </td>
                             </tr>
                         </table>
@@ -613,6 +637,12 @@
                                 <td colspan="2">
                                     <br />
                                     <asp:Button ID="BtnContratarTransporte" Text="Contratar" CssClass="btn" runat="server" OnClick="BtnContratarTransporte_Click" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <br />
+                                    <asp:Button ID="BtnModificarTransporte" Visible="false" Text="Guardar cambios" CssClass="btn" runat="server" OnClick="BtnModificarTransporte_Click" />
                                 </td>
                             </tr>
                         </table>

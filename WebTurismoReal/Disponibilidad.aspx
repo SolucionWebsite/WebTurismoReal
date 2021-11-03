@@ -57,7 +57,7 @@
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',
-                text: 'El límite de acompañantes es 9 por departamento!',
+                text: 'La cantidad de acompañantes no debe ser inferior a 0 ni superior a 10 personas.',
                 iconColor: '#117A65',
                 confirmButtonColor: '#117A65'
             })
@@ -173,6 +173,7 @@
             <div class="row">
                 <div class="card">
                     <div style="width:100%;">
+                        <div class="scroll-div" style="height:100%;">
                         <asp:GridView ID="GridDepartamentos" runat="server" DataKeyNames="ID" OnRowDataBound="GridDepartamentos_RowDataBound" CssClass="gridView" OnSelectedIndexChanged="GridDepartamentos_SelectedIndexChanged">
                             <AlternatingRowStyle Wrap="False" />
                             <HeaderStyle CssClass="gridViewHeader" />
@@ -185,6 +186,7 @@
                                 </asp:ButtonField>
                             </Columns>
                         </asp:GridView>
+                            </div>
                     </div>
                 </div>
                 <div class="card" style="margin-top: 5px;">

@@ -48,7 +48,10 @@
                 title: 'Los cambios se guardaron con éxito!',
                 showConfirmButton: false,
                 timer: 2000
-            })
+            },
+                function () {
+                    document.getElementById('PanelAcompañantes').scrollIntoView();
+                });
         }
         function ActualizacionFallida() {
             Swal.fire({
@@ -60,22 +63,17 @@
             })
         }
         function Exitoso() {
-            const Toast = Swal.mixin({
-                toast: true,
+            Swal.fire({
                 position: 'top-end',
-                showConfirmButton: false,
-                timer: 2000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
-
-            Toast.fire({
                 icon: 'success',
-                title: 'Acompañante añadido!'
-            })
+                title: 'Acompañante añadido con éxito!',
+                showConfirmButton: false,
+                timer: 2000
+            },
+                function () {
+                    swal.close();
+                    document.getElementById('PanelAcompañantes').scrollIntoView();
+                });
         }
         function Existente() {
             Swal.fire({

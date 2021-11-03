@@ -39,6 +39,15 @@
                 confirmButtonColor: '#117A65'
             })
         }
+        function FormatoRut() {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Oops...',
+                text: 'El rut debe tener un largo entre 8 y 9 carácteres!',
+                iconColor: '#117A65',
+                confirmButtonColor: '#117A65'
+            })
+        }
         function Imposible() {
             Swal.fire({
                 icon: 'warning',
@@ -201,7 +210,7 @@
                             <tr>
                                 <td class="auto-style1">Rut</td>
                                 <td>
-                                    <asp:TextBox runat="server" placeholder="Rut Ej: 12.345.678-9" class="form-control1" type="texbox" ID="TxtRut" />
+                                    <asp:TextBox runat="server" AutoPostBack="true" placeholder="Rut Ej: 123456789" class="form-control1" type="texbox" ID="TxtRut" OnTextChanged="TxtRut_TextChanged" />
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="TxtRut" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu rut" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
                                     <asp:RegularExpressionValidator runat="server" ErrorMessage="Olidaste puntos y guión" ValidationExpression="^(\d{1,3}(\.?\d{3}){2})\-?([\dkK])$" ControlToValidate="TxtRut" Display="Dynamic" ForeColor="white" ValidationGroup="Validador1"></asp:RegularExpressionValidator>
                                 </td>
@@ -249,15 +258,20 @@
                                 <td>
                                     <asp:TextBox runat="server" placeholder="Ingresa tu contraseña" type="password" class="form-control1" ID="TxtClave" />
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TxtClave" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu contraseña" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
-
-
+                                    
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ValidationGroup="Validador" ControlToValidate="TxtClave" runat="server" Display="Dynamic" ForeColor="White"  ValidationExpression="^(?=.*?[A-Z]).{8,}$" ErrorMessage="Falta al menos 1 letra máyuscula"></asp:RegularExpressionValidator>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator3" ValidationGroup="Validador" ControlToValidate="TxtClave" runat="server" Display="Dynamic" ForeColor="White"  ValidationExpression="^(?=.*?[a-z]).{8,}$" ErrorMessage=",1 letra minúscula"></asp:RegularExpressionValidator>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator4" ValidationGroup="Validador" ControlToValidate="TxtClave" runat="server" Display="Dynamic" ForeColor="White" ValidationExpression="^(?=.*?[0-9]).{8,}$" ErrorMessage=",1 número"></asp:RegularExpressionValidator>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator5" ValidationGroup="Validador" ControlToValidate="TxtClave" runat="server" Display="Dynamic" ForeColor="White"  ValidationExpression="^(?=.*?[#?!@$%^&*-.]).{8,}$" ErrorMessage=",1 carácter especial"></asp:RegularExpressionValidator>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator6" ValidationGroup="Validador" ControlToValidate="TxtClave" runat="server" Display="Dynamic" ForeColor="White"  ValidationExpression="^(?=.*?[A-Z]).{8,}$" ErrorMessage="y un largo de mínimo 8 carácteres"></asp:RegularExpressionValidator>
+            
                                     <br />
                                 </td>
                             </tr>
                             <tr>
                                 <td class="auto-style1">Contraseña</td>
                                 <td>
-                                    <asp:TextBox runat="server" placeholder="Ingresa tu contraseña de nuevo" type="password" class="form-control1" ID="TxtClave2" />
+                                    <asp:TextBox runat="server" placeholder="Ingresa tu contraseña de nuevo" ValidationGroup="1" type="password" class="form-control1" ID="TxtClave2" />
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="TxtClave2" Display="Dynamic" ErrorMessage="Olvidaste ingresar tu contraseña" ForeColor="white" ValidationGroup="Validador"></asp:RequiredFieldValidator>
                                     <asp:CompareValidator ID="CompareValidator2" runat="server" ErrorMessage="Las contraseñas no coinciden" Display="Dynamic" ControlToValidate="TxtClave" ForeColor="white"></asp:CompareValidator>
 

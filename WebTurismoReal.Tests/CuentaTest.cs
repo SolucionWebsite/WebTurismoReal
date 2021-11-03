@@ -119,5 +119,48 @@ namespace WebTurismoReal.Tests
             //Assert
             Assert.IsTrue(resultado == 1);
         }
+
+        [TestMethod]
+        public void AgregarServicio_DatosVálidos_RegistroRegistradoBD()
+        {
+            //Requerimiento: Crear y mantener registro de clientes
+            //Entrada: datos correctos
+            //Salida: Registro almacenado en la base de datos, retorno 1
+
+            //Arrange
+            ServicioExtraBLL s = new ServicioExtraBLL();
+
+            s.FechaAsistencia = "09/11/2021 09:00";
+            s.Asistentes = 3;
+            s.IdTour = 22;
+            s.IdTransporte = null;
+            s.IdReserva = 1;
+
+            //Act
+            int resultado = s.AgregarServicioExtra(s);
+
+            //Assert
+            Assert.IsTrue(resultado == 1);
+        }
+
+        [TestMethod]
+        public void EliminarServicio_DatosVálidos_RegistroEliminadoBD()
+        {
+            //Requerimiento: Crear y mantener registro de clientes
+            //Entrada: datos correctos
+            //Salida: Registro almacenado en la base de datos, retorno 1
+
+            //Arrange
+            ServicioExtraBLL servicio = new ServicioExtraBLL();
+
+            int idServicio = 1;
+            int idReserva = 1;
+
+            //Act
+            int resultado = servicio.EliminarServicioExtra(idServicio, idReserva);
+
+            //Assert
+            Assert.IsTrue(resultado == 1);
+        }
     }
 }
