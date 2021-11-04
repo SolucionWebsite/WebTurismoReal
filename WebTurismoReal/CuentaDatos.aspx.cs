@@ -196,5 +196,24 @@ namespace WebTurismoReal
             Session.Abandon();
             Response.Redirect("Index.aspx");
         }
+
+        public void BtnEliminarCuenta_Click(object sender, EventArgs e)
+        {
+            ClienteBLL c = new ClienteBLL();
+
+            c.Rut = Txt_Rut.Text;
+            c.Nombre = Txt_Nombre.Text;
+            c.ApellidoP = Txt_Apellido_P.Text;
+            c.ApellidoM = Txt_Apellido_M.Text;
+            c.Correo = "sincorreo@gmail.com";
+            c.GeneroC = Int32.Parse(CmbGenero.SelectedValue);
+            c.NacionalidadC = Int32.Parse(CmbNacionalidad.SelectedValue);
+
+            if (c.ModificarCliente(c.Rut, c) == 1)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "EliminarCuenta()", true);
+            }
+            
+        }
     }
 }

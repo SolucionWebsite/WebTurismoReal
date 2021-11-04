@@ -104,97 +104,90 @@ namespace WebTurismoReal
 
                 List<ServicioExtraBLL> listaServicios = servicio.ListaServiciosExtra(id);
 
-                try
-                {
-                    List<ServicioExtraBLL> listaServiciosActualesTour = new List<ServicioExtraBLL>();
-                    List<ServicioExtraBLL> listaServiciosActualesTrans = new List<ServicioExtraBLL>();
+                List<ServicioExtraBLL> listaServiciosActualesTour = new List<ServicioExtraBLL>();
+                List<ServicioExtraBLL> listaServiciosActualesTrans = new List<ServicioExtraBLL>();
 
-                    if (listaServicios.Count == 0)
-                    {
-                        PanelNoServicios.Visible = true;
-                    }
-                    else
-                    {
-
-                        foreach (ServicioExtraBLL item in listaServicios)
-                        {
-                            if (item.IdTour != null)
-                            {
-                                ServicioExtraBLL s = new ServicioExtraBLL();
-
-                                s.Id = item.Id;
-                                s.ValorTotal = item.ValorTotal;
-                                s.FechaAsistencia = item.FechaAsistencia;
-                                s.Hora = item.Hora;
-                                s.Asistentes = item.Asistentes;
-                                s.IdTour = item.IdTour;
-                                s.NombreTour = item.NombreTour;
-                                s.ValorPTour = item.ValorPTour;
-                                s.IdReserva = item.IdReserva;
-
-                                listaServiciosActualesTour.Add(s);
-
-                            }
-                            else if (item.IdTour == null)
-                            {
-                                ServicioExtraBLL s = new ServicioExtraBLL();
-
-                                s.Id = item.Id;
-                                s.ValorTotal = item.ValorTotal;
-                                s.FechaAsistencia = item.FechaAsistencia;
-                                s.Hora = item.Hora;
-                                s.Asistentes = item.Asistentes;
-                                s.IdTransporte = item.IdTransporte;
-                                s.Trayecto = item.Trayecto;
-                                s.Vehiculo = item.Vehiculo;
-                                s.Asientos = item.Asientos;
-                                s.ValorPTransporte = item.ValorPTransporte;
-                                s.IdReserva = item.IdReserva;
-
-                                listaServiciosActualesTrans.Add(s);
-
-                            }
-                        }
-
-                        foreach (ServicioExtraBLL item in listaServicios)
-                        {
-                            if (item.IdTour != null)
-                            {
-                                GridTourActual.DataSource = listaServiciosActualesTour;
-                                GridTourActual.DataBind();
-
-                                GridTourActual.HeaderRow.Cells[3].Text = "NOMBRE TOUR";
-                                GridTourActual.HeaderRow.Cells[4].Text = "VALOR POR PERSONA";
-                                GridTourActual.HeaderRow.Cells[10].Text = "ASISTENTES";
-                                GridTourActual.HeaderRow.Cells[11].Text = "VALOR TOTAL";
-                                GridTourActual.HeaderRow.Cells[12].Text = "FECHA ASISTENCIA";
-
-                                PanelTourActual.Visible = true;
-                            }
-                            else if (item.IdTransporte != null)
-                            {
-                                GridTransporteActual.DataSource = listaServiciosActualesTrans;
-                                GridTransporteActual.DataBind();
-
-                                GridTransporteActual.HeaderRow.Cells[6].Text = "TIPO TRAYECTO";
-                                GridTransporteActual.HeaderRow.Cells[7].Text = "VEHÍCULO";
-                                GridTransporteActual.HeaderRow.Cells[8].Text = "ASIENTOS";
-                                GridTransporteActual.HeaderRow.Cells[9].Text = "VALOR POR PERSONA";
-                                GridTransporteActual.HeaderRow.Cells[10].Text = "ASISTENTES";
-                                GridTransporteActual.HeaderRow.Cells[11].Text = "VALOR TOTAL";
-                                GridTransporteActual.HeaderRow.Cells[12].Text = "FECHA ASISTENCIA";
-
-                                PanelTransporteActual.Visible = true;
-                            }
-                        }
-                    }
-
-                }
-                catch (Exception)
+                if (listaServicios.Count == 0)
                 {
                     PanelNoServicios.Visible = true;
                 }
-                
+                else
+                {
+
+                    foreach (ServicioExtraBLL item in listaServicios)
+                    {
+                        if (item.IdTour != null)
+                        {
+                            ServicioExtraBLL s = new ServicioExtraBLL();
+
+                            s.Id = item.Id;
+                            s.ValorTotal = item.ValorTotal;
+                            s.FechaAsistencia = item.FechaAsistencia;
+                            s.Hora = item.Hora;
+                            s.Asistentes = item.Asistentes;
+                            s.IdTour = item.IdTour;
+                            s.NombreTour = item.NombreTour;
+                            s.ValorPTour = item.ValorPTour;
+                            s.IdReserva = item.IdReserva;
+
+                            listaServiciosActualesTour.Add(s);
+
+                        }
+                        else if (item.IdTour == null)
+                        {
+                            ServicioExtraBLL s = new ServicioExtraBLL();
+
+                            s.Id = item.Id;
+                            s.ValorTotal = item.ValorTotal;
+                            s.FechaAsistencia = item.FechaAsistencia;
+                            s.Hora = item.Hora;
+                            s.Asistentes = item.Asistentes;
+                            s.IdTransporte = item.IdTransporte;
+                            s.Trayecto = item.Trayecto;
+                            s.Vehiculo = item.Vehiculo;
+                            s.Asientos = item.Asientos;
+                            s.ValorPTransporte = item.ValorPTransporte;
+                            s.IdReserva = item.IdReserva;
+
+                            listaServiciosActualesTrans.Add(s);
+
+                        }
+                    }
+
+                    foreach (ServicioExtraBLL item in listaServicios)
+                    {
+                        if (item.IdTour != null)
+                        {
+                            GridTourActual.DataSource = listaServiciosActualesTour;
+                            GridTourActual.DataBind();
+
+                            GridTourActual.HeaderRow.Cells[3].Text = "NOMBRE TOUR";
+                            GridTourActual.HeaderRow.Cells[4].Text = "VALOR POR PERSONA";
+                            GridTourActual.HeaderRow.Cells[10].Text = "ASISTENTES";
+                            GridTourActual.HeaderRow.Cells[11].Text = "VALOR TOTAL";
+                            GridTourActual.HeaderRow.Cells[12].Text = "FECHA ASISTENCIA";
+
+                            PanelTourActual.Visible = true;
+                            PanelNoServicios.Visible = false;
+                        }
+                        else if (item.IdTransporte != null)
+                        {
+                            GridTransporteActual.DataSource = listaServiciosActualesTrans;
+                            GridTransporteActual.DataBind();
+
+                            GridTransporteActual.HeaderRow.Cells[6].Text = "TIPO TRAYECTO";
+                            GridTransporteActual.HeaderRow.Cells[7].Text = "VEHÍCULO";
+                            GridTransporteActual.HeaderRow.Cells[8].Text = "ASIENTOS";
+                            GridTransporteActual.HeaderRow.Cells[9].Text = "VALOR POR PERSONA";
+                            GridTransporteActual.HeaderRow.Cells[10].Text = "ASISTENTES";
+                            GridTransporteActual.HeaderRow.Cells[11].Text = "VALOR TOTAL";
+                            GridTransporteActual.HeaderRow.Cells[12].Text = "FECHA ASISTENCIA";
+
+                            PanelTransporteActual.Visible = true;
+                            PanelNoServicios.Visible = false;
+                        }
+                    }
+                }
             }
 
         }
@@ -861,6 +854,38 @@ namespace WebTurismoReal
 
         public void BtnModificarTour_Click(object sender, EventArgs e)
         {
+            ServicioExtraBLL s = new ServicioExtraBLL();
+
+            int indexS = GridTourActual.SelectedRow.RowIndex;
+            int idServicio = Convert.ToInt32(GridTourActual.DataKeys[indexS].Value);
+
+            int indexT = GridTourActual.SelectedRow.RowIndex;
+            int idTour = Int32.Parse(GridTourActual.Rows[indexT].Cells[2].Text);
+
+            int indexR = GridTourActual.SelectedRow.RowIndex;
+            int idReserva = Int32.Parse(GridTourActual.Rows[indexT].Cells[14].Text);
+
+            DateTime fecha = Convert.ToDateTime(TxtFecha.Text);
+
+            s.Id = idServicio;
+            s.FechaAsistencia = fecha.Date.ToShortDateString();
+            s.Asistentes = Int32.Parse(TxtCantidadA.Text);
+            s.IdTour = idTour;
+            s.IdTransporte = null;
+            s.IdReserva = idReserva;
+
+            if (s.ModificarServicioExtra(s) == 1)
+            {
+                PanelTourDatos.Visible = false;
+                PanelDetalleTour.Visible = false;
+                PanelServiciosExtraActual.Visible = false;
+                CargarReservas();
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "ServicioModificadoExito()", true);
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "ServicioModificadoFallido()", true);
+            }
             
         }
     }

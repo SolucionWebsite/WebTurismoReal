@@ -192,19 +192,19 @@
                 <div class="card" style="margin-bottom: 5px; padding: 15px;">
                     <table style="width: 100%;">
                         <tr>
-                            <td colspan="2">
+                            <td colspan="2" class="td-after">
                                 <asp:Button ID="Btn_Datos" CssClass="btn" Text="Mis datos" runat="server" OnClick="Btn_Datos_Click" /></td>
                         </tr>
                         <tr>
-                            <td style="width: 50%">
+                            <td class="td-after">
                                 <asp:Button ID="Btn_Reservas" CssClass="btn" Text="Mis reservas" runat="server" OnClick="Btn_Reservas_Click" /></td>
-                            <td style="width: 50%">
+                            <td class="td-after">
                                 <asp:Button ID="Btn_Acompañantes" CssClass="btn-active" Text="Mis acompañantes" runat="server" OnClick="Btn_Acompañantes_Click" /></td>
                         </tr>
                         <tr>
-                            <td style="width: 50%">
+                            <td class="td-after">
                                 <asp:Button ID="Btn_Servicios" CssClass="btn" Text="Servicios Extra" runat="server" OnClick="Btn_Servicios_Click" /></td>
-                            <td style="width: 50%">
+                            <td class="td-after">
                                 <asp:Button ID="Btn_Clave" CssClass="btn" Text="Cambiar contraseña" runat="server" OnClick="Btn_Clave_Click" /></td>
                         </tr>
                     </table>

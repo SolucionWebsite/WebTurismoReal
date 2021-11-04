@@ -32,6 +32,21 @@
                 }
             });
         }
+        function EliminarCuenta() {
+            Swal.fire({
+                title: 'Se ha eliminado tu cuenta',
+                text: 'Serás redirigido a la página principal',
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading()
+                },
+                willClose: () => {
+                    window.location.href = "/Index";
+                }
+            })
+
+        }
         function ActualizacionExitosa() {
             Swal.fire({
                 position: 'top-end',
@@ -114,21 +129,21 @@
                                 <asp:Button ID="Btn_Datos" CssClass="btn-active" Text="Mis datos" runat="server" OnClick="Btn_Datos_Click" /></td>
                         </tr>
                         <tr>
-                            <td>
+                            <td class="td-after">
                                 <asp:Button ID="Btn_Reservas" CssClass="btn" Text="Mis reservas" runat="server" OnClick="Btn_Reservas_Click" /></td>
-                            <td>
+                            <td class="td-after">
                                 <asp:Button ID="Btn_Acompañantes" CssClass="btn" Text="Mis acompañantes" runat="server" OnClick="Btn_Acompañantes_Click" /></td>
                         </tr>
                         <tr>
-                            <td>
+                            <td class="td-after">
                                 <asp:Button ID="Btn_Servicios" CssClass="btn" Text="Servicios Extra" runat="server" OnClick="Btn_Servicios_Click" /></td>
-                            <td>
+                            <td class="td-after">
                                 <asp:Button ID="Btn_Clave" CssClass="btn" Text="Cambiar contraseña" runat="server" OnClick="Btn_Clave_Click" /></td>
                         </tr>
                     </table>
                 </div>
 
-                <div class="card" style="margin-top: 5px; padding: 15px;">
+                <div class="card" style="margin-top: 5px; margin-bottom:5px; padding: 15px;">
                     <div class="row">
                         <h5 style="font-size: 18px; margin-bottom: 20px;">Información cliente</h5>
                     </div>
@@ -246,6 +261,14 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="card" style="margin-bottom:5px;">   
+                    <h5 style="font-size: 18px; margin-bottom: 20px;">Eliminar mi cuenta</h5>
+                    ¡Cuidado! Sólo si estas seguro de ya no tener una cuenta en nuestro sitio web, puedes eliminar tu cuenta.
+                    <asp:Button ID="BtnEliminarCuenta" style="margin-bottom:20px;" BackColor="Transparent" ForeColor="red" BorderStyle="None" Font-Size="14" Text="Eliminar mi cuenta" runat="server" OnClick="BtnEliminarCuenta_Click" />
+                    
+                    </div>
+
             </div>
         </div>
     </form>

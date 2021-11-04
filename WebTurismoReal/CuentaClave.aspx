@@ -123,15 +123,15 @@
                                 <asp:Button ID="Btn_Datos" CssClass="btn" Text="Mis datos" runat="server" OnClick="Btn_Datos_Click" /></td>
                         </tr>
                         <tr>
-                            <td>
+                            <td class="td-after">
                                 <asp:Button ID="Btn_Reservas" CssClass="btn" Text="Mis reservas" runat="server" OnClick="Btn_Reservas_Click" /></td>
-                            <td>
+                            <td class="td-after">
                                 <asp:Button ID="Btn_Acompañantes" CssClass="btn" Text="Mis acompañantes" runat="server" OnClick="Btn_Acompañantes_Click" /></td>
                         </tr>
                         <tr>
-                            <td>
+                            <td class="td-after">
                                 <asp:Button ID="Btn_Servicios" CssClass="btn" Text="Servicios Extra" runat="server" OnClick="Btn_Servicios_Click" /></td>
-                            <td>
+                            <td class="td-after">
                                 <asp:Button ID="Btn_Clave" CssClass="btn-active" Text="Cambiar contraseña" runat="server" OnClick="Btn_Clave_Click" /></td>
                         </tr>
                     </table>

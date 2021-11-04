@@ -861,3 +861,16 @@ legend {
         .gridViewHeader th:last-child {
             border-radius: 0 5px 0 0;
         }
+
+
+.td-after {
+    width: 50%;
+}
+
+@media (max-width: 952px) {
+    .td-after {
+        display: inline-block;
+        width: 100%;
+        margin-bottom: 2px;
+    }
+}

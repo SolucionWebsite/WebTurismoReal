@@ -113,6 +113,24 @@
                 confirmButtonColor: '#117A65'
             })
         }
+        function ServicioModificadoExito() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: 'El servicio extra se modificó correctamente!',
+                iconColor: '#117A65',
+                confirmButtonColor: '#117A65'
+            })
+        }
+        function ServicioModificadoFallido() {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Oops... ocurrió un problema',
+                text: 'El servicio extra no se modificó!',
+                iconColor: '#117A65',
+                confirmButtonColor: '#117A65'
+            })
+        }
         function Olvidar_Selecccionar_Servicio() {
             Swal.fire({
                 icon: 'warning',
@@ -302,22 +320,22 @@
                                 <asp:Button ID="Btn_Datos" CssClass="btn" Text="Mis datos" runat="server" OnClick="Btn_Datos_Click" /></td>
                         </tr>
                         <tr>
-                            <td style="width: 50%">
+                            <td class="td-after">
                                 <asp:Button ID="Btn_Reservas" CssClass="btn" Text="Mis reservas" runat="server" OnClick="Btn_Reservas_Click" /></td>
-                            <td style="width: 50%">
+                            <td class="td-after">
                                 <asp:Button ID="Btn_Acompañantes" CssClass="btn" Text="Mis acompañantes" runat="server" OnClick="Btn_Acompañantes_Click" /></td>
                         </tr>
                         <tr>
-                            <td style="width: 50%">
+                            <td class="td-after">
                                 <asp:Button ID="Btn_Servicios" CssClass="btn-active" Text="Servicios Extra" runat="server" OnClick="Btn_Servicios_Click" /></td>
-                            <td style="width: 50%">
+                            <td class="td-after">
                                 <asp:Button ID="Btn_Clave" CssClass="btn" Text="Cambiar contraseña" runat="server" OnClick="Btn_Clave_Click" /></td>
                         </tr>
                     </table>
                 </div>
 
                 <div class="card" style="margin-bottom: 5px;">
-                    <p style="margin-top: 5px;">Selecciona una reserva para agregar, modificar o eliminar un servicio extra.</p>
+                    <p style="margin-top: 5px;">Selecciona una reserva para agregar, modificar o cancelar un servicio extra.</p>
                     <div class="scroll-div">
                         <asp:GridView ID="GridReservas" runat="server" DataKeyNames="ID" OnRowDataBound="GridReservas_RowDataBound1" CssClass="gridView" OnSelectedIndexChanged="GridReservas_SelectedIndexChanged">
                             <AlternatingRowStyle Wrap="False" />
@@ -385,7 +403,7 @@
                                 <td class="td-after">
                                     <asp:Button ID="Btn_Modificar_SE" CssClass="btn" Text="Modificar servicio extra" runat="server" OnClick="Btn_Modificar_SE_Click" /></td>
                                 <td class="td-after">
-                                    <asp:Button ID="Btn_Eliminar_SE" CssClass="btn" Text="Quitar servicio extra" runat="server" OnClick="Btn_Eliminar_SE_Click" /></td>
+                                    <asp:Button ID="Btn_Eliminar_SE" CssClass="btn" Text="Cancelar servicio extra" runat="server" OnClick="Btn_Eliminar_SE_Click" /></td>
                             </tr>
                         </table>
                     </div>

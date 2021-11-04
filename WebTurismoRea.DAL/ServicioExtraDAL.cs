@@ -143,7 +143,6 @@ namespace WebTurismoRea.DAL
 
         public int ModificarServicioExtra(ServicioExtraDAL servicio)
         {
-            //MODIFICAR
             using (da.Connection())
             {
                 int retorno;
@@ -157,6 +156,7 @@ namespace WebTurismoRea.DAL
 
                     cmd.Connection.Open();
 
+                    cmd.Parameters.Add("V_ID_SERV", servicio.Id);
                     cmd.Parameters.Add("V_FECHA_HORA_SERV", servicio.FechaAsistencia);
                     cmd.Parameters.Add("V_CANT_ASISTENTES_SERV", servicio.Asistentes);
                     cmd.Parameters.Add("V_TOUR_ID_TOUR", servicio.IdTour);

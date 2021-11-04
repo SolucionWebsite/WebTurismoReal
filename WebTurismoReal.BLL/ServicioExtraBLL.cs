@@ -71,6 +71,22 @@ namespace WebTurismoReal.BLL
             return lista2;
         }
 
+        public int ModificarServicioExtra(ServicioExtraBLL servicio)
+        {
+            int retorno;
+
+            dal.Id = Id;
+            dal.FechaAsistencia = FechaAsistencia;
+            dal.Asistentes = Asistentes;
+            dal.IdTour = IdTour;
+            dal.IdTransporte = IdTransporte;
+            dal.IdReserva = IdReserva;
+
+            retorno = dal.ModificarServicioExtra(dal);
+
+            return retorno;
+        }
+
         public int EliminarServicioExtra(int id_servicio, int id_reserva)
         {
             int retorno;
